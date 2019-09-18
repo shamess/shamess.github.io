@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://technicallyshane.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://technicallyshane.com/" rel="alternate" type="text/html" /><updated>2019-09-18T21:40:35+00:00</updated><id>https://technicallyshane.com/feed.xml</id><title type="html">Shane’s blog</title><subtitle>I wouldn't worry about it.</subtitle><entry><title type="html">Furture frontend dev, I’m sorry.</title><link href="https://technicallyshane.com/2019/08/25/mixed-units.html" rel="alternate" type="text/html" title="Furture frontend dev, I'm sorry." /><published>2019-08-25T21:01:05+00:00</published><updated>2019-08-25T21:01:05+00:00</updated><id>https://technicallyshane.com/2019/08/25/mixed-units</id><content type="html" xml:base="https://technicallyshane.com/2019/08/25/mixed-units.html">&lt;p&gt;&lt;img src=&quot;/assets/mixed_units.png&quot; alt=&quot;Mixed units&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Mix your units as much as you like, kids. Nothing every goes wrong with that.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Misplaced sense of location</title><link href="https://technicallyshane.com/2019/08/18/misaligned.html" rel="alternate" type="text/html" title="Misplaced sense of location" /><published>2019-08-18T21:01:05+00:00</published><updated>2019-08-18T21:01:05+00:00</updated><id>https://technicallyshane.com/2019/08/18/misaligned</id><content type="html" xml:base="https://technicallyshane.com/2019/08/18/misaligned.html">&lt;p&gt;&lt;img src=&quot;/assets/misaligned_map.png&quot; alt=&quot;Misplaced&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;map&amp;gt;&amp;lt;area/&amp;gt;&amp;lt;/map&amp;gt;&lt;/code&gt; code I wrote might have gone wrong somewhere.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Edit:&lt;/em&gt; Hey, I fixed it. https://jsfiddle.net/haikushane/q1oeup2j/80/&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">HTML map areas but a little bit better</title><link href="https://technicallyshane.com/2019/08/15/html-maps.html" rel="alternate" type="text/html" title="HTML map areas but a little bit better" /><published>2019-08-15T21:01:05+00:00</published><updated>2019-08-15T21:01:05+00:00</updated><id>https://technicallyshane.com/2019/08/15/html-maps</id><content type="html" xml:base="https://technicallyshane.com/2019/08/15/html-maps.html">&lt;p&gt;For this project I’m working on I’ve got these images (they’re actually D&amp;amp;D
+dungeon maps) and I’d like users to be able to click various parts of the image
+and have information show up. That’s basically what the HTML &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;map&amp;gt;&amp;lt;area /&amp;gt;&amp;lt;/map&amp;gt;&lt;/code&gt;
+tags are all about.&lt;/p&gt;
+
+&lt;p&gt;However, you can’t style them to make them visible.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jsfiddle.net/haikushane/q1oeup2j/70/&quot;&gt;Here’s a spike of a thing to make them visible.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s truly a spike. I was having a chat about this with my boyfriend and he
+mentioned that &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;canvas&amp;gt;&lt;/code&gt; might be the better way to go, as that will be able to
+draw actual circles and arbitrary areas. (Right now, that spike will only
+handle rects.)&lt;/p&gt;
+
+&lt;p&gt;Nonetheless, this will get me past the blocker of the project I’m working on.
+I’ll doubtlessly be improving this and pulling it into an actual package.
+Unless someone points me to something that already exists first.&lt;/p&gt;</content><author><name></name></author><summary type="html">For this project I’m working on I’ve got these images (they’re actually D&amp;amp;D dungeon maps) and I’d like users to be able to click various parts of the image and have information show up. That’s basically what the HTML &amp;lt;map&amp;gt;&amp;lt;area /&amp;gt;&amp;lt;/map&amp;gt; tags are all about.</summary></entry></feed>

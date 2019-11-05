@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Unity and Dijkstra Pathfinding | Shane’s blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Unity and Dijkstra Pathfinding" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I wouldn’t worry about it." />
+<meta property="og:description" content="I wouldn’t worry about it." />
+<link rel="canonical" href="https://technicallyshane.com/2019/11/05/pathfinding.html" />
+<meta property="og:url" content="https://technicallyshane.com/2019/11/05/pathfinding.html" />
+<meta property="og:site_name" content="Shane’s blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-11-05T11:36:05+00:00" />
+<script type="application/ld+json">
+{"description":"I wouldn’t worry about it.","@type":"BlogPosting","url":"https://technicallyshane.com/2019/11/05/pathfinding.html","dateModified":"2019-11-05T11:36:05+00:00","datePublished":"2019-11-05T11:36:05+00:00","headline":"Unity and Dijkstra Pathfinding","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2019/11/05/pathfinding.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://technicallyshane.com/feed.xml" title="Shane's blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Shane&#39;s blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Unity and Dijkstra Pathfinding</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-11-05T11:36:05+00:00" itemprop="datePublished">Nov 5, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/G8T5O6JN2-I?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p>I’m pretty darned excited about Garry finally being able to pick apples from
+trees. In the above video, Garry is the brown @. The player, moving around
+randomly, is the white one. As it’s turn based (and I’d not at the time of the
+video implemented “wait”) I had to shuffle the player character around.</p>
+
+<p>Anyway, your focus should be on Garry, as he goes from tree (#) to tree,
+stopping to eat the apple after collecting it.</p>
+
+<p>It’s using a version of Dijkstra’s algorithm which I stole from <a href="https://www.codeproject.com/Articles/1221034/Pathfinding-Algorithms-in-Csharp">code
+project</a>, I think. It looks a little something like this in my version. One
+difference that you’ll spot from my version to the one there is that I start
+building my node tree from the end. More on that later.</p>
+
+<p>Start with the Node - one of the points along the path.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class PathfindingNode {
+  // A super high value for the moment. This will get updated with the number of
+  // steps required to get to this number from the end to this point.
+  public int MinCostToStart = int.MaxValue;
+
+  // For me, the cost is always 1. However, you can use this be to higher for
+  // values that the pathfinder should prefer not to follow. 1 for a clean
+  // pathway, but 2 for a muddy field.
+  public int Cost = 1;
+
+  // This'll be used to make sure we don't figure out the distance from the end
+  // more than once. After the first time we spot this node, it'll always be
+  // further away.
+  public bool Visited = false;
+
+  // Used to determine which nodes are next to this one, as my world is a grid
+  // system.
+  public Vector2 Location;
+
+  // The node closest to destination. It'll get added later on.
+  public PathfindingNode NearestToEnd;
+
+  public PathfindingNode (Vector2 location) {
+    Location = location;
+  }
+}
+</code></pre></div></div>
+
+<p>The other crucial object you’ll need is a repository that lets you ask for the
+adjacent nodes. In my case, the repository is also in charge of creating all the
+newly requested Nodes.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class PathfindingNodeRepository {
+  // The in-memory store of Nodes we described above.
+	readonly List&lt;PathfindingNode&gt; nodes;
+  // The solid structures of my world - buildings and trees - are all defined in
+  // a "map". I use this later on to determine if something is a valid position
+  // to move through.
+	readonly Map map;
+  // These are locations which move around a bunch. An refactoring here could be
+  // that this and the `map` argument are replaced with a simple
+  // 'passableLocations' array to simplify this.
+	readonly Vector2[] locationsToAvoid;
+
+	public PathfindingNodeRepository (Map map, Vector2[] locationsToAvoid) {
+		this.map = map;
+
+		nodes = new List&lt;PathfindingNode&gt;();
+		this.locationsToAvoid = locationsToAvoid;
+	}
+
+  // If you can't find a node in-memory, simply create it.
+	public PathfindingNode Find (Vector2 location) {
+		PathfindingNode found = nodes.Find(n =&gt; location == n.Location);
+
+		if (found != null) return found;
+
+		PathfindingNode node = new PathfindingNode(location);
+		nodes.Add(node);
+
+		return node;
+	}
+
+  // As this is a coordinate based system, getting the nodes which are side by
+  // side with the one we're interested in is relatively simple.
+	public List&lt;PathfindingNode&gt; GetAdjacentNodes (PathfindingNode node) {
+    // These are the eight coordinates "next" to our Node.
+		Vector2[] directions = new Vector2[8];
+    // This order actually is important! It allows diagonal movement, but
+    // prefers cardianal directions.
+		directions[0] = new Vector2(0, -1);
+		directions[1] = new Vector2(-1, 0);
+		directions[2] = new Vector2(1, 0);
+		directions[3] = new Vector2(0, 1);
+
+		directions[4] = new Vector2(-1, -1);
+		directions[5] = new Vector2(1, -1);
+		directions[6] = new Vector2(-1, 1);
+		directions[7] = new Vector2(1, 1);
+
+		List&lt;PathfindingNode&gt; adjacent = new List&lt;PathfindingNode&gt;();
+
+		foreach (Vector2 direction in directions) {
+			Vector2 location = node.Location + direction;
+
+      // Check if the location is passable and that we're not avoiding it.
+			bool passable = map.ValidMovementPosition(location) &amp;&amp;
+				!Array.Exists&lt;Vector2&gt;(locationsToAvoid, avoid =&gt; avoid == location);
+
+			if (passable) {
+				adjacent.Add(Find(location));
+			}
+		}
+
+		return adjacent;
+	}
+}
+</code></pre></div></div>
+
+<p>The final piece of the algorithm itself.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class PathfindingDijkstra {
+	private readonly PathfindingNode start;
+	private readonly PathfindingNode end;
+	private readonly PathfindingNodeRepository repo;
+
+	public PathfindingDijkstra (PathfindingNode start, PathfindingNode end, PathfindingNodeRepository repo) {
+		this.start = start;
+		this.end = end;
+		this.repo = repo;
+
+		BuildNodes();
+	}
+
+  // Outside of the Pathfinding codebase it is more likely that you'll know the
+  // Vector2 rather than have access to the PathfindingNode.
+	public PathfindingDijkstra (Vector2 start, Vector2 end, PathfindingNodeRepository repo) {
+		this.start = repo.Find(start);
+		this.end = repo.Find(end);
+		this.repo = repo;
+
+		BuildNodes();
+	}
+
+	public Vector2[] GetShortestPath () {
+		List&lt;PathfindingNode&gt; shortestPath = new List&lt;PathfindingNode&gt; { start };
+
+		BuildShortestPath(shortestPath, start);
+
+		Vector2[] shortestListOfVectors = new Vector2[shortestPath.Count];
+		int i = 0;
+		foreach (PathfindingNode node in shortestPath) {
+			shortestListOfVectors[i] = node.Location;
+			i += 1;
+		}
+
+		return shortestListOfVectors;
+	}
+
+	private void BuildNodes () {
+    // The destination node obviously has a 0 cost to get to it.
+		end.MinCostToStart = 0;
+    // Kick off our priority queue with the end node.
+		List&lt;PathfindingNode&gt; priorityQueue = new List&lt;PathfindingNode&gt; { end };
+
+		do {
+      // Always order this by the lowest cost node to get to - it's more likely
+      // to give us the shortest route. This obviously doesn't make sense the
+      // first time around this `do`, but once we start adding all the adjacent
+      // Nodes in here, it'll become vital.
+			priorityQueue = priorityQueue.OrderBy(x =&gt; x.MinCostToStart).ToList();
+			PathfindingNode node = priorityQueue.First();
+			priorityQueue.Remove(node);
+
+      // In the code [code project][1] they also order this, though I'm not sure
+      // it does anything except slow down the whole thing. I especially don't
+      // need it as all my costs are the same.
+			foreach (var adjacentNode in repo.GetAdjacentNodes(node)) {
+				if (adjacentNode.Visited) continue;
+
+        // We need to check this to make sure the NearestToEnd is always the
+        // closest node. It's possible that we've spotted this node before but
+        // by a less efficient route.
+				if (node.MinCostToStart + adjacentNode.Cost &lt; adjacentNode.MinCostToStart) {
+					adjacentNode.MinCostToStart = node.MinCostToStart + adjacentNode.Cost;
+					adjacentNode.NearestToEnd = node;
+
+          // If this is the first time we've ever seen this node, pop it in
+          // the queue. 
+					if (!priorityQueue.Contains(adjacentNode)) priorityQueue.Add(adjacentNode);
+				}
+			}
+
+			node.Visited = true;
+      // Don't bother carrying on if we've found our way to the start.
+			if (node == start) return;
+		} while (priorityQueue.Count &gt; 0);
+	}
+
+	private void BuildShortestPath (List&lt;PathfindingNode&gt; list, PathfindingNode node) {
+		if (node.NearestToEnd == null) return;
+
+		list.Add(node.NearestToEnd);
+		BuildShortestPath(list, node.NearestToEnd);
+	}
+}
+</code></pre></div></div>
+
+<p>The problem I bumped into, which lead to me swapping around the Node to start
+building that path from was when the End node is inaccessible. This is almost
+always the case, as what I actually want is “get me the path to the point just
+before the End”. The End is usually an apple tree that can’t be walked past. As
+you see in the repository, it won’t get returned by GetAdjacentNodes, so it can
+never be found from Start.</p>
+
+<p>It’s important to split out your pathfinding code from the domain of your game
+because you’ll be changing the above code quite a lot when you think about
+optimisations. There’s a great deal of work that can be done above to improve
+this code:</p>
+
+<ul>
+  <li>Cache some routes, rather than needing to throw away Nodes every time.</li>
+  <li>Switch to A* pathfinding, at the very least.</li>
+  <li>Switch to a faster OrderBy.</li>
+</ul>
+
+<p>The aim is to make it so that you game doesn’t have to change when you improve
+the pathfinding system.</p>
+
+
+  </div><a class="u-url" href="/2019/11/05/pathfinding.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Shane&#39;s blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Shane&#39;s blog</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/shamess"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">shamess</span></a></li><li><a href="https://www.twitter.com/shamess"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">shamess</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>I wouldn&#39;t worry about it.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

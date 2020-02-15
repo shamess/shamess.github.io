@@ -1,4 +1,60 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://technicallyshane.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://technicallyshane.com/" rel="alternate" type="text/html" /><updated>2020-02-12T17:45:44+00:00</updated><id>https://technicallyshane.com/feed.xml</id><title type="html">Shane’s blog</title><subtitle>I wouldn't worry about it.</subtitle><entry><title type="html">Week 6</title><link href="https://technicallyshane.com/2020/02/12/week6.html" rel="alternate" type="text/html" title="Week 6" /><published>2020-02-12T17:44:09+00:00</published><updated>2020-02-12T17:44:09+00:00</updated><id>https://technicallyshane.com/2020/02/12/week6</id><content type="html" xml:base="https://technicallyshane.com/2020/02/12/week6.html">&lt;ul&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://technicallyshane.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://technicallyshane.com/" rel="alternate" type="text/html" /><updated>2020-02-15T18:17:54+00:00</updated><id>https://technicallyshane.com/feed.xml</id><title type="html">Shane’s blog</title><subtitle>I wouldn't worry about it.</subtitle><entry><title type="html">Digital Ocean Spaces for static websites</title><link href="https://technicallyshane.com/2020/02/15/digital-ocean-spaces-for-static-sites.html" rel="alternate" type="text/html" title="Digital Ocean Spaces for static websites" /><published>2020-02-15T18:17:05+00:00</published><updated>2020-02-15T18:17:05+00:00</updated><id>https://technicallyshane.com/2020/02/15/digital-ocean-spaces-for-static-sites</id><content type="html" xml:base="https://technicallyshane.com/2020/02/15/digital-ocean-spaces-for-static-sites.html">&lt;p&gt;&lt;a href=&quot;https://m.do.co/c/181470abc83a&quot;&gt;Digital Ocean&lt;/a&gt;* has a product called Spaces, which is a drop in replacement for the majority of uses of Amazon’s S3. Including static website hosting.&lt;/p&gt;
+
+&lt;p&gt;I’ve had to turn to Spaces instead of S3 because I’ve got technicallyshane.com managed by DO, because then they can point all sorts of subdomains to my droplets and other services. I really just wanted a quick place for me to put my &lt;a href=&quot;https://bookmarklets.technicallyshane.com/hover/index.html&quot;&gt;bookmarklet to filter hover.com domains by price&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Pros vs S3:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;S3’s UI has gotten gradually more complex, which DO gives a fresh edge too.&lt;/li&gt;
+  &lt;li&gt;S3’s IAM permissions is a complex overhead for just a silly static website.&lt;/li&gt;
+  &lt;li&gt;My DNS doesn’t have to change. (No need to pay for Route 53.)&lt;/li&gt;
+  &lt;li&gt;You can still use the S3 SDK.&lt;/li&gt;
+  &lt;li&gt;CDN for free, with one button.&lt;/li&gt;
+  &lt;li&gt;Subdomain per-bucket set up with one button.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cons vs S3:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$5 per month, right from the start. You get unlimted “buckets” and a cumulative total of 250Gb included in that though. 1TB bandwidth.&lt;/li&gt;
+  &lt;li&gt;index.html isn’t loaded from the root. This is probably a show stopper for most people, but I’m alright with it right now. There’s no sign of them adding support for this.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The change from S3 to Spaces is as easy as adding one line:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;const fs = require('fs');
+const AWS = require('aws-sdk')
+
+const spacesEndpoint = new AWS.Endpoint('fra1.digitaloceanspaces.com');
+const s3 = new AWS.S3({
+  endpoint: spacesEndpoint,
+  accessKeyId: process.env.DEPLOY_KEY_ID,
+  secretAccessKey: process.env.DEPLOY_KEY
+});
+
+const remoteDirectory = &quot;hover&quot;;
+const build = `${__dirname}/../build`;
+
+fs.readdirSync(build).forEach(file =&amp;gt; {
+  if (file[0] == '.') return;
+
+  var params = {
+    Body: fs.readFileSync(`${build}/${file}`, &quot;utf-8&quot;),
+    Bucket: 'name-of-your-space',
+    Key: `${remoteDirectory}/${file}`,
+    ACL: &quot;public-read&quot;,
+    ContentDisposition: &quot;inline&quot;,
+    ContentType: &quot;text/html&quot;,
+  };
+
+  s3.putObject(params, function(err, data) {
+    if (err) console.log(err, err.stack);
+    else     console.log(data);
+  });
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;* This is an affiliate link that’ll give you $100 credit to spend in 60 days. Two months free Spaces, plus a bunch of droplets, I guess.&lt;/p&gt;</content><author><name></name></author><summary type="html">Digital Ocean* has a product called Spaces, which is a drop in replacement for the majority of uses of Amazon’s S3. Including static website hosting.</summary></entry><entry><title type="html">Week 6</title><link href="https://technicallyshane.com/2020/02/12/week6.html" rel="alternate" type="text/html" title="Week 6" /><published>2020-02-12T17:44:09+00:00</published><updated>2020-02-12T17:44:09+00:00</updated><id>https://technicallyshane.com/2020/02/12/week6</id><content type="html" xml:base="https://technicallyshane.com/2020/02/12/week6.html">&lt;ul&gt;
   &lt;li&gt;I took my mum for lunch at a club because a pianist I like would be playing. During one of the songs I asked her what she thought the story of the song was. She said, “I think it’s just a song.” People struggle a bunch with imagination to a level which really surprises me. (For what it’s worth, the song was definitely about two people who were desperate to speak at a busy party, but kept getting drawn into conversations with friends. The following song showed one of them making a break, just as they see the other leaving. Dashing now through the streets of Paris, they meet again despite the entire evening being against it. But then the next song seemed to skip to the next day, so I never got a chance to see how their night went.) This was at Peggie’s Skylight, which was wonderful as always.&lt;/li&gt;
   &lt;li&gt;There’s a cool puzzle called the &lt;a href=&quot;https://www.youtube.com/watch?v=73Meh3NPno4&quot;&gt;Snake Egg Puzzle&lt;/a&gt; which I’ve been writing a solver for. It’s difficult because so much of it is based on “I’ll try this out and see where it takes me” which is hard to codify without brute forcing the solution.&lt;/li&gt;
   &lt;li&gt;I intended to pick up my ukulele again and start practicing, but I haven’t touche it in over a month again. The weeks just fly by. I’m spending my time very inefficiently. I’ll look for classes.&lt;/li&gt;
@@ -388,8 +444,4 @@ and that’ll allow you to narrow down the scenario in which it’s broken. The 
 news here is that my pathfinding tests are all sodding passing and the bug is
 still there!&lt;/p&gt;</content><author><name></name></author><summary type="html">tldr; You can’t really unit test MonoBehaviours. Instead, pull out the logic you want to test in a plain old C# class and use that.</summary></entry><entry><title type="html">Furture frontend dev, I’m sorry.</title><link href="https://technicallyshane.com/2019/08/25/mixed-units.html" rel="alternate" type="text/html" title="Furture frontend dev, I'm sorry." /><published>2019-08-25T21:01:05+00:00</published><updated>2019-08-25T21:01:05+00:00</updated><id>https://technicallyshane.com/2019/08/25/mixed-units</id><content type="html" xml:base="https://technicallyshane.com/2019/08/25/mixed-units.html">&lt;p&gt;&lt;img src=&quot;/assets/mixed_units.png&quot; alt=&quot;Mixed units&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Mix your units as much as you like, kids. Nothing every goes wrong with that.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Misplaced sense of location</title><link href="https://technicallyshane.com/2019/08/18/misaligned.html" rel="alternate" type="text/html" title="Misplaced sense of location" /><published>2019-08-18T21:01:05+00:00</published><updated>2019-08-18T21:01:05+00:00</updated><id>https://technicallyshane.com/2019/08/18/misaligned</id><content type="html" xml:base="https://technicallyshane.com/2019/08/18/misaligned.html">&lt;p&gt;&lt;img src=&quot;/assets/misaligned_map.png&quot; alt=&quot;Misplaced&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;map&amp;gt;&amp;lt;area/&amp;gt;&amp;lt;/map&amp;gt;&lt;/code&gt; code I wrote might have gone wrong somewhere.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Edit:&lt;/em&gt; Hey, I fixed it. https://jsfiddle.net/haikushane/q1oeup2j/80/&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
+&lt;p&gt;Mix your units as much as you like, kids. Nothing every goes wrong with that.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>

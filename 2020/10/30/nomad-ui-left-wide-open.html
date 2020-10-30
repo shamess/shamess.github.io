@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Hiding the Nomad frontend | Shane’s blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Hiding the Nomad frontend" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Here’s the situation. You’re excitedly following along with the Getting Started Nomad tutorial and it’s all going really well. You’ve created a Digital Ocean droplet to fool around with and you’re overjoyed that you’ve gotten your Redis server running three instances. Then you get to the “Web UI” section and think to yourself, “hm, but I never turned this on.”" />
+<meta property="og:description" content="Here’s the situation. You’re excitedly following along with the Getting Started Nomad tutorial and it’s all going really well. You’ve created a Digital Ocean droplet to fool around with and you’re overjoyed that you’ve gotten your Redis server running three instances. Then you get to the “Web UI” section and think to yourself, “hm, but I never turned this on.”" />
+<link rel="canonical" href="https://technicallyshane.com/2020/10/30/nomad-ui-left-wide-open.html" />
+<meta property="og:url" content="https://technicallyshane.com/2020/10/30/nomad-ui-left-wide-open.html" />
+<meta property="og:site_name" content="Shane’s blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-30T19:33:05+00:00" />
+<script type="application/ld+json">
+{"description":"Here’s the situation. You’re excitedly following along with the Getting Started Nomad tutorial and it’s all going really well. You’ve created a Digital Ocean droplet to fool around with and you’re overjoyed that you’ve gotten your Redis server running three instances. Then you get to the “Web UI” section and think to yourself, “hm, but I never turned this on.”","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2020/10/30/nomad-ui-left-wide-open.html"},"@type":"BlogPosting","url":"https://technicallyshane.com/2020/10/30/nomad-ui-left-wide-open.html","headline":"Hiding the Nomad frontend","dateModified":"2020-10-30T19:33:05+00:00","datePublished":"2020-10-30T19:33:05+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://technicallyshane.com/feed.xml" title="Shane's blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Shane&#39;s blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Hiding the Nomad frontend</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2020-10-30T19:33:05+00:00" itemprop="datePublished">Oct 30, 2020
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Here’s the situation. You’re excitedly following along with the <a href="https://learn.hashicorp.com/collections/nomad/get-started">Getting Started</a> Nomad tutorial and it’s all going really well. You’ve created a Digital Ocean droplet to fool around with and you’re overjoyed that you’ve gotten your Redis server running three instances. Then you get to the “Web UI” section and think to yourself, “hm, but I never turned this on.”</p>
+
+<p>Indeed, if you grab your public IP address and port the default :4646 port on the end, you can see the Web UI. This web UI comes with all sorts of access, including the API where just about anyone can create and start jobs. This isn’t something you want open.</p>
+
+<p>What you need to do, quite quickly to be honest, is <a href="https://cloud.digitalocean.com/networking/firewalls/new">set up some droplet firewall rules</a>. The most basic of these might look like the following:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Inbound rules:
+
+Type      Protocol      Port Range
+SSH       TCP           22
+HTTP      TCP           80
+HTTPS     TCP           443
+
+Outbound rules:
+
+Type         Protocol         Port Range
+ICMP         ICMP
+All TCP     TCP             All ports
+All UDP     UDP             All ports
+</code></pre></div></div>
+
+<p>You’ll need SSH so you don’t get kicked off, and we’ll be using HTTP/S soon.</p>
+
+<p>After saving this and applying it to your droplet (note: you create and apply the firewall rule to your droplet on different tabs of that page) you should no longer be able to access the nomad web UI on port 4646. You’ll just get a timeout if you try.</p>
+
+<p>Our next objective is to get that UI back, but in a much safer way. Ideally, on port 80 on a subdomain.</p>
+
+<p>Setting up the DNS is super easy on Digital Ocean: “Create” your domain, pop in the subdomain you want and point it at your nomad droplet.</p>
+
+<p>Next is to install nginx, which’ll act as our reverse proxy between port 80 and 4646.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>upstream nomad_ui {
+        server 127.0.0.1:4646;
+}
+
+server {
+        listen       80;
+        server_name  nomad.yourdomain.com;
+        charset      UTF-8;
+
+        location / {
+                proxy_pass http://nomad_ui;
+
+                auth_basic "You sure you know what you're doing, kid?";
+                auth_basic_user_file /etc/nginx/auth_files/nomad_ui;
+        }
+}
+</code></pre></div></div>
+
+<p>A key thing to point out here is that we’re also adding some basic auth. You’ll need to create this file. Most places around the internet (including Digital Ocean’s own tutorial) suggest installing some Apache tooling to create this file, but it’s really not needed. You likely already have openssh installed.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl passwd -6
+</code></pre></div></div>
+
+<p>Pop in a new password when prompted and copy and paste that into <code class="highlighter-rouge">/etc/nginx/auth_files/nomad_ui</code> (in a directory you might need to create). Before the password, add your username and a colon as seperator. It might look something like this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>raymond:$6$dw8NeSxPPi7MG4gC$be/Jhx4SxmHa0x2BDsm8LD08xpE57xMU8akAjQxyeq
+</code></pre></div></div>
+
+<p>Reload your nginx: <code class="highlighter-rouge">nginx -s reload</code>.</p>
+
+<p>And you should be done!</p>
+
+<p><em>This is one in a series of posts where Shane feels the need to write down what he did or else forever forget.</em></p>
+
+
+  </div><a class="u-url" href="/2020/10/30/nomad-ui-left-wide-open.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Shane&#39;s blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Shane&#39;s blog</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/shamess"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">shamess</span></a></li><li><a href="https://www.twitter.com/shamess"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">shamess</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>I wouldn&#39;t worry about it.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

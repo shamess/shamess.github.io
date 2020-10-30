@@ -1,4 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://technicallyshane.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://technicallyshane.com/" rel="alternate" type="text/html" /><updated>2020-10-24T15:20:47+00:00</updated><id>https://technicallyshane.com/feed.xml</id><title type="html">Shane’s blog</title><subtitle>I wouldn't worry about it.</subtitle><entry><title type="html">Setting up nginx to work with EventSource</title><link href="https://technicallyshane.com/2020/10/24/nginx-eventsource.html" rel="alternate" type="text/html" title="Setting up nginx to work with EventSource" /><published>2020-10-24T14:48:05+00:00</published><updated>2020-10-24T14:48:05+00:00</updated><id>https://technicallyshane.com/2020/10/24/nginx-eventsource</id><content type="html" xml:base="https://technicallyshane.com/2020/10/24/nginx-eventsource.html">&lt;p&gt;At the moment, I have a few web services running from this machine. The downside is that only one of those services can use port 80, regardless of if there’s a subdomain making them distinct. The way to solve this is to put nginx in front of them, allowing nginx to hog port 80 and distribute requests along my application servers, based on the subdomain.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://technicallyshane.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://technicallyshane.com/" rel="alternate" type="text/html" /><updated>2020-10-30T19:38:50+00:00</updated><id>https://technicallyshane.com/feed.xml</id><title type="html">Shane’s blog</title><subtitle>I wouldn't worry about it.</subtitle><entry><title type="html">Hiding the Nomad frontend</title><link href="https://technicallyshane.com/2020/10/30/nomad-ui-left-wide-open.html" rel="alternate" type="text/html" title="Hiding the Nomad frontend" /><published>2020-10-30T19:33:05+00:00</published><updated>2020-10-30T19:33:05+00:00</updated><id>https://technicallyshane.com/2020/10/30/nomad-ui-left-wide-open</id><content type="html" xml:base="https://technicallyshane.com/2020/10/30/nomad-ui-left-wide-open.html">&lt;p&gt;Here’s the situation. You’re excitedly following along with the &lt;a href=&quot;https://learn.hashicorp.com/collections/nomad/get-started&quot;&gt;Getting Started&lt;/a&gt; Nomad tutorial and it’s all going really well. You’ve created a Digital Ocean droplet to fool around with and you’re overjoyed that you’ve gotten your Redis server running three instances. Then you get to the “Web UI” section and think to yourself, “hm, but I never turned this on.”&lt;/p&gt;
+
+&lt;p&gt;Indeed, if you grab your public IP address and port the default :4646 port on the end, you can see the Web UI. This web UI comes with all sorts of access, including the API where just about anyone can create and start jobs. This isn’t something you want open.&lt;/p&gt;
+
+&lt;p&gt;What you need to do, quite quickly to be honest, is &lt;a href=&quot;https://cloud.digitalocean.com/networking/firewalls/new&quot;&gt;set up some droplet firewall rules&lt;/a&gt;. The most basic of these might look like the following:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inbound rules:
+
+Type      Protocol      Port Range
+SSH       TCP           22
+HTTP      TCP           80
+HTTPS     TCP           443
+
+Outbound rules:
+
+Type         Protocol         Port Range
+ICMP         ICMP
+All TCP     TCP             All ports
+All UDP     UDP             All ports
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You’ll need SSH so you don’t get kicked off, and we’ll be using HTTP/S soon.&lt;/p&gt;
+
+&lt;p&gt;After saving this and applying it to your droplet (note: you create and apply the firewall rule to your droplet on different tabs of that page) you should no longer be able to access the nomad web UI on port 4646. You’ll just get a timeout if you try.&lt;/p&gt;
+
+&lt;p&gt;Our next objective is to get that UI back, but in a much safer way. Ideally, on port 80 on a subdomain.&lt;/p&gt;
+
+&lt;p&gt;Setting up the DNS is super easy on Digital Ocean: “Create” your domain, pop in the subdomain you want and point it at your nomad droplet.&lt;/p&gt;
+
+&lt;p&gt;Next is to install nginx, which’ll act as our reverse proxy between port 80 and 4646.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;upstream nomad_ui {
+        server 127.0.0.1:4646;
+}
+
+server {
+        listen       80;
+        server_name  nomad.yourdomain.com;
+        charset      UTF-8;
+
+        location / {
+                proxy_pass http://nomad_ui;
+
+                auth_basic &quot;You sure you know what you're doing, kid?&quot;;
+                auth_basic_user_file /etc/nginx/auth_files/nomad_ui;
+        }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;A key thing to point out here is that we’re also adding some basic auth. You’ll need to create this file. Most places around the internet (including Digital Ocean’s own tutorial) suggest installing some Apache tooling to create this file, but it’s really not needed. You likely already have openssh installed.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;openssl passwd -6
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Pop in a new password when prompted and copy and paste that into &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/nginx/auth_files/nomad_ui&lt;/code&gt; (in a directory you might need to create). Before the password, add your username and a colon as seperator. It might look something like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;raymond:$6$dw8NeSxPPi7MG4gC$be/Jhx4SxmHa0x2BDsm8LD08xpE57xMU8akAjQxyeq
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Reload your nginx: &lt;code class=&quot;highlighter-rouge&quot;&gt;nginx -s reload&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;And you should be done!&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;This is one in a series of posts where Shane feels the need to write down what he did or else forever forget.&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Here’s the situation. You’re excitedly following along with the Getting Started Nomad tutorial and it’s all going really well. You’ve created a Digital Ocean droplet to fool around with and you’re overjoyed that you’ve gotten your Redis server running three instances. Then you get to the “Web UI” section and think to yourself, “hm, but I never turned this on.”</summary></entry><entry><title type="html">Setting up nginx to work with EventSource</title><link href="https://technicallyshane.com/2020/10/24/nginx-eventsource.html" rel="alternate" type="text/html" title="Setting up nginx to work with EventSource" /><published>2020-10-24T14:48:05+00:00</published><updated>2020-10-24T14:48:05+00:00</updated><id>https://technicallyshane.com/2020/10/24/nginx-eventsource</id><content type="html" xml:base="https://technicallyshane.com/2020/10/24/nginx-eventsource.html">&lt;p&gt;At the moment, I have a few web services running from this machine. The downside is that only one of those services can use port 80, regardless of if there’s a subdomain making them distinct. The way to solve this is to put nginx in front of them, allowing nginx to hog port 80 and distribute requests along my application servers, based on the subdomain.&lt;/p&gt;
 
 &lt;p&gt;This is actually fairly easy to set up. On a Ubuntu distro-based systems, &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo apt-get install nginx&lt;/code&gt; will get you most the way there. You’ll need to create an upstream and point traffic to it.&lt;/p&gt;
 
@@ -183,60 +246,4 @@ Could not connect to Redis at 127.0.0.1:6379: Cannot assign requested address
   &lt;li&gt;I found time to work on &lt;a href=&quot;https://github.com/PowerRhino/rocksteady&quot;&gt;Rocksteady&lt;/a&gt; – during Altmetric’s monthly hackday. Then it came time to build the image. Turns out, the Alpine images don’t promise to keep the same versions of the software always available. What I mean is that it was once possible to get NodeJS=8.17 on Alpine 3.10. &lt;a href=&quot;https://pkgs.alpinelinux.org/packages?name=nodejs&amp;amp;branch=v3.10&quot;&gt;It is no longer possible.&lt;/a&gt; So my quick UI change has turned into upgrade Node, I guess. Or figuring out how to install old-node.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Okay, I’m going back to game dev.&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey. I missed last week. I wouldn’t worry about it.</summary></entry><entry><title type="html">Digital Ocean Spaces for static websites</title><link href="https://technicallyshane.com/2020/02/15/digital-ocean-spaces-for-static-sites.html" rel="alternate" type="text/html" title="Digital Ocean Spaces for static websites" /><published>2020-02-15T18:17:05+00:00</published><updated>2020-02-15T18:17:05+00:00</updated><id>https://technicallyshane.com/2020/02/15/digital-ocean-spaces-for-static-sites</id><content type="html" xml:base="https://technicallyshane.com/2020/02/15/digital-ocean-spaces-for-static-sites.html">&lt;p&gt;&lt;a href=&quot;https://m.do.co/c/181470abc83a&quot;&gt;Digital Ocean&lt;/a&gt;* has a product called Spaces, which is a drop in replacement for the majority of uses of Amazon’s S3. Including static website hosting.&lt;/p&gt;
-
-&lt;p&gt;I’ve had to turn to Spaces instead of S3 because I’ve got technicallyshane.com managed by DO, because then they can point all sorts of subdomains to my droplets and other services. I really just wanted a quick place for me to put my &lt;a href=&quot;https://bookmarklets.technicallyshane.com/hover/index.html&quot;&gt;bookmarklet to filter hover.com domains by price&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Pros vs S3:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;S3’s UI has gotten gradually more complex, which DO gives a fresh edge too.&lt;/li&gt;
-  &lt;li&gt;S3’s IAM permissions is a complex overhead for just a silly static website.&lt;/li&gt;
-  &lt;li&gt;My DNS doesn’t have to change. (No need to pay for Route 53.)&lt;/li&gt;
-  &lt;li&gt;You can still use the S3 SDK.&lt;/li&gt;
-  &lt;li&gt;CDN for free, with one button.&lt;/li&gt;
-  &lt;li&gt;Subdomain per-bucket set up with one button.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Cons vs S3:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$5 per month, right from the start. You get unlimted “buckets” and a cumulative total of 250Gb included in that though. 1TB bandwidth.&lt;/li&gt;
-  &lt;li&gt;index.html isn’t loaded from the root. This is probably a show stopper for most people, but I’m alright with it right now. There’s no sign of them adding support for this.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The change from S3 to Spaces is as easy as adding one line:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;const fs = require('fs');
-const AWS = require('aws-sdk')
-
-const spacesEndpoint = new AWS.Endpoint('fra1.digitaloceanspaces.com');
-const s3 = new AWS.S3({
-  endpoint: spacesEndpoint,
-  accessKeyId: process.env.DEPLOY_KEY_ID,
-  secretAccessKey: process.env.DEPLOY_KEY
-});
-
-const remoteDirectory = &quot;hover&quot;;
-const build = `${__dirname}/../build`;
-
-fs.readdirSync(build).forEach(file =&amp;gt; {
-  if (file[0] == '.') return;
-
-  var params = {
-    Body: fs.readFileSync(`${build}/${file}`, &quot;utf-8&quot;),
-    Bucket: 'name-of-your-space',
-    Key: `${remoteDirectory}/${file}`,
-    ACL: &quot;public-read&quot;,
-    ContentDisposition: &quot;inline&quot;,
-    ContentType: &quot;text/html&quot;,
-  };
-
-  s3.putObject(params, function(err, data) {
-    if (err) console.log(err, err.stack);
-    else     console.log(data);
-  });
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;* This is an affiliate link that’ll give you $100 credit to spend in 60 days. Two months free Spaces, plus a bunch of droplets, I guess.&lt;/p&gt;</content><author><name></name></author><summary type="html">Digital Ocean* has a product called Spaces, which is a drop in replacement for the majority of uses of Amazon’s S3. Including static website hosting.</summary></entry></feed>
+&lt;p&gt;Okay, I’m going back to game dev.&lt;/p&gt;</content><author><name></name></author><summary type="html">Hey. I missed last week. I wouldn’t worry about it.</summary></entry></feed>

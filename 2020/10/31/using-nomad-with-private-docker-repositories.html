@@ -83,6 +83,8 @@
 
 <h4 id="configure-nomad">Configure Nomad</h4>
 
+<p><em>I’ve just been told that there’s a package which magically does some of the stuff below. I’ve not looked into it any further, but <a href="https://github.com/awslabs/amazon-ecr-credential-helper">here you go</a>.</em></p>
+
 <p>We need to add some configuration to our Nomad client agents. That’ll be your <code class="highlighter-rouge">client1.hcl</code> files from the tutorial. You’ll need to stop and restart it before the changes will be picked up, remember.</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugin "docker" {

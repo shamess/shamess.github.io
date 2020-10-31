@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Using Nomad with private Docker repositories | Shane’s blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Using Nomad with private Docker repositories" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Here’s the situation. You’ve done the starting tutorial and got your nomad “cluster” running on one machine. You’ve hidden the web UI. You’ve even created a Dockerfile for your application. Now you’re ready to get it running!" />
+<meta property="og:description" content="Here’s the situation. You’ve done the starting tutorial and got your nomad “cluster” running on one machine. You’ve hidden the web UI. You’ve even created a Dockerfile for your application. Now you’re ready to get it running!" />
+<link rel="canonical" href="https://technicallyshane.com/2020/10/31/using-nomad-with-private-docker-repositories.html" />
+<meta property="og:url" content="https://technicallyshane.com/2020/10/31/using-nomad-with-private-docker-repositories.html" />
+<meta property="og:site_name" content="Shane’s blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-31T11:37:05+00:00" />
+<script type="application/ld+json">
+{"description":"Here’s the situation. You’ve done the starting tutorial and got your nomad “cluster” running on one machine. You’ve hidden the web UI. You’ve even created a Dockerfile for your application. Now you’re ready to get it running!","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2020/10/31/using-nomad-with-private-docker-repositories.html"},"@type":"BlogPosting","url":"https://technicallyshane.com/2020/10/31/using-nomad-with-private-docker-repositories.html","headline":"Using Nomad with private Docker repositories","dateModified":"2020-10-31T11:37:05+00:00","datePublished":"2020-10-31T11:37:05+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://technicallyshane.com/feed.xml" title="Shane's blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Shane&#39;s blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Using Nomad with private Docker repositories</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2020-10-31T11:37:05+00:00" itemprop="datePublished">Oct 31, 2020
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Here’s the situation. You’ve done the <a href="https://learn.hashicorp.com/collections/nomad/get-started">starting tutorial</a> and got your nomad “cluster” running on one machine. You’ve <a href="https://technicallyshane.com/2020/10/30/nomad-ui-left-wide-open.html">hidden the web UI</a>. You’ve even created a Dockerfile for your application. Now you’re ready to get it running!</p>
+
+<h2 id="where-to-put-it">Where to put it?</h2>
+
+<p>I think there are only two places you might think of. <a href="https://hub.docker.com/">Dockerhub</a> and <a href="https://aws.amazon.com/ecr/">Amazon’s ECR</a>.</p>
+
+<p>The perk of Dockerhub is that everything sort of just works. You pay them $5 a month, you send them the Dockerfile, they make the image for you, and you can just pop your image name in your jobspec.</p>
+
+<p>This is cool because a Dockerfile is much smaller to upload than an image, and Dockerhub can process it much faster than you. It’s very simple to <a href="https://www.nomadproject.io/docs/drivers/docker#authentication">provide your username and password to authenticate</a>.</p>
+
+<p>I didn’t use this method though, so can’t say for sure.</p>
+
+<h2 id="elastic-container-registry">Elastic Container Registry</h2>
+
+<p>I went with the slightly more complicated ECR <em>just</em> because it’s cheaper. For someone likely using it as little as me, it’ll work out free most months. If you download less than 1Gb per month, remembering that Docker will cache images too, it’ll cost you nothing.</p>
+
+<p>It’s more difficult to set up though.</p>
+
+<h3 id="uploading-the-image">Uploading the image</h3>
+
+<p>This is fairly simple but has a number of potentially intimidating steps throughout. Stick with it!</p>
+
+<p><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">Install the aws cli tool</a> whereever you want to build your image. You’ll need to set up a user (via the IAM) service, which has at least <code class="highlighter-rouge">AmazonEC2ContainerRegistryFullAccess</code> priveledges. Once you’ve done that and have access to the key and secret, run <code class="highlighter-rouge">aws configure</code> to pop those in.</p>
+
+<p>Then you’ll need to create a repository in <a href="https://aws.amazon.com/ecr/">ECR</a>. You’ll have a repository per project (per git repo, for instance, likely). Hit “View push commands” and it’ll give you all the commands you need to build and push your image. Thanks, AWS!</p>
+
+<p>You should see your image has been uploaded.</p>
+
+<h3 id="authenticating-with-ecr">Authenticating with ECR</h3>
+
+<h4 id="configure-aws">Configure AWS</h4>
+
+<p>Just like on your local machine, you need to <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">install the aws cli tools</a> on your droplet. You want to make <em>a different user</em> with much fewer access rights via IAM, just like before. This time, they only need permissions for <code class="highlighter-rouge">AmazonEC2ContainerRegistryReadOnly</code>. (When you accidentally leak your AWS credentials on a live stream or copy-and-pasted code sample, it’ll be much cheaper for you this way.)</p>
+
+<p>Again, <code class="highlighter-rouge">aws configure</code> and use your new details. Do this on every server you’re running a client on. (Which is just the one for me, right now.)</p>
+
+<h4 id="configure-nomad">Configure Nomad</h4>
+
+<p>We need to add some configuration to our Nomad client agents. That’ll be your <code class="highlighter-rouge">client1.hcl</code> files from the tutorial. You’ll need to stop and restart it before the changes will be picked up, remember.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugin "docker" {
+  config {
+    auth {
+      config = "/etc/docker_auth"
+    }
+  }
+}
+</code></pre></div></div>
+
+<p>(You’ll have some <code class="highlighter-rouge">gc</code> config in there too, which I left. I’ve no idea what it does.)</p>
+
+<p>This tells nomad that whenever we’re fetching Docker images, check that path for config around authentication.</p>
+
+<p>Have your <code class="highlighter-rouge">/etc/docker_auth</code> look something like the below. You’ll need to change the URL to whatever your ECR account URL is; this includes your account ID and region.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "credHelpers": {
+    "3848482828.dkr.ecr.eu-west-1.amazonaws.com": "ecr-login"
+  }
+}
+</code></pre></div></div>
+
+<p>Now, whenever Nomad tries to pull down images (or rather, has Docker do it) it’ll check the hostname of the image and run the auth through <code class="highlighter-rouge">ecr-login</code> first. This is hinting at another file you need to make - with some magic involved.</p>
+
+<p>The file you need to make needs to be:</p>
+
+<ul>
+  <li>named <code class="highlighter-rouge">docker-credential-ecr-login</code>; Nomad will prepend the script with <code class="highlighter-rouge">docker-credential-</code></li>
+  <li>executable; <code class="highlighter-rouge">chmod +x /usr/local/bin/docker-credential-ecr-login</code></li>
+  <li>be on your path; <code class="highlighter-rouge">PATH=$PATH:/usr/local/bin</code> in <code class="highlighter-rouge">.bashrc</code> and <code class="highlighter-rouge">source .bashrc</code> to reload it</li>
+</ul>
+
+<p>It needs to output to stdout a chunk of JSON. My utterly messy script looks like this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nv">PASSWORD</span><span class="o">=</span><span class="sb">`</span>aws <span class="nt">--region</span> eu-west-1 ecr get-login-password<span class="sb">`</span>
+
+<span class="nb">echo</span> <span class="s1">'{'</span>
+<span class="nb">echo</span> <span class="s1">'"Username": "AWS",'</span>
+<span class="nb">echo</span> <span class="s2">"</span><span class="se">\"</span><span class="s2">Secret</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="k">${</span><span class="nv">PASSWORD</span><span class="k">}</span><span class="se">\"</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="s1">'}'</span>
+</code></pre></div></div>
+
+<p>The username must be “AWS”. The password is generated from <code class="highlighter-rouge">aws cli</code>.</p>
+
+<p>After this, you should see that your jobspec can happily refer to an ECR hosted image and download without any auth failures.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>image = "036666666667.dkr.ecr.eu-west-1.amazonaws.com/simple-app:latest"
+</code></pre></div></div>
+
+<p>If you do run into any errors, really carefully read the nomad client output. It’s incredibly busy in there, but will help you if you can spend enough time to spot what you’re looking for.</p>
+
+<h4 id="can-i-just-docker-login-like-i-did-locally">Can I just <code class="highlighter-rouge">docker login</code> like I did locally?</h4>
+
+<p>I think you’re <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth">supposed to be able to</a>, but this didn’t work for me.</p>
+
+<p>I’ve no idea how long the output of <code class="highlighter-rouge">get-login-password</code> stays valid for. I expect it expires eventually and so one day you’ll be surprised when your allocations start failing.</p>
+
+<p>On top of getting a warning about the password being stored in plain text (though this doesn’t matter; <code class="highlighter-rouge">aws config</code> is already doing this), it still couldn’t authenticate for me. The above is the only thing that worked.</p>
+
+
+  </div><a class="u-url" href="/2020/10/31/using-nomad-with-private-docker-repositories.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Shane&#39;s blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Shane&#39;s blog</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/shamess"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">shamess</span></a></li><li><a href="https://www.twitter.com/shamess"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">shamess</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>I wouldn&#39;t worry about it.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

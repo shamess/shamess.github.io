@@ -64,7 +64,7 @@ following:</p>
   <span class="nb">require</span> <span class="s2">"active_record"</span>
   <span class="nb">require_relative</span> <span class="s2">"config/database"</span>
 
-  <span class="nb">require</span> <span class="no">Gem</span><span class="p">.</span><span class="nf">find_files</span><span class="p">(</span><span class="s2">"active_record/tasks/database_tasks.rb"</span><span class="p">).</span><span class="nf">first</span>
+  <span class="nb">require</span> <span class="s2">"active_record/tasks/database_tasks"</span>
   <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Tasks</span><span class="o">::</span><span class="no">DatabaseTasks</span><span class="p">.</span><span class="nf">db_dir</span> <span class="o">=</span> <span class="s2">"db/"</span>
 
   <span class="n">desc</span> <span class="s2">"Migrate the database"</span>
@@ -79,6 +79,8 @@ following:</p>
     <span class="n">db_config</span> <span class="o">=</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">connection_db_config</span>
 
     <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Tasks</span><span class="o">::</span><span class="no">DatabaseTasks</span><span class="p">.</span><span class="nf">dump_schema</span><span class="p">(</span><span class="n">db_config</span><span class="p">)</span>
+
+    <span class="nb">puts</span> <span class="s2">"Done"</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre></div></div>

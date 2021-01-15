@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>ActiveRecord Migrations without Rails: Nice | Shane’s blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="ActiveRecord Migrations without Rails: Nice" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="You can get Rake-based ActiveRecord Migrations in your non-Rails project with only the smallest amount of massaging." />
+<meta property="og:description" content="You can get Rake-based ActiveRecord Migrations in your non-Rails project with only the smallest amount of massaging." />
+<link rel="canonical" href="https://technicallyshane.com/2021/01/15/activerecord-migrations-without-rails-nice.html" />
+<meta property="og:url" content="https://technicallyshane.com/2021/01/15/activerecord-migrations-without-rails-nice.html" />
+<meta property="og:site_name" content="Shane’s blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-15T00:24:00+00:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-01-15T00:24:00+00:00","dateModified":"2021-01-15T00:24:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2021/01/15/activerecord-migrations-without-rails-nice.html"},"url":"https://technicallyshane.com/2021/01/15/activerecord-migrations-without-rails-nice.html","description":"You can get Rake-based ActiveRecord Migrations in your non-Rails project with only the smallest amount of massaging.","@type":"BlogPosting","headline":"ActiveRecord Migrations without Rails: Nice","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://technicallyshane.com/feed.xml" title="Shane's blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Shane&#39;s blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">ActiveRecord Migrations without Rails: Nice</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-01-15T00:24:00+00:00" itemprop="datePublished">Jan 15, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>You can get Rake-based ActiveRecord Migrations in your non-Rails project with
+only the smallest amount of massaging.</p>
+
+<p>If you’re like me, you’ve been missing the nice ability to simply do <code class="highlighter-rouge">rails
+db:migrate</code> since this is a feature that’s mostly missing if you’re outside of
+Rails. The good news is that it hasn’t gone too far away, but does still
+require a little effort to get working.</p>
+
+<p>You’ll have to create your own Rakefile to stock with your tasks. Fortunately,
+most of the work behind the Rails db tasks are all <a href="https://github.com/rails/rails/blob/5cfd58bbfb8425ab1931c618d98b649bab059ce6/activerecord/lib/active_record/tasks/database_tasks.rb#L229">behind single method
+calls</a>. So, to add migrations and schema dumps, you can do the
+following:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">namespace</span> <span class="ss">:db</span> <span class="k">do</span>
+  <span class="nb">require</span> <span class="s2">"active_record"</span>
+  <span class="nb">require_relative</span> <span class="s2">"config/database"</span>
+
+  <span class="nb">require</span> <span class="no">Gem</span><span class="p">.</span><span class="nf">find_files</span><span class="p">(</span><span class="s2">"active_record/tasks/database_tasks.rb"</span><span class="p">).</span><span class="nf">first</span>
+  <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Tasks</span><span class="o">::</span><span class="no">DatabaseTasks</span><span class="p">.</span><span class="nf">db_dir</span> <span class="o">=</span> <span class="s2">"db/"</span>
+
+  <span class="n">desc</span> <span class="s2">"Migrate the database"</span>
+  <span class="n">task</span> <span class="ss">:migrate</span> <span class="k">do</span>
+    <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Tasks</span><span class="o">::</span><span class="no">DatabaseTasks</span><span class="p">.</span><span class="nf">migrate</span>
+
+    <span class="nb">puts</span> <span class="s2">"Done"</span>
+  <span class="k">end</span>
+
+  <span class="n">desc</span> <span class="s1">'Create a db/schema.rb'</span>
+  <span class="n">task</span> <span class="ss">:schema</span> <span class="k">do</span>
+    <span class="n">db_config</span> <span class="o">=</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">connection_db_config</span>
+
+    <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Tasks</span><span class="o">::</span><span class="no">DatabaseTasks</span><span class="p">.</span><span class="nf">dump_schema</span><span class="p">(</span><span class="n">db_config</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>This is much better than <a href="https://technicallyshane.com/2021/01/13/activerecord-migrations-without-rails.html">my previous efforts</a> because it’s
+no longer monkeying with fairly internal tools to ActiveRecord. This is a
+slightly more open API for running these tasks, which’ll keep working so long
+as Rails continues using them.</p>
+
+<p>Even though I linked to the DatabaseTasks file myself, I didn’t actually read
+it properly. In the end it was none other than the ex-CTO of the worlds best
+altmetrics provider and current provider of excellent technical services, <a href="https://mudge.name/">Paul
+Mucur</a> that lead me to the water on this one.</p>
+
+
+  </div><a class="u-url" href="/2021/01/15/activerecord-migrations-without-rails-nice.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Shane&#39;s blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Shane&#39;s blog</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/shamess"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">shamess</span></a></li><li><a href="https://www.twitter.com/shamess"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">shamess</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>I wouldn&#39;t worry about it.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Raspberry Pi and Neopixel | Shane’s blog</title>
+<meta name="generator" content="Jekyll v4.0.1" />
+<meta property="og:title" content="Raspberry Pi and Neopixel" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I decided to do something with one of the (four or five) Raspberry Pi’s kicking around the house. I ended up excitedly buying a newer Pi and a Neopixel, so I didn’t solve my abundance of Pi problem, but I have gotten somewhere with a project." />
+<meta property="og:description" content="I decided to do something with one of the (four or five) Raspberry Pi’s kicking around the house. I ended up excitedly buying a newer Pi and a Neopixel, so I didn’t solve my abundance of Pi problem, but I have gotten somewhere with a project." />
+<link rel="canonical" href="https://technicallyshane.com/2021/02/06/raspberry-pi-and-neopixel.html" />
+<meta property="og:url" content="https://technicallyshane.com/2021/02/06/raspberry-pi-and-neopixel.html" />
+<meta property="og:site_name" content="Shane’s blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-06T14:12:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Raspberry Pi and Neopixel" />
+<script type="application/ld+json">
+{"url":"https://technicallyshane.com/2021/02/06/raspberry-pi-and-neopixel.html","dateModified":"2021-02-06T14:12:00+00:00","datePublished":"2021-02-06T14:12:00+00:00","headline":"Raspberry Pi and Neopixel","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2021/02/06/raspberry-pi-and-neopixel.html"},"description":"I decided to do something with one of the (four or five) Raspberry Pi’s kicking around the house. I ended up excitedly buying a newer Pi and a Neopixel, so I didn’t solve my abundance of Pi problem, but I have gotten somewhere with a project.","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://technicallyshane.com/feed.xml" title="Shane's blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Shane&#39;s blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Raspberry Pi and Neopixel</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-02-06T14:12:00+00:00" itemprop="datePublished">Feb 6, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>I decided to do something with one of the (four or five) Raspberry Pi’s kicking around the house. I ended up excitedly buying a newer Pi and a Neopixel, so I didn’t solve my abundance of Pi problem, but I have gotten somewhere with a project.</p>
+
+<p>The Neopixel 8x8 grid is an LED board that can be programmed from the Pi. The panel can be easily expanded to add additional ones, all over one data line making it an easy project to start with, and turn into something bigger if you wanted. Each LED can get incredibly bright - too bright to look at directly - and can be individually assigned a full range of 24 bit RBG colours.</p>
+
+<h1 id="shopping-list">Shopping list</h1>
+
+<p>My hope was that the Pi and Neopixel were the only two things I needed to buy, but I was very wrong. I did very little research whilst looking at the two devices and assumed they might be connected via USB, which was a mistake. There’s a number of bits you’ll need.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Qty</th>
+      <th>Item</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><a href="https://thepihut.com/products/raspberry-pi-4-model-b">Raspberry Pi 4</a></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><a href="https://thepihut.com/products/noobs-preinstalled-sd-card">MicroSD with NOOBs preinstalled</a></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><a href="https://thepihut.com/products/raspberry-pi-psu-uk">USB-C power supply</a></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><a href="https://thepihut.com/products/adafruit-flexible-8x8-neopixel-rgb-led-matrix">NeoPixel NeoMatrix 8x8</a></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><a href="https://thepihut.com/products/74ahct125-quad-level-shifter-3v-to-5v">74AHCT125</a></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><a href="https://thepihut.com/products/neopixel-power-brick-5v-5a-25w">Power Brick - 5V 5A</a></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><a href="https://thepihut.com/products/breadboard-friendly-2-1mm-dc-barrel-jack">2.1m Breadboard-friendly 2.1mm DC barrel jack</a></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><a href="https://thepihut.com/products/through-hole-resistors-470-ohm-5-1-4w-pack-of-25">Through-Hole Resistors - 470 ohm</a></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><a href="https://www.cricklewoodelectronics.com/1000H6V3.html">1000uF 6.3V capacitor</a></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><a href="https://thepihut.com/products/raspberry-pi-breadboard-half-size">Adorable half-sized bread board</a></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><a href="https://www.cricklewoodelectronics.com/40-Male-to-Female-Jumper-Cables-on-rainbow-ribbon-cable.html">Male-to-female jumper cables</a></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><a href="https://www.cricklewoodelectronics.com/65-Breadboard-Jumper-Leads-Solderless.html">Male-to-male Jumper Cables</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In total, I spent £112.50. Which is quite a lot… However, I did buy two of some things, and almost all of it can be plucked out the breadboard and reused in other projects.</p>
+
+<p>Something to note is that there appears to be a parts shortage, at least in websites that ship to the UK. I purchased all my items from Cricklewood Electronics, The Pi Hut, and Pimorini. Maybe in better times, this would all be cheaper.</p>
+
+<h2 id="raspberry-pi">Raspberry Pi</h2>
+
+<p>I’m using the Raspberry Pi 4. Every Pi has a bunch of 3.3v GPIO headers, and as such any of them will work. That includes the Pico, which is less than £4, somehow.</p>
+
+<p>You’ll also need a way to power the Pi.</p>
+
+<h2 id="neopixel">Neopixel</h2>
+
+<p>I picked up the NeoMatrix with 64 “pixels”. I’ve done some reading around and can’t be sure what needs to change if you have another kind of Neopixel. I believe they all have the ground (GND), 5V, and DIN (data) solder sockets though.</p>
+
+<p>The voltage maybe the thing which changes - if the voltage required is different to 5v, this design won’t work. You’ll need a different kind of level shifter.</p>
+
+<h2 id="quad-level-shifter">Quad Level-Shifter</h2>
+
+<p>You need a 74AHCT125 chip.</p>
+
+<p>At this point I have to reveal, for those that haven’t noticed yet, that I’m not an electrical engineer. This is the first time in my life I’ve had to understand the difference between amperage and voltage.</p>
+
+<p>The data line from the Pi is coming out at 3.3v. The beefy Neopixel wants to be communicated with at 5v. This chip will make that conversion for us.</p>
+
+<p>Later on, I’ve given a diagram of what needs to connect to what, but it’s fun to look at <a href="https://cdn-shop.adafruit.com/product-files/1787/1787AHC125.pdf">the pinout diagram for the chip too</a>. VCC is the power. GND needs to go to your ground. You’ll also see that there’s four A, Y, OE. 1A is the data in, which outputs to its Y, 1Y. To turn that input/output on or off, it uses the associated OE (1OE), which must be connected to the ground. (I’m unable to explain why the ground is used like this… Research for another day.)</p>
+
+<h2 id="power-supply-and-barrel-jack">Power supply and barrel jack</h2>
+
+<p>I got a fairly standard 2mm barrel jack, as well as a specific Neopixel power supply (5v, 5amp). That power supply does not come with the figure-of-eight wire that connects it to the wall plug. I looted one of these from an old laptop.</p>
+
+<p>The Neopixel requires its own power, and cannot run off of the Pi’s.</p>
+
+<p>Good news: if the amperage isn’t high enough in whatever you currently have, the Neopixel won’t break. It just won’t be able to get as bright and/or light all the LEDs. However, as I said before, the LEDs are able to get <em>very</em> bright and will require 3.5amps if you are on full brightness and have all of them on. I doubt you’ll do this, except for fun though. Maybe you could get away with 2amps, with just one board.</p>
+
+<p>The voltage is much more important to get right; it must be 5v. (I say this, but apparently the power supply, advertised at 5v is around 5.2v, but nothing has gone wrong. I don’t understand why.)</p>
+
+<h2 id="resistor">Resistor</h2>
+
+<p>I got a pack of 25 470 ohm resistors for about 50p. Wild.</p>
+
+<p>I’m going to have to plead ignorance here too; I’m not entirely sure why this was needed, only that it was highly recommended. The internet, similarly, seems confused on this. The consensus seemed to be that it does a good job minimising the peaks in current, which will allow for a cleaner data transmission. It has little to do with keeping the Neopixel safe (as the 74AHCT125 chip is basically already doing that). This sounds suspiciously like what I’m about to say for the capacitor, which I do understand a little better, so maybe I got this resistor bit wrong.</p>
+
+<h2 id="capacitor">Capacitor</h2>
+
+<p>I brought a 1000uF 6.3V capacitor, on the back of <a href="https://learn.adafruit.com/adafruit-neopixel-uberguide/powering-neopixels">advice from the Neopixel people</a>.</p>
+
+<p>I’ll do my best to explain what I’ve learnt about this.</p>
+
+<p>You don’t really need this component, and indeed the official tutorial of putting this board together completely misses it out. However, its job a) subside the initial burst of current and b) to act as <a href="https://www.youtube.com/watch?v=1xicZF9glH0">a “bypass” capacitor</a>. (Thanks Matt, for directing me to this explanation!)</p>
+
+<p>The amperage drawn by the Neopixel varies hugely depending on the LEDs you have turned on. The power supply does not react instantly when amperage changes; there’s high frequency noise which happens. From what I can tell, you’ll have to be very unlucky to see any affects from this, but it could cause an interuption to the stable draw needed. For instance, your 74AHCT125 chip might receive an unusual peak or trough, causing it to misinterpret a signal.</p>
+
+<p>Adding a capacitor reduces those peaks by just… swallowing them up and storing them, I guess?</p>
+
+<p>For something which costs 50p, you may as well add one. It’ll be a totally unreproducable bug you experience if you do ever.</p>
+
+<h2 id="breadboard">Breadboard</h2>
+
+<p>I brought the adorable half board advertised specifically for Raspberry Pi projects (which has very little to do with the Pi, so I guess I was just pulled in by a marketting trick - either way, the board is a good size for this project).</p>
+
+<h2 id="wires">Wires</h2>
+
+<p>I brought a bunch of varying sized male-to-male and male-to-female jumper cables.</p>
+
+<p>You’ll want a small supply of short (10cm) and longer (20cm~) cables. I’m happy that I have a good stock now. They’re reusable, until you solder them at least.</p>
+
+<h1 id="design">Design</h1>
+
+<p>I began following <a href="https://learn.adafruit.com/neopixels-on-raspberry-pi/raspberry-pi-wiring">the wiring tutorial from Adafruit</a>, but also had to add in the capacitor and resistor. That tutorial understands much more about what’s going on that this blog post does, so maybe start there.</p>
+
+<p>I’m still getting to grips with Fritzing, but here’s the design I made. (SVG only, I’m afraid. Fritzing file available on request, but I haven’t completed it yet.)</p>
+
+<p><img src="/assets/NeopixelRasbPi_bb.png" alt="Design for the board linking Neopixel and Raspbery Pi" class="center-image" /></p>
+
+<p>The device in the lower right is the power jack. If you brought the barrel jack, as listed above, you can push it into the board, matching the positive and negative with the board. Positive on the lower rail, and negative (ground) on the upper. There’s no wires, despite what the diagram shows.</p>
+
+<p>It may not be as clear as a more professional board, so here’s what you want to connect:</p>
+
+<ul>
+  <li>Capacitor as close to the power jack as possible. Note the <code class="highlighter-rouge">-</code> on one side. That must go into the matching track.</li>
+  <li>74AHCT125 should go across the centre of the board, giving you access to top and bottom pins. The semi-circle shows you where the left side of the chip is.</li>
+  <li>74AHCT125’s first pin on the top should go to power supply 5v. (You can use any hole in the pinboard from f-j, so long as it’s in the column above the first pin. You can use <em>any</em> hole on the 5v row.)</li>
+  <li>74AHCT125’s first pin on the bottom should go to power supply ground.</li>
+  <li>74AHCT125’s last pin on the bottom should go to power supply ground.</li>
+  <li>The Pi’s GPIO 18 should go to 74AHCT125’s second pin on the bottom.</li>
+  <li>The Pi’s ground should go to the power supply’s ground. (There’s a bunch of pins for ground on the Pi, but do the one just below GPIO 18 for ease of finding it.)</li>
+  <li>74AHCT125’s third pin on the bottom should be connected to the resistor. The resistor should plug into an unused column, say column #9.</li>
+  <li>The Neopixel’s data in (DIN) should be connected to a free hole in column #9 (with your resistor).</li>
+  <li>The Neopixel’s 5V should be connected to a free hole on the power supply’s 5v.</li>
+  <li>The Neopixel’s ground should be connected a free hole on the power supply’s ground.</li>
+</ul>
+
+<h1 id="soldering">Soldering</h1>
+
+<p>If you’re startlingly like me, you’ll need a boyfriend to solder the pins on the Neopixel. For aesthetic reasons, you want to bring the wires up from below the pixel, and have them solder on top. They’ve told you all these years how good they are at it, so I’m sure they can do a good job.</p>
+
+<p>That’s the only bits you’ll need to solder. Thank goodness.</p>
+
+<h1 id="pi-setup">Pi setup</h1>
+
+<p>This was super easy, thanks to the micro-sd with NOOBS preinstalled. After <a href="https://www.raspberrypi.org/documentation/remote-access/ssh/">enabling SSH</a> by dropping a file onto the SD card, you can use an ethernet cable and SSH into it and set up wifi.</p>
+
+<h1 id="python-library">Python library</h1>
+
+<p>The Neopixel shouldn’t technically work with the Pi, as the Pi doesn’t give exactly timed instructions over the GPIO pins, which the NeoPixel expects. That’s easily worked around by using the <a href="https://learn.adafruit.com/neopixels-on-raspberry-pi/python-usage">CircuitPython libraries</a>, which make coding incredibly easy.</p>
+
+<p>Here’s a tiny example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import board
+import neopixel
+
+pixels = neopixel.NeoPixel(
+    board.D18, 64, brightness=0.05, auto_write=False
+)
+
+pixels.fill((255, 0, 0))
+pixels[35] = (125, 125, 125)
+pixels[36] = (125, 125, 125)
+
+pixels.show()
+</code></pre></div></div>
+
+<p>You’ll note how low I set the brightness there…</p>
+
+<p>The <a href="https://learn.adafruit.com/neopixels-on-raspberry-pi/python-usage">CircuitPython page</a> is really good to get going on the code.</p>
+
+
+  </div><a class="u-url" href="/2021/02/06/raspberry-pi-and-neopixel.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Shane&#39;s blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Shane&#39;s blog</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/shamess"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">shamess</span></a></li><li><a href="https://www.twitter.com/shamess"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">shamess</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>I wouldn&#39;t worry about it.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

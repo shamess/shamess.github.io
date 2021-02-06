@@ -1,4 +1,195 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="https://technicallyshane.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://technicallyshane.com/" rel="alternate" type="text/html" /><updated>2021-01-21T23:23:41+00:00</updated><id>https://technicallyshane.com/feed.xml</id><title type="html">Shane’s blog</title><subtitle>I wouldn't worry about it.</subtitle><entry><title type="html">punked</title><link href="https://technicallyshane.com/2021/01/21/punked.html" rel="alternate" type="text/html" title="punked" /><published>2021-01-21T23:09:00+00:00</published><updated>2021-01-21T23:09:00+00:00</updated><id>https://technicallyshane.com/2021/01/21/punked</id><content type="html" xml:base="https://technicallyshane.com/2021/01/21/punked.html">&lt;p&gt;I made a rather less shiny clone of a minigame I’ve been playing a lot of recently. &lt;a href=&quot;https://haikushane.itch.io/punked&quot;&gt;You can play it over here.&lt;/a&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="https://technicallyshane.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://technicallyshane.com/" rel="alternate" type="text/html" /><updated>2021-02-06T14:19:07+00:00</updated><id>https://technicallyshane.com/feed.xml</id><title type="html">Shane’s blog</title><subtitle>I wouldn't worry about it.</subtitle><entry><title type="html">Raspberry Pi and Neopixel</title><link href="https://technicallyshane.com/2021/02/06/raspberry-pi-and-neopixel.html" rel="alternate" type="text/html" title="Raspberry Pi and Neopixel" /><published>2021-02-06T14:12:00+00:00</published><updated>2021-02-06T14:12:00+00:00</updated><id>https://technicallyshane.com/2021/02/06/raspberry-pi-and-neopixel</id><content type="html" xml:base="https://technicallyshane.com/2021/02/06/raspberry-pi-and-neopixel.html">&lt;p&gt;I decided to do something with one of the (four or five) Raspberry Pi’s kicking around the house. I ended up excitedly buying a newer Pi and a Neopixel, so I didn’t solve my abundance of Pi problem, but I have gotten somewhere with a project.&lt;/p&gt;
+
+&lt;p&gt;The Neopixel 8x8 grid is an LED board that can be programmed from the Pi. The panel can be easily expanded to add additional ones, all over one data line making it an easy project to start with, and turn into something bigger if you wanted. Each LED can get incredibly bright - too bright to look at directly - and can be individually assigned a full range of 24 bit RBG colours.&lt;/p&gt;
+
+&lt;h1 id=&quot;shopping-list&quot;&gt;Shopping list&lt;/h1&gt;
+
+&lt;p&gt;My hope was that the Pi and Neopixel were the only two things I needed to buy, but I was very wrong. I did very little research whilst looking at the two devices and assumed they might be connected via USB, which was a mistake. There’s a number of bits you’ll need.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Qty&lt;/th&gt;
+      &lt;th&gt;Item&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://thepihut.com/products/raspberry-pi-4-model-b&quot;&gt;Raspberry Pi 4&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://thepihut.com/products/noobs-preinstalled-sd-card&quot;&gt;MicroSD with NOOBs preinstalled&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://thepihut.com/products/raspberry-pi-psu-uk&quot;&gt;USB-C power supply&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://thepihut.com/products/adafruit-flexible-8x8-neopixel-rgb-led-matrix&quot;&gt;NeoPixel NeoMatrix 8x8&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://thepihut.com/products/74ahct125-quad-level-shifter-3v-to-5v&quot;&gt;74AHCT125&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://thepihut.com/products/neopixel-power-brick-5v-5a-25w&quot;&gt;Power Brick - 5V 5A&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://thepihut.com/products/breadboard-friendly-2-1mm-dc-barrel-jack&quot;&gt;2.1m Breadboard-friendly 2.1mm DC barrel jack&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://thepihut.com/products/through-hole-resistors-470-ohm-5-1-4w-pack-of-25&quot;&gt;Through-Hole Resistors - 470 ohm&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://www.cricklewoodelectronics.com/1000H6V3.html&quot;&gt;1000uF 6.3V capacitor&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://thepihut.com/products/raspberry-pi-breadboard-half-size&quot;&gt;Adorable half-sized bread board&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://www.cricklewoodelectronics.com/40-Male-to-Female-Jumper-Cables-on-rainbow-ribbon-cable.html&quot;&gt;Male-to-female jumper cables&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;6&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://www.cricklewoodelectronics.com/65-Breadboard-Jumper-Leads-Solderless.html&quot;&gt;Male-to-male Jumper Cables&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;In total, I spent £112.50. Which is quite a lot… However, I did buy two of some things, and almost all of it can be plucked out the breadboard and reused in other projects.&lt;/p&gt;
+
+&lt;p&gt;Something to note is that there appears to be a parts shortage, at least in websites that ship to the UK. I purchased all my items from Cricklewood Electronics, The Pi Hut, and Pimorini. Maybe in better times, this would all be cheaper.&lt;/p&gt;
+
+&lt;h2 id=&quot;raspberry-pi&quot;&gt;Raspberry Pi&lt;/h2&gt;
+
+&lt;p&gt;I’m using the Raspberry Pi 4. Every Pi has a bunch of 3.3v GPIO headers, and as such any of them will work. That includes the Pico, which is less than £4, somehow.&lt;/p&gt;
+
+&lt;p&gt;You’ll also need a way to power the Pi.&lt;/p&gt;
+
+&lt;h2 id=&quot;neopixel&quot;&gt;Neopixel&lt;/h2&gt;
+
+&lt;p&gt;I picked up the NeoMatrix with 64 “pixels”. I’ve done some reading around and can’t be sure what needs to change if you have another kind of Neopixel. I believe they all have the ground (GND), 5V, and DIN (data) solder sockets though.&lt;/p&gt;
+
+&lt;p&gt;The voltage maybe the thing which changes - if the voltage required is different to 5v, this design won’t work. You’ll need a different kind of level shifter.&lt;/p&gt;
+
+&lt;h2 id=&quot;quad-level-shifter&quot;&gt;Quad Level-Shifter&lt;/h2&gt;
+
+&lt;p&gt;You need a 74AHCT125 chip.&lt;/p&gt;
+
+&lt;p&gt;At this point I have to reveal, for those that haven’t noticed yet, that I’m not an electrical engineer. This is the first time in my life I’ve had to understand the difference between amperage and voltage.&lt;/p&gt;
+
+&lt;p&gt;The data line from the Pi is coming out at 3.3v. The beefy Neopixel wants to be communicated with at 5v. This chip will make that conversion for us.&lt;/p&gt;
+
+&lt;p&gt;Later on, I’ve given a diagram of what needs to connect to what, but it’s fun to look at &lt;a href=&quot;https://cdn-shop.adafruit.com/product-files/1787/1787AHC125.pdf&quot;&gt;the pinout diagram for the chip too&lt;/a&gt;. VCC is the power. GND needs to go to your ground. You’ll also see that there’s four A, Y, OE. 1A is the data in, which outputs to its Y, 1Y. To turn that input/output on or off, it uses the associated OE (1OE), which must be connected to the ground. (I’m unable to explain why the ground is used like this… Research for another day.)&lt;/p&gt;
+
+&lt;h2 id=&quot;power-supply-and-barrel-jack&quot;&gt;Power supply and barrel jack&lt;/h2&gt;
+
+&lt;p&gt;I got a fairly standard 2mm barrel jack, as well as a specific Neopixel power supply (5v, 5amp). That power supply does not come with the figure-of-eight wire that connects it to the wall plug. I looted one of these from an old laptop.&lt;/p&gt;
+
+&lt;p&gt;The Neopixel requires its own power, and cannot run off of the Pi’s.&lt;/p&gt;
+
+&lt;p&gt;Good news: if the amperage isn’t high enough in whatever you currently have, the Neopixel won’t break. It just won’t be able to get as bright and/or light all the LEDs. However, as I said before, the LEDs are able to get &lt;em&gt;very&lt;/em&gt; bright and will require 3.5amps if you are on full brightness and have all of them on. I doubt you’ll do this, except for fun though. Maybe you could get away with 2amps, with just one board.&lt;/p&gt;
+
+&lt;p&gt;The voltage is much more important to get right; it must be 5v. (I say this, but apparently the power supply, advertised at 5v is around 5.2v, but nothing has gone wrong. I don’t understand why.)&lt;/p&gt;
+
+&lt;h2 id=&quot;resistor&quot;&gt;Resistor&lt;/h2&gt;
+
+&lt;p&gt;I got a pack of 25 470 ohm resistors for about 50p. Wild.&lt;/p&gt;
+
+&lt;p&gt;I’m going to have to plead ignorance here too; I’m not entirely sure why this was needed, only that it was highly recommended. The internet, similarly, seems confused on this. The consensus seemed to be that it does a good job minimising the peaks in current, which will allow for a cleaner data transmission. It has little to do with keeping the Neopixel safe (as the 74AHCT125 chip is basically already doing that). This sounds suspiciously like what I’m about to say for the capacitor, which I do understand a little better, so maybe I got this resistor bit wrong.&lt;/p&gt;
+
+&lt;h2 id=&quot;capacitor&quot;&gt;Capacitor&lt;/h2&gt;
+
+&lt;p&gt;I brought a 1000uF 6.3V capacitor, on the back of &lt;a href=&quot;https://learn.adafruit.com/adafruit-neopixel-uberguide/powering-neopixels&quot;&gt;advice from the Neopixel people&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I’ll do my best to explain what I’ve learnt about this.&lt;/p&gt;
+
+&lt;p&gt;You don’t really need this component, and indeed the official tutorial of putting this board together completely misses it out. However, its job a) subside the initial burst of current and b) to act as &lt;a href=&quot;https://www.youtube.com/watch?v=1xicZF9glH0&quot;&gt;a “bypass” capacitor&lt;/a&gt;. (Thanks Matt, for directing me to this explanation!)&lt;/p&gt;
+
+&lt;p&gt;The amperage drawn by the Neopixel varies hugely depending on the LEDs you have turned on. The power supply does not react instantly when amperage changes; there’s high frequency noise which happens. From what I can tell, you’ll have to be very unlucky to see any affects from this, but it could cause an interuption to the stable draw needed. For instance, your 74AHCT125 chip might receive an unusual peak or trough, causing it to misinterpret a signal.&lt;/p&gt;
+
+&lt;p&gt;Adding a capacitor reduces those peaks by just… swallowing them up and storing them, I guess?&lt;/p&gt;
+
+&lt;p&gt;For something which costs 50p, you may as well add one. It’ll be a totally unreproducable bug you experience if you do ever.&lt;/p&gt;
+
+&lt;h2 id=&quot;breadboard&quot;&gt;Breadboard&lt;/h2&gt;
+
+&lt;p&gt;I brought the adorable half board advertised specifically for Raspberry Pi projects (which has very little to do with the Pi, so I guess I was just pulled in by a marketting trick - either way, the board is a good size for this project).&lt;/p&gt;
+
+&lt;h2 id=&quot;wires&quot;&gt;Wires&lt;/h2&gt;
+
+&lt;p&gt;I brought a bunch of varying sized male-to-male and male-to-female jumper cables.&lt;/p&gt;
+
+&lt;p&gt;You’ll want a small supply of short (10cm) and longer (20cm~) cables. I’m happy that I have a good stock now. They’re reusable, until you solder them at least.&lt;/p&gt;
+
+&lt;h1 id=&quot;design&quot;&gt;Design&lt;/h1&gt;
+
+&lt;p&gt;I began following &lt;a href=&quot;https://learn.adafruit.com/neopixels-on-raspberry-pi/raspberry-pi-wiring&quot;&gt;the wiring tutorial from Adafruit&lt;/a&gt;, but also had to add in the capacitor and resistor. That tutorial understands much more about what’s going on that this blog post does, so maybe start there.&lt;/p&gt;
+
+&lt;p&gt;I’m still getting to grips with Fritzing, but here’s the design I made. (SVG only, I’m afraid. Fritzing file available on request, but I haven’t completed it yet.)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/NeopixelRasbPi_bb.png&quot; alt=&quot;Design for the board linking Neopixel and Raspbery Pi&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The device in the lower right is the power jack. If you brought the barrel jack, as listed above, you can push it into the board, matching the positive and negative with the board. Positive on the lower rail, and negative (ground) on the upper. There’s no wires, despite what the diagram shows.&lt;/p&gt;
+
+&lt;p&gt;It may not be as clear as a more professional board, so here’s what you want to connect:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Capacitor as close to the power jack as possible. Note the &lt;code class=&quot;highlighter-rouge&quot;&gt;-&lt;/code&gt; on one side. That must go into the matching track.&lt;/li&gt;
+  &lt;li&gt;74AHCT125 should go across the centre of the board, giving you access to top and bottom pins. The semi-circle shows you where the left side of the chip is.&lt;/li&gt;
+  &lt;li&gt;74AHCT125’s first pin on the top should go to power supply 5v. (You can use any hole in the pinboard from f-j, so long as it’s in the column above the first pin. You can use &lt;em&gt;any&lt;/em&gt; hole on the 5v row.)&lt;/li&gt;
+  &lt;li&gt;74AHCT125’s first pin on the bottom should go to power supply ground.&lt;/li&gt;
+  &lt;li&gt;74AHCT125’s last pin on the bottom should go to power supply ground.&lt;/li&gt;
+  &lt;li&gt;The Pi’s GPIO 18 should go to 74AHCT125’s second pin on the bottom.&lt;/li&gt;
+  &lt;li&gt;The Pi’s ground should go to the power supply’s ground. (There’s a bunch of pins for ground on the Pi, but do the one just below GPIO 18 for ease of finding it.)&lt;/li&gt;
+  &lt;li&gt;74AHCT125’s third pin on the bottom should be connected to the resistor. The resistor should plug into an unused column, say column #9.&lt;/li&gt;
+  &lt;li&gt;The Neopixel’s data in (DIN) should be connected to a free hole in column #9 (with your resistor).&lt;/li&gt;
+  &lt;li&gt;The Neopixel’s 5V should be connected to a free hole on the power supply’s 5v.&lt;/li&gt;
+  &lt;li&gt;The Neopixel’s ground should be connected a free hole on the power supply’s ground.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;soldering&quot;&gt;Soldering&lt;/h1&gt;
+
+&lt;p&gt;If you’re startlingly like me, you’ll need a boyfriend to solder the pins on the Neopixel. For aesthetic reasons, you want to bring the wires up from below the pixel, and have them solder on top. They’ve told you all these years how good they are at it, so I’m sure they can do a good job.&lt;/p&gt;
+
+&lt;p&gt;That’s the only bits you’ll need to solder. Thank goodness.&lt;/p&gt;
+
+&lt;h1 id=&quot;pi-setup&quot;&gt;Pi setup&lt;/h1&gt;
+
+&lt;p&gt;This was super easy, thanks to the micro-sd with NOOBS preinstalled. After &lt;a href=&quot;https://www.raspberrypi.org/documentation/remote-access/ssh/&quot;&gt;enabling SSH&lt;/a&gt; by dropping a file onto the SD card, you can use an ethernet cable and SSH into it and set up wifi.&lt;/p&gt;
+
+&lt;h1 id=&quot;python-library&quot;&gt;Python library&lt;/h1&gt;
+
+&lt;p&gt;The Neopixel shouldn’t technically work with the Pi, as the Pi doesn’t give exactly timed instructions over the GPIO pins, which the NeoPixel expects. That’s easily worked around by using the &lt;a href=&quot;https://learn.adafruit.com/neopixels-on-raspberry-pi/python-usage&quot;&gt;CircuitPython libraries&lt;/a&gt;, which make coding incredibly easy.&lt;/p&gt;
+
+&lt;p&gt;Here’s a tiny example:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import board
+import neopixel
+
+pixels = neopixel.NeoPixel(
+    board.D18, 64, brightness=0.05, auto_write=False
+)
+
+pixels.fill((255, 0, 0))
+pixels[35] = (125, 125, 125)
+pixels[36] = (125, 125, 125)
+
+pixels.show()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You’ll note how low I set the brightness there…&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://learn.adafruit.com/neopixels-on-raspberry-pi/python-usage&quot;&gt;CircuitPython page&lt;/a&gt; is really good to get going on the code.&lt;/p&gt;</content><author><name></name></author><summary type="html">I decided to do something with one of the (four or five) Raspberry Pi’s kicking around the house. I ended up excitedly buying a newer Pi and a Neopixel, so I didn’t solve my abundance of Pi problem, but I have gotten somewhere with a project.</summary></entry><entry><title type="html">punked</title><link href="https://technicallyshane.com/2021/01/21/punked.html" rel="alternate" type="text/html" title="punked" /><published>2021-01-21T23:09:00+00:00</published><updated>2021-01-21T23:09:00+00:00</updated><id>https://technicallyshane.com/2021/01/21/punked</id><content type="html" xml:base="https://technicallyshane.com/2021/01/21/punked.html">&lt;p&gt;I made a rather less shiny clone of a minigame I’ve been playing a lot of recently. &lt;a href=&quot;https://haikushane.itch.io/punked&quot;&gt;You can play it over here.&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/punked.png&quot; alt=&quot;punked&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
 
@@ -419,18 +610,4 @@ server {
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://mudge.name/2020/08/16/weeknotes-42/&quot;&gt;mudge’s blog&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://twitter.com/isosteph/status/1291832693005533184&quot;&gt;over on the author’s twitter&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Over on the pycnoline blog they’ve coined the term “tech brain” for a phenomena they’ve spotted amongst communities of technologists who clamber towards ideologies from celebrities in their world and call to their authority to smack down conversations raising a more nuanced view.</summary></entry><entry><title type="html">In The After The Before Times</title><link href="https://technicallyshane.com/2020/07/30/week31.html" rel="alternate" type="text/html" title="In The After The Before Times" /><published>2020-07-30T18:46:05+01:00</published><updated>2020-07-30T18:46:05+01:00</updated><id>https://technicallyshane.com/2020/07/30/week31</id><content type="html" xml:base="https://technicallyshane.com/2020/07/30/week31.html">&lt;p&gt;I don’t want to bandy around the big D (wheyyyy), but I have been quite Sad recently.&lt;/p&gt;
-
-&lt;p&gt;This is odd, and I feel quite silly pointing to it, because I have a very solid foundation to my &lt;a href=&quot;https://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs&quot;&gt;hierarchy of needs&lt;/a&gt;. Nevertheless… you know?&lt;/p&gt;
-
-&lt;p&gt;Here are some cool things that do make me happy though, ranging from minor to otherwise.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;em&gt;Getting out of the house.&lt;/em&gt; For better or worse, some signs of life are returning to my city and it’s been deemed mostly fine for me to get back out to the Factory. This is some sweet office space that I mentioned way back in &lt;a href=&quot;https://technicallyshane.com/2020/01/07/week1.html&quot;&gt;Week 1&lt;/a&gt;. It’s been work out very well for me. It’s a space I can come and be productive – away from my comfortable home. It ticks off all the reasons &lt;a href=&quot;https://www.youtube.com/watch?v=snAhsXyO3Ck&quot;&gt;Grey was saying to have a separate space for work&lt;/a&gt;. Working remotely, I don’t have nearby colleagues, but it’s nice to have some sort of community amongst the others on the floor here.&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;Actually getting out of the house.&lt;/em&gt; In the Before Times I threw money around like I had all the change in the world; £2.85 for a coffee – what a steal! £2.10 for a bus into town – great value! But for the past three months none of that has been available and now it’s come back it feels very silly to spend that much on things I needn’t. I cycle to the Factory as often as I can now. The exercise is fantastic. I’ve so much more energy and yet feel rewarding tired at the end of the day. And I bring coffee in a flask from home. Nice.&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;DIY furniture.&lt;/em&gt; The Factory has these big beautiful windows. Curtains for them are outrageously expensive because of the drop needed, and I’m terrified I’ll end up breaking a Grade 2 Listed building. Instead, I went to Wilkos and spent under ten pounds of two washing line poles and a blanket. They lean precariously against the window, threatening to fall at any moment. The room is totally transformed and looks great!&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;Squatty Potty.&lt;/em&gt; Two people whose opinion has never let me down before told me about &lt;a href=&quot;https://www.squattypotty.com/&quot;&gt;this&lt;/a&gt; and it’s changed my life. Pooping has never been easier. British people, we’ve been doing it wrong for decades.&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;Look deeply into a book.&lt;/em&gt; For a project I’m doing I’ve started to analysis a book. My thoughts often start with “I really wish they’d get on with the story” and turn to “Oh, I see why they’re doing it like this!”. The process of writing about something totally makes it richer and I find myself better able to challenge my views. Understanding something feels really nice. (Despite this, I’m annoyed I choice this particular book as I’m not enjoying it.)&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;Foot comfort.&lt;/em&gt; I got this footrest and it’s blissful. I’ve only ever seen the horrid ones you get supplied to you by HR after a heuristic ergonomics person comes around. It’s an &lt;a href=&quot;https://ergofoam.co/&quot;&gt;Ergofoam&lt;/a&gt;. It’s designed to be flipped upside down so you get a flat surface that you can rock back and forth, as well as an upright method where you get a static, comfortable (yet firm) cushion. Fully recommended.&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;Just turn off the chat.&lt;/em&gt; I play Heroes of the Storm a bunch but got annoyed with it because of how awful the community is. Do one wrong move and someone will start bashing you in chat. Turns out, you can just turn that off and play without paying any attention to it. Unlock the minimap DLC and you can still be aware of the game enough to play well as a team. Just now that toxic jerk has no idea you can’t hear them. It’s changed the whole game for me.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">I don’t want to bandy around the big D (wheyyyy), but I have been quite Sad recently.</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Over on the pycnoline blog they’ve coined the term “tech brain” for a phenomena they’ve spotted amongst communities of technologists who clamber towards ideologies from celebrities in their world and call to their authority to smack down conversations raising a more nuanced view.</summary></entry></feed>

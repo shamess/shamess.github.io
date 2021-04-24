@@ -1,4 +1,77 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="https://technicallyshane.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://technicallyshane.com/" rel="alternate" type="text/html" /><updated>2021-04-06T17:29:40+01:00</updated><id>https://technicallyshane.com/feed.xml</id><title type="html">Shane’s blog</title><subtitle>I wouldn't worry about it.</subtitle><entry><title type="html">Worknotes - March</title><link href="https://technicallyshane.com/2021/04/06/worknotes-march.html" rel="alternate" type="text/html" title="Worknotes - March" /><published>2021-04-06T17:24:00+01:00</published><updated>2021-04-06T17:24:00+01:00</updated><id>https://technicallyshane.com/2021/04/06/worknotes-march</id><content type="html" xml:base="https://technicallyshane.com/2021/04/06/worknotes-march.html">&lt;p&gt;My goodness, what a strange month.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="https://technicallyshane.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://technicallyshane.com/" rel="alternate" type="text/html" /><updated>2021-04-24T19:40:26+01:00</updated><id>https://technicallyshane.com/feed.xml</id><title type="html">Shane’s blog</title><subtitle>I wouldn't worry about it.</subtitle><entry><title type="html">Another dropped video game (I’m blaming Svelte)</title><link href="https://technicallyshane.com/2021/04/21/another-dropped-video-game-i-m-blaming-svelte.html" rel="alternate" type="text/html" title="Another dropped video game (I’m blaming Svelte)" /><published>2021-04-21T21:21:00+01:00</published><updated>2021-04-21T21:21:00+01:00</updated><id>https://technicallyshane.com/2021/04/21/another-dropped-video-game-i-m-blaming-svelte</id><content type="html" xml:base="https://technicallyshane.com/2021/04/21/another-dropped-video-game-i-m-blaming-svelte.html">&lt;p&gt;I don’t have a strong reputation for finishing my personal projects, and &lt;em&gt;Chained Towns&lt;/em&gt; is another example. I’m leaving this now because I’m frustrated with tracking down Svelte state issues.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/chained-towns.png&quot; alt=&quot;Chained Towns&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Chained Towns&lt;/em&gt; is an interface-style game – using clicking, and words, and buttons – which I do quite a lot of because it means I don’t have to get bogged down in graphics or modelling which I find increases my frustration during development and reduces the amount of time I spend before I give up.&lt;/p&gt;
+
+&lt;p&gt;I know this visual design of game is viable because I love games like &lt;em&gt;Paperclip Universe&lt;/em&gt; from Frank Lantz and &lt;em&gt;A Dark Room&lt;/em&gt; from Doublespeak Games. (Sidebar: this blog post is at least two days later than I wanted to post it because I was playing Paperclip Universe.) The gameplay is inspired by &lt;em&gt;Darkest Dungeon&lt;/em&gt; by Red Hook Studios; there’s a map of contiguous locations. Each location has something in it (expository or interactive). In the picture above, you see there’s a shop, where you can swap gold for items you can use in the safety of various locations. You click to go to an adjacent location and risk being attacked on the journey.&lt;/p&gt;
+
+&lt;p&gt;Combat is simply automatic. Your avatar hits at a bad guy, until all the bad guys are dead, or you are. You get gold if you succeed. You can go backwards to other locations freely.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/chained-towns-combat.png&quot; alt=&quot;Chained Towns&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I decided to build this for the web, as it uses buttons and whatnot, and the web can handle buttons just as well as anything. I went with &lt;a href=&quot;https://svelte.dev/&quot;&gt;Svelte&lt;/a&gt; because I had fun with it last time on &lt;a href=&quot;https://haikushane.itch.io/punked&quot;&gt;&lt;em&gt;punked&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;monitoring-state&quot;&gt;Monitoring state&lt;/h2&gt;
+
+&lt;p&gt;Unfortunately, Svelte isn’t really living up to its promise. What it says it will do is watch the state of a variable, and then update the contents of the DOM with the reflected changes. This is pretty cool when it works and feels less clunky than &lt;code class=&quot;highlighter-rouge&quot;&gt;this.setState&lt;/code&gt;, and just slightly less clunkier than React Hooks.&lt;/p&gt;
+
+&lt;p&gt;Compare this method of setting state:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;this.state = {playerHealth: 30};
+this.setState({playerHealth: this.state.playerHealth - 10});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To the hook version:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;const [playerHealth, setPlayerHealth] = useState(30);
+setPlayerHealth(playerHealth – 10);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To the Svelte version:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let playerHealth = 30;
+playerHealth -= 10;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The appeal of this Svelte code is that it is just normal Javascript. Much like React will re-render any DOM affected by the &lt;code class=&quot;highlighter-rouge&quot;&gt;playerHealth&lt;/code&gt;, Svelte will spot that &lt;code class=&quot;highlighter-rouge&quot;&gt;playerHealth&lt;/code&gt; has changed and update the view to reflect it.&lt;/p&gt;
+
+&lt;p&gt;In that form, it appears the most simple and the compiled code which Svelte generates is uninteresting. Here’s a more interesting example to show what Svelte is doing:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let playerHealth = 30;
+
+function updateHealth(amount) {
+  playerHealth += amount;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The compiled code will look like:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function updateHealth(amount) {
+  $$invalidate(0, playerHealth += amount);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt; in that first argument is a label for the state name. So really… it starts to look a lot like React. However, Svelte is doing a bit more work behind the scenes to get there: it has to tokenise your javascript, look for assignments and add the invalidation sugar.&lt;/p&gt;
+
+&lt;p&gt;The downside here is that it does not support every way a variable might change its contents. For instance, &lt;code class=&quot;highlighter-rouge&quot;&gt;push&lt;/code&gt;ing to an array won’t trigger the compiled sugar to be added in. The docs recommend fixing this in one of two ways.&lt;/p&gt;
+
+&lt;p&gt;The first is tricking Svelte into invalidating by assigning the variable to itself. &lt;code class=&quot;highlighter-rouge&quot;&gt;playerItems = playerItems&lt;/code&gt;. Here, it’ll spot that you’ve assigned something and sort itself out.&lt;/p&gt;
+
+&lt;p&gt;Second, it suggests a “more idiomatic solution”:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;playerItems = [...playerItems, numItem];
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This is the solution I chose, as at least it looked more sensible. The first solution causes a doubletake upon first sight, but the second is more likely to provoke “I see what’s happening, but I wonder why.” The problem it introduces cropped up quickly; it creates a whole new array, so if you’re referring to this array by reference anywhere - say you’ve passed &lt;code class=&quot;highlighter-rouge&quot;&gt;playerItems&lt;/code&gt; into an &lt;code class=&quot;highlighter-rouge&quot;&gt;InventoryManager&lt;/code&gt; or some such - suddenly, InventoryManager is holding onto an array that Svelte no longer associates with &lt;code class=&quot;highlighter-rouge&quot;&gt;playerItems&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;As Svelte is so eager to hold to this promise that it’ll handle the state updates itself, there’s no way to nudge it when it goes wrong. Even if you want to, there’s no &lt;code class=&quot;highlighter-rouge&quot;&gt;setState&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;It’s one of these problems that I’ve bumped it now. Quaffing a potion is increasing the health of the Player object, but somewhere along the line Svelte is losing track of it. My code all works fine, but isn’t Sveltey enough. It’s not the first time I’ve had to track down this kind of issue in this relatively small project. The method of debugging here is &lt;code class=&quot;highlighter-rouge&quot;&gt;console.log&lt;/code&gt;ing everywhere to see where the var changes, but isn’t reflected.&lt;/p&gt;
+
+&lt;p&gt;I’ve now spent more time chasing this framework than actually writing my game, so I may think twice before picking Svelte again. I’d love to use it for a website with less state though.&lt;/p&gt;
+
+&lt;p&gt;There are &lt;a href=&quot;https://svelte.dev/tutorial/writable-stores&quot;&gt;stores&lt;/a&gt;, but I think I ran into a similar problem with those too. :shrug:&lt;/p&gt;</content><author><name></name></author><summary type="html">I don’t have a strong reputation for finishing my personal projects, and Chained Towns is another example. I’m leaving this now because I’m frustrated with tracking down Svelte state issues.</summary></entry><entry><title type="html">Worknotes - March</title><link href="https://technicallyshane.com/2021/04/06/worknotes-march.html" rel="alternate" type="text/html" title="Worknotes - March" /><published>2021-04-06T17:24:00+01:00</published><updated>2021-04-06T17:24:00+01:00</updated><id>https://technicallyshane.com/2021/04/06/worknotes-march</id><content type="html" xml:base="https://technicallyshane.com/2021/04/06/worknotes-march.html">&lt;p&gt;My goodness, what a strange month.&lt;/p&gt;
 
 &lt;p&gt;Recruitment continues to be a big priority for us; we’re still on the lookout
 for a &lt;a href=&quot;https://www.altmetric.com/jobs/senior-software-developer/&quot;&gt;senior developer&lt;/a&gt;. We approached a recruitment service this month though,
@@ -577,67 +650,4 @@ public class EventSubscriptions : MonoBehaviour
 
 &lt;p&gt;I’ve no idea how long the output of &lt;code class=&quot;highlighter-rouge&quot;&gt;get-login-password&lt;/code&gt; stays valid for. I expect it expires eventually and so one day you’ll be surprised when your allocations start failing.&lt;/p&gt;
 
-&lt;p&gt;On top of getting a warning about the password being stored in plain text (though this doesn’t matter; &lt;code class=&quot;highlighter-rouge&quot;&gt;aws config&lt;/code&gt; is already doing this), it still couldn’t authenticate for me. The above is the only thing that worked.&lt;/p&gt;</content><author><name></name></author><summary type="html">Here’s the situation. You’ve done the starting tutorial and got your nomad “cluster” running on one machine. You’ve hidden the web UI. You’ve even created a Dockerfile for your application. Now you’re ready to get it running!</summary></entry><entry><title type="html">Hiding the Nomad frontend</title><link href="https://technicallyshane.com/2020/10/30/nomad-ui-left-wide-open.html" rel="alternate" type="text/html" title="Hiding the Nomad frontend" /><published>2020-10-30T19:33:05+00:00</published><updated>2020-10-30T19:33:05+00:00</updated><id>https://technicallyshane.com/2020/10/30/nomad-ui-left-wide-open</id><content type="html" xml:base="https://technicallyshane.com/2020/10/30/nomad-ui-left-wide-open.html">&lt;p&gt;Here’s the situation. You’re excitedly following along with the &lt;a href=&quot;https://learn.hashicorp.com/collections/nomad/get-started&quot;&gt;Getting Started&lt;/a&gt; Nomad tutorial and it’s all going really well. You’ve created a Digital Ocean droplet to fool around with and you’re overjoyed that you’ve gotten your Redis server running three instances. Then you get to the “Web UI” section and think to yourself, “hm, but I never turned this on.”&lt;/p&gt;
-
-&lt;p&gt;Indeed, if you grab your public IP address and port the default :4646 port on the end, you can see the Web UI. This web UI comes with all sorts of access, including the API where just about anyone can create and start jobs. This isn’t something you want open.&lt;/p&gt;
-
-&lt;p&gt;What you need to do, quite quickly to be honest, is &lt;a href=&quot;https://cloud.digitalocean.com/networking/firewalls/new&quot;&gt;set up some droplet firewall rules&lt;/a&gt;. The most basic of these might look like the following:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inbound rules:
-
-Type      Protocol      Port Range
-SSH       TCP           22
-HTTP      TCP           80
-HTTPS     TCP           443
-
-Outbound rules:
-
-Type         Protocol         Port Range
-ICMP         ICMP
-All TCP     TCP             All ports
-All UDP     UDP             All ports
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You’ll need SSH so you don’t get kicked off, and we’ll be using HTTP/S soon.&lt;/p&gt;
-
-&lt;p&gt;After saving this and applying it to your droplet (note: you create and apply the firewall rule to your droplet on different tabs of that page) you should no longer be able to access the nomad web UI on port 4646. You’ll just get a timeout if you try.&lt;/p&gt;
-
-&lt;p&gt;Our next objective is to get that UI back, but in a much safer way. Ideally, on port 80 on a subdomain.&lt;/p&gt;
-
-&lt;p&gt;Setting up the DNS is super easy on Digital Ocean: “Create” your domain, pop in the subdomain you want and point it at your nomad droplet.&lt;/p&gt;
-
-&lt;p&gt;Next is to install nginx, which’ll act as our reverse proxy between port 80 and 4646.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;upstream nomad_ui {
-        server 127.0.0.1:4646;
-}
-
-server {
-        listen       80;
-        server_name  nomad.yourdomain.com;
-        charset      UTF-8;
-
-        location / {
-                proxy_pass http://nomad_ui;
-
-                auth_basic &quot;You sure you know what you're doing, kid?&quot;;
-                auth_basic_user_file /etc/nginx/auth_files/nomad_ui;
-        }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;A key thing to point out here is that we’re also adding some basic auth. You’ll need to create this file. Most places around the internet (including Digital Ocean’s own tutorial) suggest installing some Apache tooling to create this file, but it’s really not needed. You likely already have openssh installed.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;openssl passwd -6
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Pop in a new password when prompted and copy and paste that into &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/nginx/auth_files/nomad_ui&lt;/code&gt; (in a directory you might need to create). Before the password, add your username and a colon as seperator. It might look something like this:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;raymond:$6$dw8NeSxPPi7MG4gC$be/Jhx4SxmHa0x2BDsm8LD08xpE57xMU8akAjQxyeq
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Reload your nginx: &lt;code class=&quot;highlighter-rouge&quot;&gt;nginx -s reload&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;And you should be done!&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;This is one in a series of posts where Shane feels the need to write down what he did or else forever forget.&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Here’s the situation. You’re excitedly following along with the Getting Started Nomad tutorial and it’s all going really well. You’ve created a Digital Ocean droplet to fool around with and you’re overjoyed that you’ve gotten your Redis server running three instances. Then you get to the “Web UI” section and think to yourself, “hm, but I never turned this on.”</summary></entry></feed>
+&lt;p&gt;On top of getting a warning about the password being stored in plain text (though this doesn’t matter; &lt;code class=&quot;highlighter-rouge&quot;&gt;aws config&lt;/code&gt; is already doing this), it still couldn’t authenticate for me. The above is the only thing that worked.&lt;/p&gt;</content><author><name></name></author><summary type="html">Here’s the situation. You’ve done the starting tutorial and got your nomad “cluster” running on one machine. You’ve hidden the web UI. You’ve even created a Dockerfile for your application. Now you’re ready to get it running!</summary></entry></feed>

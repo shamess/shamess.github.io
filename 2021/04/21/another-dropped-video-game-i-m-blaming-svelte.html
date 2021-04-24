@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Another dropped video game (I’m blaming Svelte) | Shane’s blog</title>
+<meta name="generator" content="Jekyll v4.0.1" />
+<meta property="og:title" content="Another dropped video game (I’m blaming Svelte)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I don’t have a strong reputation for finishing my personal projects, and Chained Towns is another example. I’m leaving this now because I’m frustrated with tracking down Svelte state issues." />
+<meta property="og:description" content="I don’t have a strong reputation for finishing my personal projects, and Chained Towns is another example. I’m leaving this now because I’m frustrated with tracking down Svelte state issues." />
+<link rel="canonical" href="https://technicallyshane.com/2021/04/21/another-dropped-video-game-i-m-blaming-svelte.html" />
+<meta property="og:url" content="https://technicallyshane.com/2021/04/21/another-dropped-video-game-i-m-blaming-svelte.html" />
+<meta property="og:site_name" content="Shane’s blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-21T21:21:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Another dropped video game (I’m blaming Svelte)" />
+<script type="application/ld+json">
+{"url":"https://technicallyshane.com/2021/04/21/another-dropped-video-game-i-m-blaming-svelte.html","dateModified":"2021-04-21T21:21:00+01:00","datePublished":"2021-04-21T21:21:00+01:00","headline":"Another dropped video game (I’m blaming Svelte)","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2021/04/21/another-dropped-video-game-i-m-blaming-svelte.html"},"description":"I don’t have a strong reputation for finishing my personal projects, and Chained Towns is another example. I’m leaving this now because I’m frustrated with tracking down Svelte state issues.","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://technicallyshane.com/feed.xml" title="Shane's blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Shane&#39;s blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Another dropped video game (I&#39;m blaming Svelte)</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-04-21T21:21:00+01:00" itemprop="datePublished">Apr 21, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>I don’t have a strong reputation for finishing my personal projects, and <em>Chained Towns</em> is another example. I’m leaving this now because I’m frustrated with tracking down Svelte state issues.</p>
+
+<p><img src="/assets/chained-towns.png" alt="Chained Towns" class="center-image" /></p>
+
+<p><em>Chained Towns</em> is an interface-style game – using clicking, and words, and buttons – which I do quite a lot of because it means I don’t have to get bogged down in graphics or modelling which I find increases my frustration during development and reduces the amount of time I spend before I give up.</p>
+
+<p>I know this visual design of game is viable because I love games like <em>Paperclip Universe</em> from Frank Lantz and <em>A Dark Room</em> from Doublespeak Games. (Sidebar: this blog post is at least two days later than I wanted to post it because I was playing Paperclip Universe.) The gameplay is inspired by <em>Darkest Dungeon</em> by Red Hook Studios; there’s a map of contiguous locations. Each location has something in it (expository or interactive). In the picture above, you see there’s a shop, where you can swap gold for items you can use in the safety of various locations. You click to go to an adjacent location and risk being attacked on the journey.</p>
+
+<p>Combat is simply automatic. Your avatar hits at a bad guy, until all the bad guys are dead, or you are. You get gold if you succeed. You can go backwards to other locations freely.</p>
+
+<p><img src="/assets/chained-towns-combat.png" alt="Chained Towns" class="center-image" /></p>
+
+<p>I decided to build this for the web, as it uses buttons and whatnot, and the web can handle buttons just as well as anything. I went with <a href="https://svelte.dev/">Svelte</a> because I had fun with it last time on <a href="https://haikushane.itch.io/punked"><em>punked</em></a>.</p>
+
+<h2 id="monitoring-state">Monitoring state</h2>
+
+<p>Unfortunately, Svelte isn’t really living up to its promise. What it says it will do is watch the state of a variable, and then update the contents of the DOM with the reflected changes. This is pretty cool when it works and feels less clunky than <code class="highlighter-rouge">this.setState</code>, and just slightly less clunkier than React Hooks.</p>
+
+<p>Compare this method of setting state:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>this.state = {playerHealth: 30};
+this.setState({playerHealth: this.state.playerHealth - 10});
+</code></pre></div></div>
+
+<p>To the hook version:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const [playerHealth, setPlayerHealth] = useState(30);
+setPlayerHealth(playerHealth – 10);
+</code></pre></div></div>
+
+<p>To the Svelte version:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let playerHealth = 30;
+playerHealth -= 10;
+</code></pre></div></div>
+
+<p>The appeal of this Svelte code is that it is just normal Javascript. Much like React will re-render any DOM affected by the <code class="highlighter-rouge">playerHealth</code>, Svelte will spot that <code class="highlighter-rouge">playerHealth</code> has changed and update the view to reflect it.</p>
+
+<p>In that form, it appears the most simple and the compiled code which Svelte generates is uninteresting. Here’s a more interesting example to show what Svelte is doing:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let playerHealth = 30;
+
+function updateHealth(amount) {
+  playerHealth += amount;
+}
+</code></pre></div></div>
+
+<p>The compiled code will look like:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function updateHealth(amount) {
+  $$invalidate(0, playerHealth += amount);
+}
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">0</code> in that first argument is a label for the state name. So really… it starts to look a lot like React. However, Svelte is doing a bit more work behind the scenes to get there: it has to tokenise your javascript, look for assignments and add the invalidation sugar.</p>
+
+<p>The downside here is that it does not support every way a variable might change its contents. For instance, <code class="highlighter-rouge">push</code>ing to an array won’t trigger the compiled sugar to be added in. The docs recommend fixing this in one of two ways.</p>
+
+<p>The first is tricking Svelte into invalidating by assigning the variable to itself. <code class="highlighter-rouge">playerItems = playerItems</code>. Here, it’ll spot that you’ve assigned something and sort itself out.</p>
+
+<p>Second, it suggests a “more idiomatic solution”:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>playerItems = [...playerItems, numItem];
+</code></pre></div></div>
+
+<p>This is the solution I chose, as at least it looked more sensible. The first solution causes a doubletake upon first sight, but the second is more likely to provoke “I see what’s happening, but I wonder why.” The problem it introduces cropped up quickly; it creates a whole new array, so if you’re referring to this array by reference anywhere - say you’ve passed <code class="highlighter-rouge">playerItems</code> into an <code class="highlighter-rouge">InventoryManager</code> or some such - suddenly, InventoryManager is holding onto an array that Svelte no longer associates with <code class="highlighter-rouge">playerItems</code>.</p>
+
+<p>As Svelte is so eager to hold to this promise that it’ll handle the state updates itself, there’s no way to nudge it when it goes wrong. Even if you want to, there’s no <code class="highlighter-rouge">setState</code>.</p>
+
+<p>It’s one of these problems that I’ve bumped it now. Quaffing a potion is increasing the health of the Player object, but somewhere along the line Svelte is losing track of it. My code all works fine, but isn’t Sveltey enough. It’s not the first time I’ve had to track down this kind of issue in this relatively small project. The method of debugging here is <code class="highlighter-rouge">console.log</code>ing everywhere to see where the var changes, but isn’t reflected.</p>
+
+<p>I’ve now spent more time chasing this framework than actually writing my game, so I may think twice before picking Svelte again. I’d love to use it for a website with less state though.</p>
+
+<p>There are <a href="https://svelte.dev/tutorial/writable-stores">stores</a>, but I think I ran into a similar problem with those too. :shrug:</p>
+
+
+  </div><a class="u-url" href="/2021/04/21/another-dropped-video-game-i-m-blaming-svelte.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Shane&#39;s blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Shane&#39;s blog</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/shamess"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">shamess</span></a></li><li><a href="https://www.twitter.com/shamess"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">shamess</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>I wouldn&#39;t worry about it.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

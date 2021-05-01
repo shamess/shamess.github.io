@@ -1,4 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="https://technicallyshane.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://technicallyshane.com/" rel="alternate" type="text/html" /><updated>2021-04-24T22:17:24+01:00</updated><id>https://technicallyshane.com/feed.xml</id><title type="html">Shane’s blog</title><subtitle>I wouldn't worry about it.</subtitle><entry><title type="html">Another dropped video game (I’m blaming Svelte)</title><link href="https://technicallyshane.com/2021/04/21/another-dropped-video-game-i-m-blaming-svelte.html" rel="alternate" type="text/html" title="Another dropped video game (I’m blaming Svelte)" /><published>2021-04-21T21:21:00+01:00</published><updated>2021-04-21T21:21:00+01:00</updated><id>https://technicallyshane.com/2021/04/21/another-dropped-video-game-i-m-blaming-svelte</id><content type="html" xml:base="https://technicallyshane.com/2021/04/21/another-dropped-video-game-i-m-blaming-svelte.html">&lt;p&gt;I don’t have a strong reputation for finishing my personal projects, and &lt;em&gt;Chained Towns&lt;/em&gt; is another example. I’m leaving this now because I’m frustrated with tracking down Svelte state issues.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="https://technicallyshane.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://technicallyshane.com/" rel="alternate" type="text/html" /><updated>2021-05-01T10:08:49+01:00</updated><id>https://technicallyshane.com/feed.xml</id><title type="html">Shane’s blog</title><subtitle>I wouldn't worry about it.</subtitle><entry><title type="html">Worknotes - April</title><link href="https://technicallyshane.com/2021/05/01/worknotes-april.html" rel="alternate" type="text/html" title="Worknotes - April" /><published>2021-05-01T09:24:00+01:00</published><updated>2021-05-01T09:24:00+01:00</updated><id>https://technicallyshane.com/2021/05/01/worknotes-april</id><content type="html" xml:base="https://technicallyshane.com/2021/05/01/worknotes-april.html">&lt;p&gt;Well, well, well. My time at Altmetric has come to an end. Good news for job hunters is that &lt;a href=&quot;https://www.altmetric.com/jobs/senior-software-developer/&quot;&gt;my space is available to be filled&lt;/a&gt;. Altmetric was a wonderful place to be for the considerable majority of the seven years I spent there, and I know that their product is going to really blossom once they’ve sorted out some technical niggles.&lt;/p&gt;
+
+&lt;p&gt;There’s no plan to jump straight into another role just yet. I’m taking three months or so to work on my creative endevours. After that time, unless I stumble into success with any of my projects, I’ll be hunting for a place  return to my Ruby developer role.&lt;/p&gt;
+
+&lt;p&gt;This month I’ve been working on a series of short pieces about writing. I’ve been working on them for probably a year but they kept being put away for months at a time. In the past week I’ve done a huge amount of writing for them, which I’m really pleased with. The downside of having left it for so long is that I want to change a lot of the older style. I’ll resist this somewhat as I really want to get them finished in the short amount of time that I have. They’re all quite personal pieces and so I hope the reader will forgive me for each episode having a differnet style or emphasis on the topic at hand.&lt;/p&gt;
+
+&lt;p&gt;With lockdown easing, I’ve been able to go to my Factory studio space most days.
+I love my space there, but I’m restricted to working exclusively from one position. Outside of ordinary times, there’s the communial kitchen that offers a nice break and even coffee shops or the library, but until then my space is all I have. I do have plenty of space in it though, so I’m testing the waters by adding in &lt;a href=&quot;https://www.ikea.com/gb/en/p/skarsta-desk-sit-stand-beige-white-s19324815/&quot;&gt;a standing desk&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;After much searching, I finally found a reasonably priced printer. I may well have bought the last one, as it’s &lt;a href=&quot;https://www.printerland.co.uk/product/epson-workforce-wf-7710dwf/140023&quot;&gt;out of stock now&lt;/a&gt;. I’m excited to be making more zines and sending out print copies to those generous enough to pay for them. People were incredibly generous with my &lt;a href=&quot;https://haikushane.itch.io/tiny-notts-chess-journal-winter-2021&quot;&gt;Chess Journal&lt;/a&gt; and I know they had trouble printing them. (Why printing remains such an uphill battle is beyond me.)&lt;/p&gt;
+
+&lt;p&gt;I also just like the idea of sending packages out more often.&lt;/p&gt;</content><author><name></name></author><summary type="html">Well, well, well. My time at Altmetric has come to an end. Good news for job hunters is that my space is available to be filled. Altmetric was a wonderful place to be for the considerable majority of the seven years I spent there, and I know that their product is going to really blossom once they’ve sorted out some technical niggles.</summary></entry><entry><title type="html">Another dropped video game (I’m blaming Svelte)</title><link href="https://technicallyshane.com/2021/04/21/another-dropped-video-game-i-m-blaming-svelte.html" rel="alternate" type="text/html" title="Another dropped video game (I’m blaming Svelte)" /><published>2021-04-21T21:21:00+01:00</published><updated>2021-04-21T21:21:00+01:00</updated><id>https://technicallyshane.com/2021/04/21/another-dropped-video-game-i-m-blaming-svelte</id><content type="html" xml:base="https://technicallyshane.com/2021/04/21/another-dropped-video-game-i-m-blaming-svelte.html">&lt;p&gt;I don’t have a strong reputation for finishing my personal projects, and &lt;em&gt;Chained Towns&lt;/em&gt; is another example. I’m leaving this now because I’m frustrated with tracking down Svelte state issues.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/chained-towns.png&quot; alt=&quot;Chained Towns&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
 
@@ -549,105 +560,4 @@ public class EventSubscriptions : MonoBehaviour
   &lt;li&gt;“Registering” event types is very manually. (Fine, I know the entire scope of the application.)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Anyway, works for me.&lt;/p&gt;</content><author><name></name></author><summary type="html">I was surprised and annoyed to find that you can’t add your own event interfaces, like IPointerClickHandler and just have them work.</summary></entry><entry><title type="html">Using Nomad with private Docker repositories</title><link href="https://technicallyshane.com/2020/10/31/using-nomad-with-private-docker-repositories.html" rel="alternate" type="text/html" title="Using Nomad with private Docker repositories" /><published>2020-10-31T11:37:05+00:00</published><updated>2020-10-31T11:37:05+00:00</updated><id>https://technicallyshane.com/2020/10/31/using-nomad-with-private-docker-repositories</id><content type="html" xml:base="https://technicallyshane.com/2020/10/31/using-nomad-with-private-docker-repositories.html">&lt;p&gt;Here’s the situation. You’ve done the &lt;a href=&quot;https://learn.hashicorp.com/collections/nomad/get-started&quot;&gt;starting tutorial&lt;/a&gt; and got your nomad “cluster” running on one machine. You’ve &lt;a href=&quot;https://technicallyshane.com/2020/10/30/nomad-ui-left-wide-open.html&quot;&gt;hidden the web UI&lt;/a&gt;. You’ve even created a Dockerfile for your application. Now you’re ready to get it running!&lt;/p&gt;
-
-&lt;h2 id=&quot;where-to-put-it&quot;&gt;Where to put it?&lt;/h2&gt;
-
-&lt;p&gt;I think there are only two places you might think of. &lt;a href=&quot;https://hub.docker.com/&quot;&gt;Dockerhub&lt;/a&gt; and &lt;a href=&quot;https://aws.amazon.com/ecr/&quot;&gt;Amazon’s ECR&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The perk of Dockerhub is that everything sort of just works. You pay them $5 a month, you send them the Dockerfile, they make the image for you, and you can just pop your image name in your jobspec.&lt;/p&gt;
-
-&lt;p&gt;This is cool because a Dockerfile is much smaller to upload than an image, and Dockerhub can process it much faster than you. It’s very simple to &lt;a href=&quot;https://www.nomadproject.io/docs/drivers/docker#authentication&quot;&gt;provide your username and password to authenticate&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I didn’t use this method though, so can’t say for sure.&lt;/p&gt;
-
-&lt;h2 id=&quot;elastic-container-registry&quot;&gt;Elastic Container Registry&lt;/h2&gt;
-
-&lt;p&gt;I went with the slightly more complicated ECR &lt;em&gt;just&lt;/em&gt; because it’s cheaper. For someone likely using it as little as me, it’ll work out free most months. If you download less than 1Gb per month, remembering that Docker will cache images too, it’ll cost you nothing.&lt;/p&gt;
-
-&lt;p&gt;It’s more difficult to set up though.&lt;/p&gt;
-
-&lt;h3 id=&quot;uploading-the-image&quot;&gt;Uploading the image&lt;/h3&gt;
-
-&lt;p&gt;This is fairly simple but has a number of potentially intimidating steps throughout. Stick with it!&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html&quot;&gt;Install the aws cli tool&lt;/a&gt; whereever you want to build your image. You’ll need to set up a user (via the IAM) service, which has at least &lt;code class=&quot;highlighter-rouge&quot;&gt;AmazonEC2ContainerRegistryFullAccess&lt;/code&gt; priveledges. Once you’ve done that and have access to the key and secret, run &lt;code class=&quot;highlighter-rouge&quot;&gt;aws configure&lt;/code&gt; to pop those in.&lt;/p&gt;
-
-&lt;p&gt;Then you’ll need to create a repository in &lt;a href=&quot;https://aws.amazon.com/ecr/&quot;&gt;ECR&lt;/a&gt;. You’ll have a repository per project (per git repo, for instance, likely). Hit “View push commands” and it’ll give you all the commands you need to build and push your image. Thanks, AWS!&lt;/p&gt;
-
-&lt;p&gt;You should see your image has been uploaded.&lt;/p&gt;
-
-&lt;h3 id=&quot;authenticating-with-ecr&quot;&gt;Authenticating with ECR&lt;/h3&gt;
-
-&lt;h4 id=&quot;configure-aws&quot;&gt;Configure AWS&lt;/h4&gt;
-
-&lt;p&gt;Just like on your local machine, you need to &lt;a href=&quot;https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html&quot;&gt;install the aws cli tools&lt;/a&gt; on your droplet. You want to make &lt;em&gt;a different user&lt;/em&gt; with much fewer access rights via IAM, just like before. This time, they only need permissions for &lt;code class=&quot;highlighter-rouge&quot;&gt;AmazonEC2ContainerRegistryReadOnly&lt;/code&gt;. (When you accidentally leak your AWS credentials on a live stream or copy-and-pasted code sample, it’ll be much cheaper for you this way.)&lt;/p&gt;
-
-&lt;p&gt;Again, &lt;code class=&quot;highlighter-rouge&quot;&gt;aws configure&lt;/code&gt; and use your new details. Do this on every server you’re running a client on. (Which is just the one for me, right now.)&lt;/p&gt;
-
-&lt;h4 id=&quot;configure-nomad&quot;&gt;Configure Nomad&lt;/h4&gt;
-
-&lt;p&gt;&lt;em&gt;I’ve just been told that there’s a package which magically does some of the stuff below. I’ve not looked into it any further, but &lt;a href=&quot;https://github.com/awslabs/amazon-ecr-credential-helper&quot;&gt;here you go&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;We need to add some configuration to our Nomad client agents. That’ll be your &lt;code class=&quot;highlighter-rouge&quot;&gt;client1.hcl&lt;/code&gt; files from the tutorial. You’ll need to stop and restart it before the changes will be picked up, remember.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;plugin &quot;docker&quot; {
-  config {
-    auth {
-      config = &quot;/etc/docker_auth&quot;
-    }
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;(You’ll have some &lt;code class=&quot;highlighter-rouge&quot;&gt;gc&lt;/code&gt; config in there too, which I left. I’ve no idea what it does.)&lt;/p&gt;
-
-&lt;p&gt;This tells nomad that whenever we’re fetching Docker images, check that path for config around authentication.&lt;/p&gt;
-
-&lt;p&gt;Have your &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/docker_auth&lt;/code&gt; look something like the below. You’ll need to change the URL to whatever your ECR account URL is; this includes your account ID and region.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
-  &quot;credHelpers&quot;: {
-    &quot;3848482828.dkr.ecr.eu-west-1.amazonaws.com&quot;: &quot;ecr-login&quot;
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now, whenever Nomad tries to pull down images (or rather, has Docker do it) it’ll check the hostname of the image and run the auth through &lt;code class=&quot;highlighter-rouge&quot;&gt;ecr-login&lt;/code&gt; first. This is hinting at another file you need to make - with some magic involved.&lt;/p&gt;
-
-&lt;p&gt;The file you need to make needs to be:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;named &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-credential-ecr-login&lt;/code&gt;; Nomad will prepend the script with &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-credential-&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;executable; &lt;code class=&quot;highlighter-rouge&quot;&gt;chmod +x /usr/local/bin/docker-credential-ecr-login&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;be on your path; &lt;code class=&quot;highlighter-rouge&quot;&gt;PATH=$PATH:/usr/local/bin&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;.bashrc&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;source .bashrc&lt;/code&gt; to reload it&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;It needs to output to stdout a chunk of JSON. My utterly messy script looks like this:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
-
-&lt;span class=&quot;nv&quot;&gt;PASSWORD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;aws &lt;span class=&quot;nt&quot;&gt;--region&lt;/span&gt; eu-west-1 ecr get-login-password&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{'&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&quot;Username&quot;: &quot;AWS&quot;,'&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Secret&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PASSWORD&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'}'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The username must be “AWS”. The password is generated from &lt;code class=&quot;highlighter-rouge&quot;&gt;aws cli&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;After this, you should see that your jobspec can happily refer to an ECR hosted image and download without any auth failures.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;image = &quot;036666666667.dkr.ecr.eu-west-1.amazonaws.com/simple-app:latest&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If you do run into any errors, really carefully read the nomad client output. It’s incredibly busy in there, but will help you if you can spend enough time to spot what you’re looking for.&lt;/p&gt;
-
-&lt;h4 id=&quot;can-i-just-docker-login-like-i-did-locally&quot;&gt;Can I just &lt;code class=&quot;highlighter-rouge&quot;&gt;docker login&lt;/code&gt; like I did locally?&lt;/h4&gt;
-
-&lt;p&gt;I think you’re &lt;a href=&quot;https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth&quot;&gt;supposed to be able to&lt;/a&gt;, but this didn’t work for me.&lt;/p&gt;
-
-&lt;p&gt;I’ve no idea how long the output of &lt;code class=&quot;highlighter-rouge&quot;&gt;get-login-password&lt;/code&gt; stays valid for. I expect it expires eventually and so one day you’ll be surprised when your allocations start failing.&lt;/p&gt;
-
-&lt;p&gt;On top of getting a warning about the password being stored in plain text (though this doesn’t matter; &lt;code class=&quot;highlighter-rouge&quot;&gt;aws config&lt;/code&gt; is already doing this), it still couldn’t authenticate for me. The above is the only thing that worked.&lt;/p&gt;</content><author><name></name></author><summary type="html">Here’s the situation. You’ve done the starting tutorial and got your nomad “cluster” running on one machine. You’ve hidden the web UI. You’ve even created a Dockerfile for your application. Now you’re ready to get it running!</summary></entry></feed>
+&lt;p&gt;Anyway, works for me.&lt;/p&gt;</content><author><name></name></author><summary type="html">I was surprised and annoyed to find that you can’t add your own event interfaces, like IPointerClickHandler and just have them work.</summary></entry></feed>

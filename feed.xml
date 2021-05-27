@@ -1,4 +1,89 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="https://technicallyshane.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://technicallyshane.com/" rel="alternate" type="text/html" /><updated>2021-05-01T10:08:49+01:00</updated><id>https://technicallyshane.com/feed.xml</id><title type="html">Shane’s blog</title><subtitle>I wouldn't worry about it.</subtitle><entry><title type="html">Worknotes - April</title><link href="https://technicallyshane.com/2021/05/01/worknotes-april.html" rel="alternate" type="text/html" title="Worknotes - April" /><published>2021-05-01T09:24:00+01:00</published><updated>2021-05-01T09:24:00+01:00</updated><id>https://technicallyshane.com/2021/05/01/worknotes-april</id><content type="html" xml:base="https://technicallyshane.com/2021/05/01/worknotes-april.html">&lt;p&gt;Well, well, well. My time at Altmetric has come to an end. Good news for job hunters is that &lt;a href=&quot;https://www.altmetric.com/jobs/senior-software-developer/&quot;&gt;my space is available to be filled&lt;/a&gt;. Altmetric was a wonderful place to be for the considerable majority of the seven years I spent there, and I know that their product is going to really blossom once they’ve sorted out some technical niggles.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="https://technicallyshane.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://technicallyshane.com/" rel="alternate" type="text/html" /><updated>2021-05-27T17:58:08+01:00</updated><id>https://technicallyshane.com/feed.xml</id><title type="html">Shane’s blog</title><subtitle>I wouldn't worry about it.</subtitle><entry><title type="html">Ruby Array indexes (and ranges)</title><link href="https://technicallyshane.com/2021/05/27/ruby-array-indexes.html" rel="alternate" type="text/html" title="Ruby Array indexes (and ranges)" /><published>2021-05-27T15:57:00+01:00</published><updated>2021-05-27T15:57:00+01:00</updated><id>https://technicallyshane.com/2021/05/27/ruby-array-indexes</id><content type="html" xml:base="https://technicallyshane.com/2021/05/27/ruby-array-indexes.html">&lt;p&gt;A Ruby array looks a bit like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scooby_doo_characters = [ 'Daphney', 'Fred', 'Scoob', 'Scrappy', 'Shaggy', 'Velma' ]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You might also see it defined with a &lt;a href=&quot;https://docs.ruby-lang.org/en/2.0.0/syntax/literals_rdoc.html#label-Percent+Strings&quot;&gt;percent string&lt;/a&gt;. Or even through &lt;code class=&quot;highlighter-rouge&quot;&gt;Array.new&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;aryindex&quot;&gt;ary[index]&lt;/h2&gt;
+
+&lt;p&gt;However you make the array, you’ll be able to refer to items in the same way.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;puts scooby_doo_characters[2]
+
+# =&amp;gt; Scoob
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;It’s worthwhile knowing that arrays, like in many languages, are indexed starting from 0. So, &lt;code class=&quot;highlighter-rouge&quot;&gt;[0]&lt;/code&gt; is the first item in an array. Another fun, special kind of index are negative numbers, for instance where &lt;code class=&quot;highlighter-rouge&quot;&gt;[-1]&lt;/code&gt; is the final element. &lt;code class=&quot;highlighter-rouge&quot;&gt;[-2]&lt;/code&gt; is the penultimate one.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;puts scooby_doo_characters[-2]
+
+# =&amp;gt; Scoob
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div style=&quot;border: 1px dashed #2f5b71; background-color: #2f5b71; border-radius: 5px; margin: 15px; padding: 15px; color: white;&quot;&gt;
+Fun fact: `-0` isn't a valid index. Or rather, it is, but you'll just be getting `[0]`, as -0 is the only number that everyone agrees is where maths has gone too far.
+&lt;/div&gt;
+
+&lt;h2 id=&quot;arystart-length&quot;&gt;ary[start, length]&lt;/h2&gt;
+
+&lt;p&gt;The way you grab just a chunk of an array is passing a second argument to it.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scooby_doo_characters[1, 3]
+
+# =&amp;gt; ['Fred', 'Scoob', 'Scrappy']
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This is the exact same method as if we were to use &lt;code class=&quot;highlighter-rouge&quot;&gt;slice(1, 3)&lt;/code&gt;. The thing that always confuses me is that the second argument is the number of items you want returned, not the index to stop at. The impact is that, if you want the all but the last three elements, you can’t do something like:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scooby_doo_characters[1, -3]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Negative lengths do nothing, but it’s worth baring in mind that they do not error. 100% percent of the time I use &lt;code class=&quot;highlighter-rouge&quot;&gt;ary[start, length]&lt;/code&gt; I introduce this bug.&lt;/p&gt;
+
+&lt;div style=&quot;border: 1px dashed #2f5b71; background-color: #2f5b71; border-radius: 5px; margin: 15px; padding: 15px; color: white;&quot;&gt;
+The `[]` notation is actually just a method call with a funny looking name; you can make your own `def [] (key)` and `def []= (key, item)` methods if you want. `[]` is special, in that you can't use most other characters. `def () (key)` is not a thing.
+&lt;/div&gt;
+
+&lt;h2 id=&quot;aryrange&quot;&gt;ary[range]&lt;/h2&gt;
+
+&lt;p&gt;There’s a final way to refer to elements in arrays, which is to give it a range.&lt;/p&gt;
+
+&lt;p&gt;Ranges are another feature of Ruby which give you a thing to iterate over. You can make ‘em with &lt;code class=&quot;highlighter-rouge&quot;&gt;Range.new(1, 3)&lt;/code&gt;, but more frequently you’ll see them as &lt;code class=&quot;highlighter-rouge&quot;&gt;(1..3)&lt;/code&gt; (inclusive) or &lt;code class=&quot;highlighter-rouge&quot;&gt;(1...3)&lt;/code&gt; (not including 3). You can iterate straight over these, using &lt;code class=&quot;highlighter-rouge&quot;&gt;each&lt;/code&gt; and whatnot, but to see their values on IRB or some much, you can &lt;code class=&quot;highlighter-rouge&quot;&gt;to_a&lt;/code&gt; them.&lt;/p&gt;
+
+&lt;div style=&quot;border: 1px dashed #2f5b71; background-color: #2f5b71; border-radius: 5px; margin: 15px; padding: 15px; color: white;&quot;&gt;
+You can throw ranges straight into arrays, by splatting them. `[*1..3]` is the same as `(1..3).to_a`. However, it looks very odd, and I don't like it. It's a very difficult thing to Google for if you're not familar with it. In fact, the whole reason for this blog post was because I came across `[*?a..?z]` which confused the check out of me.
+&lt;br /&gt;
+&lt;br /&gt;
+`?a` is just a shorthand for `'a'`, but lead me on a fruitless trail looking for what `*?` did.
+&lt;/div&gt;
+
+&lt;p&gt;You can give ranges to split out items you want. The following two lines output the same thing:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scooby_doo_characters[1, 3]
+scooby_doo_characters[(1..3)]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, if you do &lt;code class=&quot;highlighter-rouge&quot;&gt;(1..-3).to_a&lt;/code&gt; you don’t get anything returned. It’s not a valid range. If you try to iterate over it, it will take zero cycles. However, for some exciting reason, you can pass them to &lt;code class=&quot;highlighter-rouge&quot;&gt;ary[range]&lt;/code&gt;. It does exactly what I wanted earlier: give me the elements from one, until the third last.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scooby_doo_characters[(1..-3)]
+
+# =&amp;gt; [&quot;Fred&quot;, &quot;Scoob&quot;, &quot;Scrappy&quot;]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;My assumption was that under the hood, the Array would use the Range to tell it what indexes it should use, turning it back into a simple &lt;code class=&quot;highlighter-rouge&quot;&gt;ary[index]&lt;/code&gt; call. It would stop when Range runs out of items. That’s not happening though, as Range can only count upwards. In fact, it doesn’t even know how to count upwards, but rather needs a &lt;code class=&quot;highlighter-rouge&quot;&gt;succ&lt;/code&gt; method to tell it what the next value is. The reason the Range can get from 1 to 2 is because &lt;code class=&quot;highlighter-rouge&quot;&gt;1.succ =&amp;gt; 2&lt;/code&gt;. It simply keeps going until the current value is equal to the end value.&lt;/p&gt;
+
+&lt;p&gt;So what the heck are Arrays doing?&lt;/p&gt;
+
+&lt;p&gt;To understand that, we need to &lt;a href=&quot;https://github.com/ruby/ruby/blob/8b00bfb7c2c33827490c78a16c44b102cb0d724b/array.c#L1762&quot;&gt;try to follow the C code&lt;/a&gt;, get frustrated with it, and then realise there’s a lovely comment explaining it all.&lt;/p&gt;
+
+&lt;p&gt;You can see, it completely ignores the enumerative nature of the Range, treating it as a data structure to simply hold the &lt;code class=&quot;highlighter-rouge&quot;&gt;start&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;end&lt;/code&gt; values. It never needs to call &lt;code class=&quot;highlighter-rouge&quot;&gt;each&lt;/code&gt; (or similar) on the Range. And doesn’t care what the &lt;code class=&quot;highlighter-rouge&quot;&gt;first&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;last&lt;/code&gt; values are.&lt;/p&gt;
+
+&lt;p&gt;When the &lt;code class=&quot;highlighter-rouge&quot;&gt;end&lt;/code&gt; is negative, it does some work to figure out how from the end that number is, and then can figure out how many elements we want returning. From there, it can simply go back to &lt;code class=&quot;highlighter-rouge&quot;&gt;ary[index, length]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;enumeratorarithmeticsequence&quot;&gt;Enumerator::ArithmeticSequence&lt;/h2&gt;
+
+&lt;p&gt;For completeness, I should mention that you can also pass a &lt;code class=&quot;highlighter-rouge&quot;&gt;Enumerator::ArithmeticSequence&lt;/code&gt; as a range. This is basically a range with larger than 1 step between each number.&lt;/p&gt;</content><author><name></name></author><summary type="html">A Ruby array looks a bit like this:</summary></entry><entry><title type="html">Worknotes - April</title><link href="https://technicallyshane.com/2021/05/01/worknotes-april.html" rel="alternate" type="text/html" title="Worknotes - April" /><published>2021-05-01T09:24:00+01:00</published><updated>2021-05-01T09:24:00+01:00</updated><id>https://technicallyshane.com/2021/05/01/worknotes-april</id><content type="html" xml:base="https://technicallyshane.com/2021/05/01/worknotes-april.html">&lt;p&gt;Well, well, well. My time at Altmetric has come to an end. Good news for job hunters is that &lt;a href=&quot;https://www.altmetric.com/jobs/senior-software-developer/&quot;&gt;my space is available to be filled&lt;/a&gt;. Altmetric was a wonderful place to be for the considerable majority of the seven years I spent there, and I know that their product is going to really blossom once they’ve sorted out some technical niggles.&lt;/p&gt;
 
 &lt;p&gt;There’s no plan to jump straight into another role just yet. I’m taking three months or so to work on my creative endevours. After that time, unless I stumble into success with any of my projects, I’ll be hunting for a place  return to my Ruby developer role.&lt;/p&gt;
 
@@ -496,68 +581,4 @@ Mucur&lt;/a&gt; that lead me to the water on this one.&lt;/p&gt;</content><autho
 
 &lt;p&gt;I’m not very good at spleunking through code I don’t have to work with every day. &lt;a href=&quot;https://github.com/rails/rails/blob/5cfd58bbfb8425ab1931c618d98b649bab059ce6/railties/lib/rails/tasks/engine.rake&quot;&gt;This is at least a rake file&lt;/a&gt; and looks so close to what I want, but then something weird is happening in &lt;code class=&quot;highlighter-rouge&quot;&gt;app_task&lt;/code&gt;. There’s a magic(?) (it’s all magic until I understand it, I suppose) &lt;code class=&quot;highlighter-rouge&quot;&gt;APP_RAKEFILE&lt;/code&gt; chilling in there. Which sort of leads us to &lt;a href=&quot;https://github.com/rails/rails/blob/5cfd58bbfb8425ab1931c618d98b649bab059ce6/railties/lib/rails/generators/rails/plugin/templates/Rakefile.tt&quot;&gt;a &lt;code class=&quot;highlighter-rouge&quot;&gt;tt&lt;/code&gt; file which is sort of ERB&lt;/a&gt;, but I dunno who’s building it. Is &lt;code class=&quot;highlighter-rouge&quot;&gt;dummy_app&lt;/code&gt; our key here? No? Is it &lt;code class=&quot;highlighter-rouge&quot;&gt;bundler/gem_tasks&lt;/code&gt;? Either way, its linking out to the respective rake files of other applications, so lets jump to ActiveRecord. But that only has &lt;a href=&quot;https://github.com/rails/rails/blob/5cfd58bbfb8425ab1931c618d98b649bab059ce6/activerecord/Rakefile&quot;&gt;stuff about testing???&lt;/a&gt;. There is a deeper down selection of tasks, but these quickly stop looking &lt;a href=&quot;https://github.com/rails/rails/blob/5cfd58bbfb8425ab1931c618d98b649bab059ce6/activerecord/lib/active_record/tasks/database_tasks.rb&quot;&gt;like Rake things at all&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Will I ever return with an answer to all these questions? Who knows.&lt;/p&gt;</content><author><name></name></author><summary type="html">I often start (short lived) projects in plain old Ruby, and then I realise I need models with persistance and think, “oh, this should have been a Rails app”.</summary></entry><entry><title type="html">A surprisingly simple custom Unity event system</title><link href="https://technicallyshane.com/2020/12/18/unity-custom-event-system.html" rel="alternate" type="text/html" title="A surprisingly simple custom Unity event system" /><published>2020-12-18T16:10:05+00:00</published><updated>2020-12-18T16:10:05+00:00</updated><id>https://technicallyshane.com/2020/12/18/unity-custom-event-system</id><content type="html" xml:base="https://technicallyshane.com/2020/12/18/unity-custom-event-system.html">&lt;p&gt;I was surprised and annoyed to find that you can’t add your own event interfaces, like IPointerClickHandler and just have them work.&lt;/p&gt;
-
-&lt;p&gt;Instead, I made something like this, which appears to work. At least immediately. Maybe there are issues in this.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;using System.Collections.Generic;
-using System.Reflection;
-using UnityEngine;
-
-public class InterfaceMethodStruct
-{
-    public System.Type type;
-    public string methodName;
-}
-
-public class EventSubscriptions : MonoBehaviour
-{
-    private Dictionary&amp;lt;string, InterfaceMethodStruct&amp;gt; eventNameInterfaceMap = new Dictionary&amp;lt;string, InterfaceMethodStruct&amp;gt; {
-        { &quot;PlayerMoved&quot;, new InterfaceMethodStruct { type = typeof(IPlayerMoved), methodName = &quot;OnPlayerMove&quot; } },
-    };
-
-    public GameObject[] listeners;
-
-    public void PlayerMoved()
-    {
-        Trigger(&quot;PlayerMoved&quot;);
-    }
-
-    private void Trigger(string name)
-    {
-        List&amp;lt;MonoBehaviour&amp;gt; triggered = new List&amp;lt;MonoBehaviour&amp;gt;();
-        foreach (GameObject listener in listeners) {
-            foreach (MonoBehaviour component in listener.GetComponentsInChildren(eventNameInterfaceMap[name].type)) {
-                triggered.Add(component);
-            }
-        }
-        
-        foreach(var trigger in triggered) {
-            MethodInfo method = eventNameInterfaceMap[name].type.GetMethod(eventNameInterfaceMap[name].methodName);
-            method.Invoke(trigger, new object[0]);
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Tell it which GameObjects might be listening for events. This is an optimisation, so that you don’t have to loop through every GameObject.&lt;/li&gt;
-  &lt;li&gt;Create your static Dictionary of event names, mapped with the interface and method that should be triggered when fired.&lt;/li&gt;
-  &lt;li&gt;Call Trigger.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Trigger just:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Looks across the listeners for components with this interface.&lt;/li&gt;
-  &lt;li&gt;Call the method on each of them.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Cons, which I don’t care about right now:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Can’t pass arguments. (I just need a messaging system to say “hey, time to resync”.)&lt;/li&gt;
-  &lt;li&gt;“Registering” event types is very manually. (Fine, I know the entire scope of the application.)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Anyway, works for me.&lt;/p&gt;</content><author><name></name></author><summary type="html">I was surprised and annoyed to find that you can’t add your own event interfaces, like IPointerClickHandler and just have them work.</summary></entry></feed>
+&lt;p&gt;Will I ever return with an answer to all these questions? Who knows.&lt;/p&gt;</content><author><name></name></author><summary type="html">I often start (short lived) projects in plain old Ruby, and then I realise I need models with persistance and think, “oh, this should have been a Rails app”.</summary></entry></feed>

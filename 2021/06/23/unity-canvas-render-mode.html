@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Unity Canvas render mode | Shane’s blog</title>
+<meta name="generator" content="Jekyll v4.0.1" />
+<meta property="og:title" content="Unity Canvas render mode" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Last edited by Shane, June 2021." />
+<meta property="og:description" content="Last edited by Shane, June 2021." />
+<link rel="canonical" href="https://technicallyshane.com/2021/06/23/unity-canvas-render-mode.html" />
+<meta property="og:url" content="https://technicallyshane.com/2021/06/23/unity-canvas-render-mode.html" />
+<meta property="og:site_name" content="Shane’s blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-23T16:35:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Unity Canvas render mode" />
+<script type="application/ld+json">
+{"url":"https://technicallyshane.com/2021/06/23/unity-canvas-render-mode.html","headline":"Unity Canvas render mode","dateModified":"2021-06-23T16:35:00+01:00","datePublished":"2021-06-23T16:35:00+01:00","description":"Last edited by Shane, June 2021.","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2021/06/23/unity-canvas-render-mode.html"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://technicallyshane.com/feed.xml" title="Shane's blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Shane&#39;s blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Unity Canvas render mode</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-06-23T16:35:00+01:00" itemprop="datePublished">Jun 23, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><em>Last edited by Shane, June 2021.</em></p>
+
+<p>Here is a series of notes I constantly reference when building any sort of
+interface or menu system in Unity, using their built-in UI system. Consider
+this a cheat sheet for your most common use cases.</p>
+
+<p>I’m just a hobbyist game developer so the below is heavily skewed by the kind
+of games I’ve made so far. It might not be great advice for whatever you’re
+doing. I tend to build 2D, interface based games, but as most UI is 2D
+hopefully there are some transferable bits to 3D.</p>
+
+<h2 id="canvas-render-mode-types">Canvas render mode types</h2>
+
+<p>The canvas is the parent element of all the UI elements of your game. This
+includes any text and images you want in the same spot on the screen, (almost)
+all the time, like a health meter or panels for your inventory. It excludes
+your world sprites.</p>
+
+<p><img src="/assets/unity-reference/mario-bros.jpg" alt="Super Mario Bros, end of 1-1 with various UI
+elements" class="center-image" /></p>
+
+<p>In the Super Mario Bros screen cap, the points, coins, world label, and time
+are all UI elements that belong on the canvas. Even that moving “5000” points
+would be part of the canvas too. The cloud, background hill and sky, ground,
+and castle would not. Even Mario himself would not be a part of the UI.</p>
+
+<h2 id="screen-space--overlay">Screen Space – Overlay</h2>
+
+<p>This is likely the most common UI method. This canvas is always visible on the
+screen, “on top” of everything else. It applies no perspective shifting – it
+has no distance from your camera. It’s not affected by the camera at all. Ideal
+for 3D games, or games where you’re applying affects to the camera that you
+don’t want affecting the UI.</p>
+
+<p>The canvas scales to match the screen resolution, and its pixel space is
+defined by the Reference Resolution of the Canvas. For me, this defaults to 800
+x 600. So, Vector3.zero is the bottom-left hand pixel of the screen. new
+Vector3(800, 600, 0) is the top-right; Vectors between those are scaled. This
+is very surprising when you want to place a UI element “over” a world element:
+to do that, you need to use
+<code class="highlighter-rouge">RectTransformUtility.WorldToScreenPoint(Camera.main, obj.transform.position)</code>.
+This needs to be updated every time the camera moves. This problem doesn’t
+exist in Camera mode, where you can refer to world pixels easily enough.</p>
+
+<p><img src="/assets/unity-reference/shark.png" alt="Highlights the difference between the canvas resolution and the world
+resolution." class="center-image" /></p>
+
+<h2 id="screen-space--camera">Screen Space – Camera</h2>
+
+<p>Very similar to the above, except the camera settings affect the UI. It has a
+distance from the camera, which could get clipped by the camera depth setting,
+for instance.</p>
+
+<p>In a 2D game, with the Projection set to Orthographic, it’s very similar to
+Overlay. However, it does not suffer from the same coordinate mis-match
+problem. If you wish to place a UI element over a GameObject, you can simply
+use the GameObject’s transform position details.</p>
+
+<p>This makes items easier to draw “in-world”. Moving the camera will not change
+the location of UI elements drawn with specific world coordinates. The box you
+draw over the shark will stay over the shark, even when the map is moved.
+Consider an RTS where the health bar of a building remains in place, despite
+the camera moving.</p>
+
+<p>If you <em>do</em> want something to stay in place, then anchors will solve that.</p>
+
+<h2 id="world-space">World Space</h2>
+
+<p>The trickiest of canvases to place, I find. This is for when you want a UI to
+exist in the world of your game. Almost exclusively, this will be used for 3D
+games. Consider menu systems on a vending machine or the subway map in Deus Ex.</p>
+
+  </div><a class="u-url" href="/2021/06/23/unity-canvas-render-mode.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Shane&#39;s blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Shane&#39;s blog</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/shamess"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">shamess</span></a></li><li><a href="https://www.twitter.com/shamess"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">shamess</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>I wouldn&#39;t worry about it.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,4 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="https://technicallyshane.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://technicallyshane.com/" rel="alternate" type="text/html" /><updated>2021-05-28T20:52:47+01:00</updated><id>https://technicallyshane.com/feed.xml</id><title type="html">Shane’s blog</title><subtitle>I wouldn't worry about it.</subtitle><entry><title type="html">Worknotes - May</title><link href="https://technicallyshane.com/2021/05/28/worknotes-may.html" rel="alternate" type="text/html" title="Worknotes - May" /><published>2021-05-28T18:30:00+01:00</published><updated>2021-05-28T18:30:00+01:00</updated><id>https://technicallyshane.com/2021/05/28/worknotes-may</id><content type="html" xml:base="https://technicallyshane.com/2021/05/28/worknotes-may.html">&lt;p&gt;An Altmetric friend this month suggested that I focus on just one or two projects. I realise now, writing this, I did not listen to that advice and have likely paid the cost for it…&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="https://technicallyshane.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://technicallyshane.com/" rel="alternate" type="text/html" /><updated>2021-06-23T16:42:35+01:00</updated><id>https://technicallyshane.com/feed.xml</id><title type="html">Shane’s blog</title><subtitle>I wouldn't worry about it.</subtitle><entry><title type="html">Unity Canvas render mode</title><link href="https://technicallyshane.com/2021/06/23/unity-canvas-render-mode.html" rel="alternate" type="text/html" title="Unity Canvas render mode" /><published>2021-06-23T16:35:00+01:00</published><updated>2021-06-23T16:35:00+01:00</updated><id>https://technicallyshane.com/2021/06/23/unity-canvas-render-mode</id><content type="html" xml:base="https://technicallyshane.com/2021/06/23/unity-canvas-render-mode.html">&lt;p&gt;&lt;em&gt;Last edited by Shane, June 2021.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is a series of notes I constantly reference when building any sort of
+interface or menu system in Unity, using their built-in UI system. Consider
+this a cheat sheet for your most common use cases.&lt;/p&gt;
+
+&lt;p&gt;I’m just a hobbyist game developer so the below is heavily skewed by the kind
+of games I’ve made so far. It might not be great advice for whatever you’re
+doing. I tend to build 2D, interface based games, but as most UI is 2D
+hopefully there are some transferable bits to 3D.&lt;/p&gt;
+
+&lt;h2 id=&quot;canvas-render-mode-types&quot;&gt;Canvas render mode types&lt;/h2&gt;
+
+&lt;p&gt;The canvas is the parent element of all the UI elements of your game. This
+includes any text and images you want in the same spot on the screen, (almost)
+all the time, like a health meter or panels for your inventory. It excludes
+your world sprites.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/unity-reference/mario-bros.jpg&quot; alt=&quot;Super Mario Bros, end of 1-1 with various UI
+elements&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the Super Mario Bros screen cap, the points, coins, world label, and time
+are all UI elements that belong on the canvas. Even that moving “5000” points
+would be part of the canvas too. The cloud, background hill and sky, ground,
+and castle would not. Even Mario himself would not be a part of the UI.&lt;/p&gt;
+
+&lt;h2 id=&quot;screen-space--overlay&quot;&gt;Screen Space – Overlay&lt;/h2&gt;
+
+&lt;p&gt;This is likely the most common UI method. This canvas is always visible on the
+screen, “on top” of everything else. It applies no perspective shifting – it
+has no distance from your camera. It’s not affected by the camera at all. Ideal
+for 3D games, or games where you’re applying affects to the camera that you
+don’t want affecting the UI.&lt;/p&gt;
+
+&lt;p&gt;The canvas scales to match the screen resolution, and its pixel space is
+defined by the Reference Resolution of the Canvas. For me, this defaults to 800
+x 600. So, Vector3.zero is the bottom-left hand pixel of the screen. new
+Vector3(800, 600, 0) is the top-right; Vectors between those are scaled. This
+is very surprising when you want to place a UI element “over” a world element:
+to do that, you need to use
+&lt;code class=&quot;highlighter-rouge&quot;&gt;RectTransformUtility.WorldToScreenPoint(Camera.main, obj.transform.position)&lt;/code&gt;.
+This needs to be updated every time the camera moves. This problem doesn’t
+exist in Camera mode, where you can refer to world pixels easily enough.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/unity-reference/shark.png&quot; alt=&quot;Highlights the difference between the canvas resolution and the world
+resolution.&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;screen-space--camera&quot;&gt;Screen Space – Camera&lt;/h2&gt;
+
+&lt;p&gt;Very similar to the above, except the camera settings affect the UI. It has a
+distance from the camera, which could get clipped by the camera depth setting,
+for instance.&lt;/p&gt;
+
+&lt;p&gt;In a 2D game, with the Projection set to Orthographic, it’s very similar to
+Overlay. However, it does not suffer from the same coordinate mis-match
+problem. If you wish to place a UI element over a GameObject, you can simply
+use the GameObject’s transform position details.&lt;/p&gt;
+
+&lt;p&gt;This makes items easier to draw “in-world”. Moving the camera will not change
+the location of UI elements drawn with specific world coordinates. The box you
+draw over the shark will stay over the shark, even when the map is moved.
+Consider an RTS where the health bar of a building remains in place, despite
+the camera moving.&lt;/p&gt;
+
+&lt;p&gt;If you &lt;em&gt;do&lt;/em&gt; want something to stay in place, then anchors will solve that.&lt;/p&gt;
+
+&lt;h2 id=&quot;world-space&quot;&gt;World Space&lt;/h2&gt;
+
+&lt;p&gt;The trickiest of canvases to place, I find. This is for when you want a UI to
+exist in the world of your game. Almost exclusively, this will be used for 3D
+games. Consider menu systems on a vending machine or the subway map in Deus Ex.&lt;/p&gt;</content><author><name></name></author><summary type="html">Last edited by Shane, June 2021.</summary></entry><entry><title type="html">Worknotes - May</title><link href="https://technicallyshane.com/2021/05/28/worknotes-may.html" rel="alternate" type="text/html" title="Worknotes - May" /><published>2021-05-28T18:30:00+01:00</published><updated>2021-05-28T18:30:00+01:00</updated><id>https://technicallyshane.com/2021/05/28/worknotes-may</id><content type="html" xml:base="https://technicallyshane.com/2021/05/28/worknotes-may.html">&lt;p&gt;An Altmetric friend this month suggested that I focus on just one or two projects. I realise now, writing this, I did not listen to that advice and have likely paid the cost for it…&lt;/p&gt;
 
 &lt;h2 id=&quot;jekyll&quot;&gt;jekyll&lt;/h2&gt;
 
@@ -540,50 +610,4 @@ pixels.show()
 
 &lt;p&gt;I started it because I wanted to fool around with Svelte, and I should make a longer review of that soon. It’s quite nice though. I’ve been told that I should try out React once more, with all the new hooks and whatnot. I’ve watched far too many &lt;a href=&quot;https://www.youtube.com/channel/UC-8QAzbLcRglXeN_MY9blyw&quot;&gt;Ben Awad&lt;/a&gt; videos recently and he managed to get me excited about the framework.&lt;/p&gt;
 
-&lt;p&gt;I’m a heart beat away from actually trying TypeScript. Stay tuned, I guess.&lt;/p&gt;</content><author><name></name></author><summary type="html">I made a rather less shiny clone of a minigame I’ve been playing a lot of recently. You can play it over here.</summary></entry><entry><title type="html">ActiveRecord Migrations without Rails: Nice</title><link href="https://technicallyshane.com/2021/01/15/activerecord-migrations-without-rails-nice.html" rel="alternate" type="text/html" title="ActiveRecord Migrations without Rails: Nice" /><published>2021-01-15T00:24:00+00:00</published><updated>2021-01-15T00:24:00+00:00</updated><id>https://technicallyshane.com/2021/01/15/activerecord-migrations-without-rails-nice</id><content type="html" xml:base="https://technicallyshane.com/2021/01/15/activerecord-migrations-without-rails-nice.html">&lt;p&gt;You can get Rake-based ActiveRecord Migrations in your non-Rails project with
-only the smallest amount of massaging.&lt;/p&gt;
-
-&lt;p&gt;If you’re like me, you’ve been missing the nice ability to simply do &lt;code class=&quot;highlighter-rouge&quot;&gt;rails
-db:migrate&lt;/code&gt; since this is a feature that’s mostly missing if you’re outside of
-Rails. The good news is that it hasn’t gone too far away, but does still
-require a little effort to get working.&lt;/p&gt;
-
-&lt;p&gt;You’ll have to create your own Rakefile to stock with your tasks. Fortunately,
-most of the work behind the Rails db tasks are all &lt;a href=&quot;https://github.com/rails/rails/blob/5cfd58bbfb8425ab1931c618d98b649bab059ce6/activerecord/lib/active_record/tasks/database_tasks.rb#L229&quot;&gt;behind single method
-calls&lt;/a&gt;. So, to add migrations and schema dumps, you can do the
-following:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:db&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;active_record&quot;&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;require_relative&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;config/database&quot;&lt;/span&gt;
-
-  &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;active_record/tasks/database_tasks&quot;&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Tasks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;DatabaseTasks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;db_dir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;db/&quot;&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;desc&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Migrate the database&quot;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:migrate&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Tasks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;DatabaseTasks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;migrate&lt;/span&gt;
-
-    &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Done&quot;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;desc&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Create a db/schema.rb'&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:schema&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;db_config&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;connection_db_config&lt;/span&gt;
-
-    &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Tasks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;DatabaseTasks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;dump_schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;db_config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-    &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Done&quot;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This is much better than &lt;a href=&quot;https://technicallyshane.com/2021/01/13/activerecord-migrations-without-rails.html&quot;&gt;my previous efforts&lt;/a&gt; because it’s
-no longer monkeying with fairly internal tools to ActiveRecord. This is a
-slightly more open API for running these tasks, which’ll keep working so long
-as Rails continues using them.&lt;/p&gt;
-
-&lt;p&gt;Even though I linked to the DatabaseTasks file myself, I didn’t actually read
-it properly. In the end it was none other than the ex-CTO of the worlds best
-altmetrics provider and current provider of excellent technical services, &lt;a href=&quot;https://mudge.name/&quot;&gt;Paul
-Mucur&lt;/a&gt; that lead me to the water on this one.&lt;/p&gt;</content><author><name></name></author><summary type="html">You can get Rake-based ActiveRecord Migrations in your non-Rails project with only the smallest amount of massaging.</summary></entry></feed>
+&lt;p&gt;I’m a heart beat away from actually trying TypeScript. Stay tuned, I guess.&lt;/p&gt;</content><author><name></name></author><summary type="html">I made a rather less shiny clone of a minigame I’ve been playing a lot of recently. You can play it over here.</summary></entry></feed>

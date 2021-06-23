@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Unity Canvas render mode | Shane’s blog</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Unity Canvas render mode" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Last edited by Shane, June 2021." />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Unity Canvas render mode" />
 <script type="application/ld+json">
-{"url":"https://technicallyshane.com/2021/06/23/unity-canvas-render-mode.html","headline":"Unity Canvas render mode","dateModified":"2021-06-23T16:35:00+01:00","datePublished":"2021-06-23T16:35:00+01:00","description":"Last edited by Shane, June 2021.","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2021/06/23/unity-canvas-render-mode.html"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"datePublished":"2021-06-23T16:35:00+01:00","dateModified":"2021-06-23T16:35:00+01:00","url":"https://technicallyshane.com/2021/06/23/unity-canvas-render-mode.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2021/06/23/unity-canvas-render-mode.html"},"description":"Last edited by Shane, June 2021.","@type":"BlogPosting","headline":"Unity Canvas render mode","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://technicallyshane.com/feed.xml" title="Shane's blog" /></head>
 <body><header class="site-header" role="banner">
@@ -87,7 +87,7 @@ x 600. So, Vector3.zero is the bottom-left hand pixel of the screen. new
 Vector3(800, 600, 0) is the top-right; Vectors between those are scaled. This
 is very surprising when you want to place a UI element “over” a world element:
 to do that, you need to use
-<code class="highlighter-rouge">RectTransformUtility.WorldToScreenPoint(Camera.main, obj.transform.position)</code>.
+<code class="language-plaintext highlighter-rouge">RectTransformUtility.WorldToScreenPoint(Camera.main, obj.transform.position)</code>.
 This needs to be updated every time the camera moves. This problem doesn’t
 exist in Camera mode, where you can refer to world pixels easily enough.</p>
 

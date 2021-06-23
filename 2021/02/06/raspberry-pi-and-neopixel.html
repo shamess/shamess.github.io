@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Raspberry Pi and Neopixel | Shane’s blog</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Raspberry Pi and Neopixel" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="I decided to do something with one of the (four or five) Raspberry Pi’s kicking around the house. I ended up excitedly buying a newer Pi and a Neopixel, so I didn’t solve my abundance of Pi problem, but I have gotten somewhere with a project." />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Raspberry Pi and Neopixel" />
 <script type="application/ld+json">
-{"url":"https://technicallyshane.com/2021/02/06/raspberry-pi-and-neopixel.html","headline":"Raspberry Pi and Neopixel","dateModified":"2021-02-06T14:12:00+00:00","datePublished":"2021-02-06T14:12:00+00:00","description":"I decided to do something with one of the (four or five) Raspberry Pi’s kicking around the house. I ended up excitedly buying a newer Pi and a Neopixel, so I didn’t solve my abundance of Pi problem, but I have gotten somewhere with a project.","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2021/02/06/raspberry-pi-and-neopixel.html"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"datePublished":"2021-02-06T14:12:00+00:00","dateModified":"2021-02-06T14:12:00+00:00","url":"https://technicallyshane.com/2021/02/06/raspberry-pi-and-neopixel.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2021/02/06/raspberry-pi-and-neopixel.html"},"description":"I decided to do something with one of the (four or five) Raspberry Pi’s kicking around the house. I ended up excitedly buying a newer Pi and a Neopixel, so I didn’t solve my abundance of Pi problem, but I have gotten somewhere with a project.","@type":"BlogPosting","headline":"Raspberry Pi and Neopixel","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://technicallyshane.com/feed.xml" title="Shane's blog" /></head>
 <body><header class="site-header" role="banner">
@@ -193,7 +193,7 @@
 <p>It may not be as clear as a more professional board, so here’s what you want to connect:</p>
 
 <ul>
-  <li>Capacitor as close to the power jack as possible. Note the <code class="highlighter-rouge">-</code> on one side. That must go into the matching track.</li>
+  <li>Capacitor as close to the power jack as possible. Note the <code class="language-plaintext highlighter-rouge">-</code> on one side. That must go into the matching track.</li>
   <li>74AHCT125 should go across the centre of the board, giving you access to top and bottom pins. The semi-circle shows you where the left side of the chip is.</li>
   <li>74AHCT125’s first pin on the top should go to power supply 5v. (You can use any hole in the pinboard from f-j, so long as it’s in the column above the first pin. You can use <em>any</em> hole on the 5v row.)</li>
   <li>74AHCT125’s first pin on the bottom should go to power supply ground.</li>
@@ -222,7 +222,7 @@
 
 <p>Here’s a tiny example:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import board
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import board
 import neopixel
 
 pixels = neopixel.NeoPixel(

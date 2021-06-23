@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Another dropped video game (I’m blaming Svelte) | Shane’s blog</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Another dropped video game (I’m blaming Svelte)" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="I don’t have a strong reputation for finishing my personal projects, and Chained Towns is another example. I’m leaving this now because I’m frustrated with tracking down Svelte state issues." />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Another dropped video game (I’m blaming Svelte)" />
 <script type="application/ld+json">
-{"url":"https://technicallyshane.com/2021/04/21/another-dropped-video-game-i-m-blaming-svelte.html","headline":"Another dropped video game (I’m blaming Svelte)","dateModified":"2021-04-21T21:21:00+01:00","datePublished":"2021-04-21T21:21:00+01:00","description":"I don’t have a strong reputation for finishing my personal projects, and Chained Towns is another example. I’m leaving this now because I’m frustrated with tracking down Svelte state issues.","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2021/04/21/another-dropped-video-game-i-m-blaming-svelte.html"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"datePublished":"2021-04-21T21:21:00+01:00","dateModified":"2021-04-21T21:21:00+01:00","url":"https://technicallyshane.com/2021/04/21/another-dropped-video-game-i-m-blaming-svelte.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2021/04/21/another-dropped-video-game-i-m-blaming-svelte.html"},"description":"I don’t have a strong reputation for finishing my personal projects, and Chained Towns is another example. I’m leaving this now because I’m frustrated with tracking down Svelte state issues.","@type":"BlogPosting","headline":"Another dropped video game (I’m blaming Svelte)","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://technicallyshane.com/feed.xml" title="Shane's blog" /></head>
 <body><header class="site-header" role="banner">
@@ -63,31 +63,31 @@
 
 <h2 id="monitoring-state">Monitoring state</h2>
 
-<p>Unfortunately, Svelte isn’t really living up to its promise. What it says it will do is watch the state of a variable, and then update the contents of the DOM with the reflected changes. This is pretty cool when it works and feels less clunky than <code class="highlighter-rouge">this.setState</code>, and just slightly less clunkier than React Hooks.</p>
+<p>Unfortunately, Svelte isn’t really living up to its promise. What it says it will do is watch the state of a variable, and then update the contents of the DOM with the reflected changes. This is pretty cool when it works and feels less clunky than <code class="language-plaintext highlighter-rouge">this.setState</code>, and just slightly less clunkier than React Hooks.</p>
 
 <p>Compare this method of setting state:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>this.state = {playerHealth: 30};
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>this.state = {playerHealth: 30};
 this.setState({playerHealth: this.state.playerHealth - 10});
 </code></pre></div></div>
 
 <p>To the hook version:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const [playerHealth, setPlayerHealth] = useState(30);
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const [playerHealth, setPlayerHealth] = useState(30);
 setPlayerHealth(playerHealth – 10);
 </code></pre></div></div>
 
 <p>To the Svelte version:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let playerHealth = 30;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let playerHealth = 30;
 playerHealth -= 10;
 </code></pre></div></div>
 
-<p>The appeal of this Svelte code is that it is just normal Javascript. Much like React will re-render any DOM affected by the <code class="highlighter-rouge">playerHealth</code>, Svelte will spot that <code class="highlighter-rouge">playerHealth</code> has changed and update the view to reflect it.</p>
+<p>The appeal of this Svelte code is that it is just normal Javascript. Much like React will re-render any DOM affected by the <code class="language-plaintext highlighter-rouge">playerHealth</code>, Svelte will spot that <code class="language-plaintext highlighter-rouge">playerHealth</code> has changed and update the view to reflect it.</p>
 
 <p>In that form, it appears the most simple and the compiled code which Svelte generates is uninteresting. Here’s a more interesting example to show what Svelte is doing:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let playerHealth = 30;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let playerHealth = 30;
 
 function updateHealth(amount) {
   playerHealth += amount;
@@ -96,27 +96,27 @@ function updateHealth(amount) {
 
 <p>The compiled code will look like:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function updateHealth(amount) {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function updateHealth(amount) {
   $$invalidate(0, playerHealth += amount);
 }
 </code></pre></div></div>
 
-<p>The <code class="highlighter-rouge">0</code> in that first argument is a label for the state name. So really… it starts to look a lot like React. However, Svelte is doing a bit more work behind the scenes to get there: it has to tokenise your javascript, look for assignments and add the invalidation sugar.</p>
+<p>The <code class="language-plaintext highlighter-rouge">0</code> in that first argument is a label for the state name. So really… it starts to look a lot like React. However, Svelte is doing a bit more work behind the scenes to get there: it has to tokenise your javascript, look for assignments and add the invalidation sugar.</p>
 
-<p>The downside here is that it does not support every way a variable might change its contents. For instance, <code class="highlighter-rouge">push</code>ing to an array won’t trigger the compiled sugar to be added in. The docs recommend fixing this in one of two ways.</p>
+<p>The downside here is that it does not support every way a variable might change its contents. For instance, <code class="language-plaintext highlighter-rouge">push</code>ing to an array won’t trigger the compiled sugar to be added in. The docs recommend fixing this in one of two ways.</p>
 
-<p>The first is tricking Svelte into invalidating by assigning the variable to itself. <code class="highlighter-rouge">playerItems = playerItems</code>. Here, it’ll spot that you’ve assigned something and sort itself out.</p>
+<p>The first is tricking Svelte into invalidating by assigning the variable to itself. <code class="language-plaintext highlighter-rouge">playerItems = playerItems</code>. Here, it’ll spot that you’ve assigned something and sort itself out.</p>
 
 <p>Second, it suggests a “more idiomatic solution”:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>playerItems = [...playerItems, numItem];
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>playerItems = [...playerItems, numItem];
 </code></pre></div></div>
 
-<p>This is the solution I chose, as at least it looked more sensible. The first solution causes a doubletake upon first sight, but the second is more likely to provoke “I see what’s happening, but I wonder why.” The problem it introduces cropped up quickly; it creates a whole new array, so if you’re referring to this array by reference anywhere - say you’ve passed <code class="highlighter-rouge">playerItems</code> into an <code class="highlighter-rouge">InventoryManager</code> or some such - suddenly, InventoryManager is holding onto an array that Svelte no longer associates with <code class="highlighter-rouge">playerItems</code>.</p>
+<p>This is the solution I chose, as at least it looked more sensible. The first solution causes a doubletake upon first sight, but the second is more likely to provoke “I see what’s happening, but I wonder why.” The problem it introduces cropped up quickly; it creates a whole new array, so if you’re referring to this array by reference anywhere - say you’ve passed <code class="language-plaintext highlighter-rouge">playerItems</code> into an <code class="language-plaintext highlighter-rouge">InventoryManager</code> or some such - suddenly, InventoryManager is holding onto an array that Svelte no longer associates with <code class="language-plaintext highlighter-rouge">playerItems</code>.</p>
 
-<p>As Svelte is so eager to hold to this promise that it’ll handle the state updates itself, there’s no way to nudge it when it goes wrong. Even if you want to, there’s no <code class="highlighter-rouge">setState</code>.</p>
+<p>As Svelte is so eager to hold to this promise that it’ll handle the state updates itself, there’s no way to nudge it when it goes wrong. Even if you want to, there’s no <code class="language-plaintext highlighter-rouge">setState</code>.</p>
 
-<p>It’s one of these problems that I’ve bumped in to now. Quaffing a potion is increasing the health of the Player object, but somewhere along the line Svelte is losing track of it. My code all works fine, but isn’t Sveltey enough. It’s not the first time I’ve had to track down this kind of issue in this relatively small project. The method of debugging here is <code class="highlighter-rouge">console.log</code>ing everywhere to see where the var changes, but isn’t reflected.</p>
+<p>It’s one of these problems that I’ve bumped in to now. Quaffing a potion is increasing the health of the Player object, but somewhere along the line Svelte is losing track of it. My code all works fine, but isn’t Sveltey enough. It’s not the first time I’ve had to track down this kind of issue in this relatively small project. The method of debugging here is <code class="language-plaintext highlighter-rouge">console.log</code>ing everywhere to see where the var changes, but isn’t reflected.</p>
 
 <p>I’ve now spent more time chasing this framework than actually writing my game, so I may think twice before picking Svelte again. I’d love to use it for a website with less state though.</p>
 

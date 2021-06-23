@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Using Nomad with private Docker repositories | Shane’s blog</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Using Nomad with private Docker repositories" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Here’s the situation. You’ve done the starting tutorial and got your nomad “cluster” running on one machine. You’ve hidden the web UI. You’ve even created a Dockerfile for your application. Now you’re ready to get it running!" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Using Nomad with private Docker repositories" />
 <script type="application/ld+json">
-{"url":"https://technicallyshane.com/2020/10/31/using-nomad-with-private-docker-repositories.html","headline":"Using Nomad with private Docker repositories","dateModified":"2020-10-31T11:37:05+00:00","datePublished":"2020-10-31T11:37:05+00:00","description":"Here’s the situation. You’ve done the starting tutorial and got your nomad “cluster” running on one machine. You’ve hidden the web UI. You’ve even created a Dockerfile for your application. Now you’re ready to get it running!","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2020/10/31/using-nomad-with-private-docker-repositories.html"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"datePublished":"2020-10-31T11:37:05+00:00","dateModified":"2020-10-31T11:37:05+00:00","url":"https://technicallyshane.com/2020/10/31/using-nomad-with-private-docker-repositories.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2020/10/31/using-nomad-with-private-docker-repositories.html"},"description":"Here’s the situation. You’ve done the starting tutorial and got your nomad “cluster” running on one machine. You’ve hidden the web UI. You’ve even created a Dockerfile for your application. Now you’re ready to get it running!","@type":"BlogPosting","headline":"Using Nomad with private Docker repositories","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://technicallyshane.com/feed.xml" title="Shane's blog" /></head>
 <body><header class="site-header" role="banner">
@@ -69,7 +69,7 @@
 
 <p>This is fairly simple but has a number of potentially intimidating steps throughout. Stick with it!</p>
 
-<p><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">Install the aws cli tool</a> whereever you want to build your image. You’ll need to set up a user (via the IAM) service, which has at least <code class="highlighter-rouge">AmazonEC2ContainerRegistryFullAccess</code> priveledges. Once you’ve done that and have access to the key and secret, run <code class="highlighter-rouge">aws configure</code> to pop those in.</p>
+<p><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">Install the aws cli tool</a> whereever you want to build your image. You’ll need to set up a user (via the IAM) service, which has at least <code class="language-plaintext highlighter-rouge">AmazonEC2ContainerRegistryFullAccess</code> priveledges. Once you’ve done that and have access to the key and secret, run <code class="language-plaintext highlighter-rouge">aws configure</code> to pop those in.</p>
 
 <p>Then you’ll need to create a repository in <a href="https://aws.amazon.com/ecr/">ECR</a>. You’ll have a repository per project (per git repo, for instance, likely). Hit “View push commands” and it’ll give you all the commands you need to build and push your image. Thanks, AWS!</p>
 
@@ -79,17 +79,17 @@
 
 <h4 id="configure-aws">Configure AWS</h4>
 
-<p>Just like on your local machine, you need to <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">install the aws cli tools</a> on your droplet. You want to make <em>a different user</em> with much fewer access rights via IAM, just like before. This time, they only need permissions for <code class="highlighter-rouge">AmazonEC2ContainerRegistryReadOnly</code>. (When you accidentally leak your AWS credentials on a live stream or copy-and-pasted code sample, it’ll be much cheaper for you this way.)</p>
+<p>Just like on your local machine, you need to <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">install the aws cli tools</a> on your droplet. You want to make <em>a different user</em> with much fewer access rights via IAM, just like before. This time, they only need permissions for <code class="language-plaintext highlighter-rouge">AmazonEC2ContainerRegistryReadOnly</code>. (When you accidentally leak your AWS credentials on a live stream or copy-and-pasted code sample, it’ll be much cheaper for you this way.)</p>
 
-<p>Again, <code class="highlighter-rouge">aws configure</code> and use your new details. Do this on every server you’re running a client on. (Which is just the one for me, right now.)</p>
+<p>Again, <code class="language-plaintext highlighter-rouge">aws configure</code> and use your new details. Do this on every server you’re running a client on. (Which is just the one for me, right now.)</p>
 
 <h4 id="configure-nomad">Configure Nomad</h4>
 
 <p><em>I’ve just been told that there’s a package which magically does some of the stuff below. I’ve not looked into it any further, but <a href="https://github.com/awslabs/amazon-ecr-credential-helper">here you go</a>.</em></p>
 
-<p>We need to add some configuration to our Nomad client agents. That’ll be your <code class="highlighter-rouge">client1.hcl</code> files from the tutorial. You’ll need to stop and restart it before the changes will be picked up, remember.</p>
+<p>We need to add some configuration to our Nomad client agents. That’ll be your <code class="language-plaintext highlighter-rouge">client1.hcl</code> files from the tutorial. You’ll need to stop and restart it before the changes will be picked up, remember.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugin "docker" {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugin "docker" {
   config {
     auth {
       config = "/etc/docker_auth"
@@ -98,57 +98,57 @@
 }
 </code></pre></div></div>
 
-<p>(You’ll have some <code class="highlighter-rouge">gc</code> config in there too, which I left. I’ve no idea what it does.)</p>
+<p>(You’ll have some <code class="language-plaintext highlighter-rouge">gc</code> config in there too, which I left. I’ve no idea what it does.)</p>
 
 <p>This tells nomad that whenever we’re fetching Docker images, check that path for config around authentication.</p>
 
-<p>Have your <code class="highlighter-rouge">/etc/docker_auth</code> look something like the below. You’ll need to change the URL to whatever your ECR account URL is; this includes your account ID and region.</p>
+<p>Have your <code class="language-plaintext highlighter-rouge">/etc/docker_auth</code> look something like the below. You’ll need to change the URL to whatever your ECR account URL is; this includes your account ID and region.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
   "credHelpers": {
     "3848482828.dkr.ecr.eu-west-1.amazonaws.com": "ecr-login"
   }
 }
 </code></pre></div></div>
 
-<p>Now, whenever Nomad tries to pull down images (or rather, has Docker do it) it’ll check the hostname of the image and run the auth through <code class="highlighter-rouge">ecr-login</code> first. This is hinting at another file you need to make - with some magic involved.</p>
+<p>Now, whenever Nomad tries to pull down images (or rather, has Docker do it) it’ll check the hostname of the image and run the auth through <code class="language-plaintext highlighter-rouge">ecr-login</code> first. This is hinting at another file you need to make - with some magic involved.</p>
 
 <p>The file you need to make needs to be:</p>
 
 <ul>
-  <li>named <code class="highlighter-rouge">docker-credential-ecr-login</code>; Nomad will prepend the script with <code class="highlighter-rouge">docker-credential-</code></li>
-  <li>executable; <code class="highlighter-rouge">chmod +x /usr/local/bin/docker-credential-ecr-login</code></li>
-  <li>be on your path; <code class="highlighter-rouge">PATH=$PATH:/usr/local/bin</code> in <code class="highlighter-rouge">.bashrc</code> and <code class="highlighter-rouge">source .bashrc</code> to reload it</li>
+  <li>named <code class="language-plaintext highlighter-rouge">docker-credential-ecr-login</code>; Nomad will prepend the script with <code class="language-plaintext highlighter-rouge">docker-credential-</code></li>
+  <li>executable; <code class="language-plaintext highlighter-rouge">chmod +x /usr/local/bin/docker-credential-ecr-login</code></li>
+  <li>be on your path; <code class="language-plaintext highlighter-rouge">PATH=$PATH:/usr/local/bin</code> in <code class="language-plaintext highlighter-rouge">.bashrc</code> and <code class="language-plaintext highlighter-rouge">source .bashrc</code> to reload it</li>
 </ul>
 
 <p>It needs to output to stdout a chunk of JSON. My utterly messy script looks like this:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#!/bin/bash
 
-<span class="nv">PASSWORD</span><span class="o">=</span><span class="sb">`</span>aws <span class="nt">--region</span> eu-west-1 ecr get-login-password<span class="sb">`</span>
+PASSWORD=`aws --region eu-west-1 ecr get-login-password`
 
-<span class="nb">echo</span> <span class="s1">'{'</span>
-<span class="nb">echo</span> <span class="s1">'"Username": "AWS",'</span>
-<span class="nb">echo</span> <span class="s2">"</span><span class="se">\"</span><span class="s2">Secret</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="k">${</span><span class="nv">PASSWORD</span><span class="k">}</span><span class="se">\"</span><span class="s2">"</span>
-<span class="nb">echo</span> <span class="s1">'}'</span>
+echo '{'
+echo '"Username": "AWS",'
+echo "\"Secret\": \"${PASSWORD}\""
+echo '}'
 </code></pre></div></div>
 
-<p>The username must be “AWS”. The password is generated from <code class="highlighter-rouge">aws cli</code>.</p>
+<p>The username must be “AWS”. The password is generated from <code class="language-plaintext highlighter-rouge">aws cli</code>.</p>
 
 <p>After this, you should see that your jobspec can happily refer to an ECR hosted image and download without any auth failures.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>image = "036666666667.dkr.ecr.eu-west-1.amazonaws.com/simple-app:latest"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>image = "036666666667.dkr.ecr.eu-west-1.amazonaws.com/simple-app:latest"
 </code></pre></div></div>
 
 <p>If you do run into any errors, really carefully read the nomad client output. It’s incredibly busy in there, but will help you if you can spend enough time to spot what you’re looking for.</p>
 
-<h4 id="can-i-just-docker-login-like-i-did-locally">Can I just <code class="highlighter-rouge">docker login</code> like I did locally?</h4>
+<h4 id="can-i-just-docker-login-like-i-did-locally">Can I just <code class="language-plaintext highlighter-rouge">docker login</code> like I did locally?</h4>
 
 <p>I think you’re <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth">supposed to be able to</a>, but this didn’t work for me.</p>
 
-<p>I’ve no idea how long the output of <code class="highlighter-rouge">get-login-password</code> stays valid for. I expect it expires eventually and so one day you’ll be surprised when your allocations start failing.</p>
+<p>I’ve no idea how long the output of <code class="language-plaintext highlighter-rouge">get-login-password</code> stays valid for. I expect it expires eventually and so one day you’ll be surprised when your allocations start failing.</p>
 
-<p>On top of getting a warning about the password being stored in plain text (though this doesn’t matter; <code class="highlighter-rouge">aws config</code> is already doing this), it still couldn’t authenticate for me. The above is the only thing that worked.</p>
+<p>On top of getting a warning about the password being stored in plain text (though this doesn’t matter; <code class="language-plaintext highlighter-rouge">aws config</code> is already doing this), it still couldn’t authenticate for me. The above is the only thing that worked.</p>
 
 
   </div><a class="u-url" href="/2020/10/31/using-nomad-with-private-docker-repositories.html" hidden></a>

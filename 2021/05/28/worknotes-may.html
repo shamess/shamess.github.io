@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Worknotes - May | Shane’s blog</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Worknotes - May" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="An Altmetric friend this month suggested that I focus on just one or two projects. I realise now, writing this, I did not listen to that advice and have likely paid the cost for it…" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Worknotes - May" />
 <script type="application/ld+json">
-{"url":"https://technicallyshane.com/2021/05/28/worknotes-may.html","headline":"Worknotes - May","dateModified":"2021-05-28T18:30:00+01:00","datePublished":"2021-05-28T18:30:00+01:00","description":"An Altmetric friend this month suggested that I focus on just one or two projects. I realise now, writing this, I did not listen to that advice and have likely paid the cost for it…","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2021/05/28/worknotes-may.html"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"datePublished":"2021-05-28T18:30:00+01:00","dateModified":"2021-05-28T18:30:00+01:00","url":"https://technicallyshane.com/2021/05/28/worknotes-may.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2021/05/28/worknotes-may.html"},"description":"An Altmetric friend this month suggested that I focus on just one or two projects. I realise now, writing this, I did not listen to that advice and have likely paid the cost for it…","@type":"BlogPosting","headline":"Worknotes - May","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://technicallyshane.com/feed.xml" title="Shane's blog" /></head>
 <body><header class="site-header" role="banner">
@@ -51,18 +51,18 @@
 
 <h2 id="jekyll">jekyll</h2>
 
-<p>I’ve been editing and posting new blog posts in various places using Jekyll this week. I would typically write posts and have Marked open besides it, but it doesn’t support image tags like Jekyll does, so it’s best to use <code class="highlighter-rouge">jekyll serve</code> which hosts the blog locally. Of course then, I lose the automatic reloading of content as I’m writing, but to fix that I wrote this which I just add to all posts whilst writing them:</p>
+<p>I’ve been editing and posting new blog posts in various places using Jekyll this week. I would typically write posts and have Marked open besides it, but it doesn’t support image tags like Jekyll does, so it’s best to use <code class="language-plaintext highlighter-rouge">jekyll serve</code> which hosts the blog locally. Of course then, I lose the automatic reloading of content as I’m writing, but to fix that I wrote this which I just add to all posts whilst writing them:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;script&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;script&gt;
   setTimeout(() =&gt; { window.location.reload() }, 5000);
 &lt;/script&gt;
 </code></pre></div></div>
 
-<p>I was initially very confused why I couldn’t just do <code class="highlighter-rouge">setTimeout(window.location.reload, 5000)</code>, but that suffers from the rebinding bug which React users are familiar with. I know very little about language design but what are the risks with fixing that in the language? A function, by default, could be bound with the instance that created it.</p>
+<p>I was initially very confused why I couldn’t just do <code class="language-plaintext highlighter-rouge">setTimeout(window.location.reload, 5000)</code>, but that suffers from the rebinding bug which React users are familiar with. I know very little about language design but what are the risks with fixing that in the language? A function, by default, could be bound with the instance that created it.</p>
 
 <p>I just mention this because one day I’ll forget to remove this snippet and it’ll bug everyone who finds it.</p>
 
-<p><strong>Huge update.</strong> <a href="https://mudge.name/">Mudge</a> proves his weight in gold once again by pointing out that you can do <code class="highlighter-rouge">jekyll serve -l</code> and it auto-reloads.</p>
+<p><strong>Huge update.</strong> <a href="https://mudge.name/">Mudge</a> proves his weight in gold once again by pointing out that you can do <code class="language-plaintext highlighter-rouge">jekyll serve -l</code> and it auto-reloads.</p>
 
 <h2 id="writers-apprentice">Writers’ Apprentice</h2>
 
@@ -80,13 +80,13 @@
 
 <p>I’ve been doing codewars, as a bit of deliberate practice. I’ve managed to learn something everytime I’ve completed one, even the incredibly simple ones.</p>
 
-<p>Looking through other solutions is also interesting. There’s so much codegolf in there, where people are working hard to write a one liner for the whole exercise. I wonder if that’s how they always write code. I largely <a href="https://www.codewars.com/users/haikushane/completed_solutions">try to keep things nice looking</a>. Longer, rather than wider, to the annoyance of many <code class="highlighter-rouge">Metrics::BlockLength</code> cops.</p>
+<p>Looking through other solutions is also interesting. There’s so much codegolf in there, where people are working hard to write a one liner for the whole exercise. I wonder if that’s how they always write code. I largely <a href="https://www.codewars.com/users/haikushane/completed_solutions">try to keep things nice looking</a>. Longer, rather than wider, to the annoyance of many <code class="language-plaintext highlighter-rouge">Metrics::BlockLength</code> cops.</p>
 
 <h2 id="hours-passing-quickly">Hours passing quickly</h2>
 
 <p>I’ve been working on one Rails-React project, which I’m enjoying. The boiler plate some times is getting boring, and often the copy and paste nature of it introduces bugs. But it’s all very low stress, which is nice and enjoyable.</p>
 
-<p>I’ve been working from the UI first, rather than the database. Hard coded data, in the <code class="highlighter-rouge">render</code> of the Component. Then, move that to state or props (depending on where that data is coming from). At this stage, you can see exactly what data you need and what it should look like. Then exposing that data, as needed, in Rails.</p>
+<p>I’ve been working from the UI first, rather than the database. Hard coded data, in the <code class="language-plaintext highlighter-rouge">render</code> of the Component. Then, move that to state or props (depending on where that data is coming from). At this stage, you can see exactly what data you need and what it should look like. Then exposing that data, as needed, in Rails.</p>
 
 <p>I’ve stumbled by indulging in writing ERDs for models, only to find that a relationship is inverted in reality. I’m not even sure TDD would catch this.</p>
 

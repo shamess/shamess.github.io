@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Hiding the Nomad frontend | Shane’s blog</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Hiding the Nomad frontend" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Here’s the situation. You’re excitedly following along with the Getting Started Nomad tutorial and it’s all going really well. You’ve created a Digital Ocean droplet to fool around with and you’re overjoyed that you’ve gotten your Redis server running three instances. Then you get to the “Web UI” section and think to yourself, “hm, but I never turned this on.”" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Hiding the Nomad frontend" />
 <script type="application/ld+json">
-{"url":"https://technicallyshane.com/2020/10/30/nomad-ui-left-wide-open.html","headline":"Hiding the Nomad frontend","dateModified":"2020-10-30T19:33:05+00:00","datePublished":"2020-10-30T19:33:05+00:00","description":"Here’s the situation. You’re excitedly following along with the Getting Started Nomad tutorial and it’s all going really well. You’ve created a Digital Ocean droplet to fool around with and you’re overjoyed that you’ve gotten your Redis server running three instances. Then you get to the “Web UI” section and think to yourself, “hm, but I never turned this on.”","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2020/10/30/nomad-ui-left-wide-open.html"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"datePublished":"2020-10-30T19:33:05+00:00","dateModified":"2020-10-30T19:33:05+00:00","url":"https://technicallyshane.com/2020/10/30/nomad-ui-left-wide-open.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2020/10/30/nomad-ui-left-wide-open.html"},"description":"Here’s the situation. You’re excitedly following along with the Getting Started Nomad tutorial and it’s all going really well. You’ve created a Digital Ocean droplet to fool around with and you’re overjoyed that you’ve gotten your Redis server running three instances. Then you get to the “Web UI” section and think to yourself, “hm, but I never turned this on.”","@type":"BlogPosting","headline":"Hiding the Nomad frontend","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://technicallyshane.com/feed.xml" title="Shane's blog" /></head>
 <body><header class="site-header" role="banner">
@@ -53,7 +53,7 @@
 
 <p>What you need to do, quite quickly to be honest, is <a href="https://cloud.digitalocean.com/networking/firewalls/new">set up some droplet firewall rules</a>. The most basic of these might look like the following:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Inbound rules:
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Inbound rules:
 
 Type      Protocol      Port Range
 SSH       TCP           22
@@ -78,7 +78,7 @@ All UDP     UDP             All ports
 
 <p>Next is to install nginx, which’ll act as our reverse proxy between port 80 and 4646.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>upstream nomad_ui {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>upstream nomad_ui {
         server 127.0.0.1:4646;
 }
 
@@ -98,15 +98,15 @@ server {
 
 <p>A key thing to point out here is that we’re also adding some basic auth. You’ll need to create this file. Most places around the internet (including Digital Ocean’s own tutorial) suggest installing some Apache tooling to create this file, but it’s really not needed. You likely already have openssh installed.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl passwd -6
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl passwd -6
 </code></pre></div></div>
 
-<p>Pop in a new password when prompted and copy and paste that into <code class="highlighter-rouge">/etc/nginx/auth_files/nomad_ui</code> (in a directory you might need to create). Before the password, add your username and a colon as seperator. It might look something like this:</p>
+<p>Pop in a new password when prompted and copy and paste that into <code class="language-plaintext highlighter-rouge">/etc/nginx/auth_files/nomad_ui</code> (in a directory you might need to create). Before the password, add your username and a colon as seperator. It might look something like this:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>raymond:$6$dw8NeSxPPi7MG4gC$be/Jhx4SxmHa0x2BDsm8LD08xpE57xMU8akAjQxyeq
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>raymond:$6$dw8NeSxPPi7MG4gC$be/Jhx4SxmHa0x2BDsm8LD08xpE57xMU8akAjQxyeq
 </code></pre></div></div>
 
-<p>Reload your nginx: <code class="highlighter-rouge">nginx -s reload</code>.</p>
+<p>Reload your nginx: <code class="language-plaintext highlighter-rouge">nginx -s reload</code>.</p>
 
 <p>And you should be done!</p>
 

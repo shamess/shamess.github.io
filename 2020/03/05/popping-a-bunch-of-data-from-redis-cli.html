@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Popping a bunch of data out of redis-cli | Shane’s blog</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Popping a bunch of data out of redis-cli" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="I’ve got a redis list with a large number of values in it. I wanna grab the first 100k, or so, and pop them into a file." />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Popping a bunch of data out of redis-cli" />
 <script type="application/ld+json">
-{"url":"https://technicallyshane.com/2020/03/05/popping-a-bunch-of-data-from-redis-cli.html","headline":"Popping a bunch of data out of redis-cli","dateModified":"2020-03-05T11:58:09+00:00","datePublished":"2020-03-05T11:58:09+00:00","description":"I’ve got a redis list with a large number of values in it. I wanna grab the first 100k, or so, and pop them into a file.","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2020/03/05/popping-a-bunch-of-data-from-redis-cli.html"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"datePublished":"2020-03-05T11:58:09+00:00","dateModified":"2020-03-05T11:58:09+00:00","url":"https://technicallyshane.com/2020/03/05/popping-a-bunch-of-data-from-redis-cli.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2020/03/05/popping-a-bunch-of-data-from-redis-cli.html"},"description":"I’ve got a redis list with a large number of values in it. I wanna grab the first 100k, or so, and pop them into a file.","@type":"BlogPosting","headline":"Popping a bunch of data out of redis-cli","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://technicallyshane.com/feed.xml" title="Shane's blog" /></head>
 <body><header class="site-header" role="banner">
@@ -51,12 +51,12 @@
 
 <p>My first attempt was this:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for i in {1..100000}; do redis-cli lpop a_bunch_of_values &gt;&gt; a_bunch_of_values.txt; done
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for i in {1..100000}; do redis-cli lpop a_bunch_of_values &gt;&gt; a_bunch_of_values.txt; done
 </code></pre></div></div>
 
 <p>This is dumb for a few reasons, but they all boil down to the error message I got:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Could not connect to Redis at 127.0.0.1:6379: Cannot assign requested address
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Could not connect to Redis at 127.0.0.1:6379: Cannot assign requested address
 Could not connect to Redis at 127.0.0.1:6379: Cannot assign requested address
 Could not connect to Redis at 127.0.0.1:6379: Cannot assign requested address
 Could not connect to Redis at 127.0.0.1:6379: Cannot assign requested address
@@ -66,7 +66,7 @@ Could not connect to Redis at 127.0.0.1:6379: Cannot assign requested address
 
 <p>Redis takes an argument which is “keep running this command X times.”</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>redis-cli -r 100000 lpop a_bunch_of_values &gt;&gt; a_bunch_of_values.txt
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>redis-cli -r 100000 lpop a_bunch_of_values &gt;&gt; a_bunch_of_values.txt
 </code></pre></div></div>
 
 <p>A single connection and runs super quickly.</p>

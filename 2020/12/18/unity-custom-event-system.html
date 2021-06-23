@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>A surprisingly simple custom Unity event system | Shane’s blog</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="A surprisingly simple custom Unity event system" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="I was surprised and annoyed to find that you can’t add your own event interfaces, like IPointerClickHandler and just have them work." />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="A surprisingly simple custom Unity event system" />
 <script type="application/ld+json">
-{"url":"https://technicallyshane.com/2020/12/18/unity-custom-event-system.html","headline":"A surprisingly simple custom Unity event system","dateModified":"2020-12-18T16:10:05+00:00","datePublished":"2020-12-18T16:10:05+00:00","description":"I was surprised and annoyed to find that you can’t add your own event interfaces, like IPointerClickHandler and just have them work.","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2020/12/18/unity-custom-event-system.html"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"datePublished":"2020-12-18T16:10:05+00:00","dateModified":"2020-12-18T16:10:05+00:00","url":"https://technicallyshane.com/2020/12/18/unity-custom-event-system.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2020/12/18/unity-custom-event-system.html"},"description":"I was surprised and annoyed to find that you can’t add your own event interfaces, like IPointerClickHandler and just have them work.","@type":"BlogPosting","headline":"A surprisingly simple custom Unity event system","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://technicallyshane.com/feed.xml" title="Shane's blog" /></head>
 <body><header class="site-header" role="banner">
@@ -51,7 +51,7 @@
 
 <p>Instead, I made something like this, which appears to work. At least immediately. Maybe there are issues in this.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>using System.Collections.Generic;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 

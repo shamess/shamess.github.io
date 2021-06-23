@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Unit testing Unity MonoBehaviours | Shane’s blog</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Unit testing Unity MonoBehaviours" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="tldr; You can’t really unit test MonoBehaviours. Instead, pull out the logic you want to test in a plain old C# class and use that." />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Unit testing Unity MonoBehaviours" />
 <script type="application/ld+json">
-{"url":"https://technicallyshane.com/2019/10/29/unit-testing-unity.html","headline":"Unit testing Unity MonoBehaviours","dateModified":"2019-10-29T17:16:05+00:00","datePublished":"2019-10-29T17:16:05+00:00","description":"tldr; You can’t really unit test MonoBehaviours. Instead, pull out the logic you want to test in a plain old C# class and use that.","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2019/10/29/unit-testing-unity.html"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"datePublished":"2019-10-29T17:16:05+00:00","dateModified":"2019-10-29T17:16:05+00:00","url":"https://technicallyshane.com/2019/10/29/unit-testing-unity.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2019/10/29/unit-testing-unity.html"},"description":"tldr; You can’t really unit test MonoBehaviours. Instead, pull out the logic you want to test in a plain old C# class and use that.","@type":"BlogPosting","headline":"Unit testing Unity MonoBehaviours","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://technicallyshane.com/feed.xml" title="Shane's blog" /></head>
 <body><header class="site-header" role="banner">
@@ -61,7 +61,7 @@ Visual Studio to vim for writing code, which I’m happy with. So I was eager to
 be able to run my tests in my terminal too. Maybe you can, but every sign
 pointed me towards using the in built test runner.</p>
 
-<p>You can find this test runner under <code class="highlighter-rouge">Window &gt; General &gt; Test Runner</code>. Once
+<p>You can find this test runner under <code class="language-plaintext highlighter-rouge">Window &gt; General &gt; Test Runner</code>. Once
 you’ve got that open, if you want logic-testing unit tests, you’ll likely want
 to use Editor tests. These can run quickly without having to start up the game.
 Jump over to the EditMode tab. Create a ‘Tests’ directory immediately below your
@@ -120,10 +120,10 @@ that with <a href="https://stackoverflow.com/questions/57784897/importing-nsubst
 needs to be the type, rather than Location though.</p>
 
 <p>The awkward thing about mocking the Location was that the interface dealt with
-two public properties: <code class="highlighter-rouge">x</code> and <code class="highlighter-rouge">y</code>. Not getters or setters, but actual public
+two public properties: <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code>. Not getters or setters, but actual public
 ints. The interface ended up looking like this:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public interface LocationInterface
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public interface LocationInterface
 {
   int x { get; set; }
   int y { get; set; }
@@ -137,7 +137,7 @@ position.</p>
 
 <p>The fix was janky, but got there:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Location : MonoBehaviour, LocationInterface
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Location : MonoBehaviour, LocationInterface
 {
   public int _x;
   public int _y;
@@ -147,8 +147,8 @@ position.</p>
 }
 </code></pre></div></div>
 
-<p>The Editor now spots the <code class="highlighter-rouge">_x</code> and <code class="highlighter-rouge">_y</code> and is even nice enough to just call them
-<code class="highlighter-rouge">X</code> and <code class="highlighter-rouge">Y</code> so the component UI didn’t change at all.</p>
+<p>The Editor now spots the <code class="language-plaintext highlighter-rouge">_x</code> and <code class="language-plaintext highlighter-rouge">_y</code> and is even nice enough to just call them
+<code class="language-plaintext highlighter-rouge">X</code> and <code class="language-plaintext highlighter-rouge">Y</code> so the component UI didn’t change at all.</p>
 
 <h2 id="automated-testing-with-unity">Automated testing with Unity</h2>
 

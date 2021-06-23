@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Setting up nginx to work with EventSource | Shane’s blog</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Setting up nginx to work with EventSource" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="At the moment, I have a few web services running from this machine. The downside is that only one of those services can use port 80, regardless of if there’s a subdomain making them distinct. The way to solve this is to put nginx in front of them, allowing nginx to hog port 80 and distribute requests along my application servers, based on the subdomain." />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Setting up nginx to work with EventSource" />
 <script type="application/ld+json">
-{"url":"https://technicallyshane.com/2020/10/24/nginx-eventsource.html","headline":"Setting up nginx to work with EventSource","dateModified":"2020-10-24T15:48:05+01:00","datePublished":"2020-10-24T15:48:05+01:00","description":"At the moment, I have a few web services running from this machine. The downside is that only one of those services can use port 80, regardless of if there’s a subdomain making them distinct. The way to solve this is to put nginx in front of them, allowing nginx to hog port 80 and distribute requests along my application servers, based on the subdomain.","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2020/10/24/nginx-eventsource.html"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"datePublished":"2020-10-24T15:48:05+01:00","dateModified":"2020-10-24T15:48:05+01:00","url":"https://technicallyshane.com/2020/10/24/nginx-eventsource.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://technicallyshane.com/2020/10/24/nginx-eventsource.html"},"description":"At the moment, I have a few web services running from this machine. The downside is that only one of those services can use port 80, regardless of if there’s a subdomain making them distinct. The way to solve this is to put nginx in front of them, allowing nginx to hog port 80 and distribute requests along my application servers, based on the subdomain.","@type":"BlogPosting","headline":"Setting up nginx to work with EventSource","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://technicallyshane.com/feed.xml" title="Shane's blog" /></head>
 <body><header class="site-header" role="banner">
@@ -49,11 +49,11 @@
   <div class="post-content e-content" itemprop="articleBody">
     <p>At the moment, I have a few web services running from this machine. The downside is that only one of those services can use port 80, regardless of if there’s a subdomain making them distinct. The way to solve this is to put nginx in front of them, allowing nginx to hog port 80 and distribute requests along my application servers, based on the subdomain.</p>
 
-<p>This is actually fairly easy to set up. On a Ubuntu distro-based systems, <code class="highlighter-rouge">sudo apt-get install nginx</code> will get you most the way there. You’ll need to create an upstream and point traffic to it.</p>
+<p>This is actually fairly easy to set up. On a Ubuntu distro-based systems, <code class="language-plaintext highlighter-rouge">sudo apt-get install nginx</code> will get you most the way there. You’ll need to create an upstream and point traffic to it.</p>
 
-<p><code class="highlighter-rouge">/etc/nginx/sites-enabled/sinc.technicallyshane.com</code>:</p>
+<p><code class="language-plaintext highlighter-rouge">/etc/nginx/sites-enabled/sinc.technicallyshane.com</code>:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>upstream rack_upstream {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>upstream rack_upstream {
 	server 127.0.0.1:8080;
 }
 
@@ -79,7 +79,7 @@ server {
 
 <p>nginx applies a certain level of buffering which will interfer with the immediate nature of EventSource. Disabling this is important.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	location /server {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	location /server {
 		proxy_pass http://rack_upstream;
 		proxy_buffering off;
 	}

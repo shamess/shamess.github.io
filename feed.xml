@@ -1,4 +1,62 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://technicallyshane.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://technicallyshane.com/" rel="alternate" type="text/html" /><updated>2021-06-23T16:48:05+01:00</updated><id>https://technicallyshane.com/feed.xml</id><title type="html">Shane’s blog</title><subtitle>I wouldn't worry about it.</subtitle><entry><title type="html">Unity Canvas render mode</title><link href="https://technicallyshane.com/2021/06/23/unity-canvas-render-mode.html" rel="alternate" type="text/html" title="Unity Canvas render mode" /><published>2021-06-23T16:35:00+01:00</published><updated>2021-06-23T16:35:00+01:00</updated><id>https://technicallyshane.com/2021/06/23/unity-canvas-render-mode</id><content type="html" xml:base="https://technicallyshane.com/2021/06/23/unity-canvas-render-mode.html">&lt;p&gt;&lt;em&gt;Last edited by Shane, June 2021.&lt;/em&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://technicallyshane.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://technicallyshane.com/" rel="alternate" type="text/html" /><updated>2021-06-27T16:46:53+01:00</updated><id>https://technicallyshane.com/feed.xml</id><title type="html">Shane’s blog</title><subtitle>I wouldn't worry about it.</subtitle><entry><title type="html">My WorkForce WF-7830 is printing badly. Please send help.</title><link href="https://technicallyshane.com/2021/06/27/my-workforce-wf-7830-is-printing-badly-please-send-help.html" rel="alternate" type="text/html" title="My WorkForce WF-7830 is printing badly. Please send help." /><published>2021-06-27T16:01:00+01:00</published><updated>2021-06-27T16:01:00+01:00</updated><id>https://technicallyshane.com/2021/06/27/my-workforce-wf-7830-is-printing-badly-please-send-help</id><content type="html" xml:base="https://technicallyshane.com/2021/06/27/my-workforce-wf-7830-is-printing-badly-please-send-help.html">&lt;p&gt;I brought a printer not too long ago with the hope of printing A3 sheets. The
+End Of The World has meant loads of people have been working from home and have
+brought all the printers in the world that cost less than £500, so I was lucky
+to stumble across the Epson WorkForce WF-7830 for a reasonable price.&lt;/p&gt;
+
+&lt;p&gt;The bad news is that it’s not printing particularly well. The internet lacks
+debugging information (potentially my keywords are wrong), so I figured I’d
+make this blog post and see if anyone approaches me.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/dotmatrix.pdf&quot;&gt;&lt;img src=&quot;/assets/dotmatrix.png&quot; alt=&quot;dotmatrix style paper&quot; class=&quot;hang-right&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I’ve designed my own dot matrix inspired paper, after getting excited about it
+appearing in a &lt;a href=&quot;https://www.youtube.com/watch?v=QRYzre4bf7I&quot;&gt;computerphile video&lt;/a&gt;. A first draft of what I’m
+attempting to print is attached, to the side. You can see the colours are quite
+pale, but not something I’d expect a printer to struggle with.&lt;/p&gt;
+
+&lt;p&gt;I was suprised to see when it printed like the below. You can clearly see that
+it’s not bothered printing blocks of colour, but rather lots of very spaced out
+dots. This appears to be very low DPI, when the printer can support a very high
+resolution. This happens with both the blue bars and the grey circles.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/dotmatrix-fudge.png&quot; alt=&quot;'View image' to get a closer view&quot; class=&quot;hang-nicely&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I’ve printed this lovely picture of &lt;a href=&quot;https://www.flickr.com/photos/75487768@N04/32244871986/in/photolist-R8np3J-xHsXri-HU7f2N-RoScqX-HUEBb6-R8snFK-Hx9AKb-o6iwCg-o4pQRE-o59wzn-j8XUQj-DojHWg-xF3j3v-yctYdK-yjVoyo-ivM22z-Xenxuy-2isocHM-dJcjZN-dUwBLB-j8XTs9-QcrPfU-FiRBot-DmDvfZ-QqsZTF-zq6TiK-nMYd6k-z7D2No-zpfvJe-zq7m8r-ysmgZr-soZBxV-XGZVFi-fxMpf6-QuS3Dq-RdJS8y-Q75Dfg-HjDboA-soXy2g-HzLNk7-fxMo3V-D2jSyr-CE2C51-zmW7To-y82s7Z-zmVQZQ-CKN9we-DAHoYV-GdoxTK-ivLVN7&quot;&gt;Leadenhall Market&lt;/a&gt;, and you can
+see similar issues. You see in the original that it’s lovely, and crisp. This
+was resized by the printer drivers to the page, but I’m not sure that matters.
+I don’t believe that should introduce these artefacts.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/dotmatrix-leadenhall.png&quot; alt=&quot;A cropped, printed version of the Leadenhall Market photo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I have also printed off a solid square with red-orange gradient. This looks
+okay, but is flecked with dark “pixels”. I believe it’s just my &lt;s&gt;blue&lt;/s&gt;
+cyan that is the problem.&lt;/p&gt;
+
+&lt;p&gt;I’ve&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;printed the same image from my phone with almost identical results;&lt;/li&gt;
+  &lt;li&gt;run through the ‘print quality adjustment’, ‘print head nozzle check’, ‘print
+head cleaning’, and ‘print head alignment’ steps;&lt;/li&gt;
+  &lt;li&gt;toggled quiet mode on and off;&lt;/li&gt;
+  &lt;li&gt;restarted the printer;&lt;/li&gt;
+  &lt;li&gt;updated its firmware;&lt;/li&gt;
+  &lt;li&gt;reinstalled my Macbook drivers.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you do happen to know what this issue is, please get in touch somehow. Maybe
+&lt;a href=&quot;https://twitter.com/shamess&quot;&gt;twitter&lt;/a&gt;, if you can’t get hold of me any other way.&lt;/p&gt;
+
+&lt;style&gt;
+  .hang-right {
+    float: right;
+    width: 30%;
+  }
+
+  .hang-nicely {
+    width: 40%;
+  }
+&lt;/style&gt;</content><author><name></name></author><summary type="html">I brought a printer not too long ago with the hope of printing A3 sheets. The End Of The World has meant loads of people have been working from home and have brought all the printers in the world that cost less than £500, so I was lucky to stumble across the Epson WorkForce WF-7830 for a reasonable price.</summary></entry><entry><title type="html">Unity Canvas render mode</title><link href="https://technicallyshane.com/2021/06/23/unity-canvas-render-mode.html" rel="alternate" type="text/html" title="Unity Canvas render mode" /><published>2021-06-23T16:35:00+01:00</published><updated>2021-06-23T16:35:00+01:00</updated><id>https://technicallyshane.com/2021/06/23/unity-canvas-render-mode</id><content type="html" xml:base="https://technicallyshane.com/2021/06/23/unity-canvas-render-mode.html">&lt;p&gt;&lt;em&gt;Last edited by Shane, June 2021.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Here is a series of notes I constantly reference when building any sort of
 interface or menu system in Unity, using their built-in UI system. Consider
@@ -602,12 +660,4 @@ pixels.show()
 
 &lt;p&gt;You’ll note how low I set the brightness there…&lt;/p&gt;
 
-&lt;p&gt;The &lt;a href=&quot;https://learn.adafruit.com/neopixels-on-raspberry-pi/python-usage&quot;&gt;CircuitPython page&lt;/a&gt; is really good to get going on the code.&lt;/p&gt;</content><author><name></name></author><summary type="html">I decided to do something with one of the (four or five) Raspberry Pi’s kicking around the house. I ended up excitedly buying a newer Pi and a Neopixel, so I didn’t solve my abundance of Pi problem, but I have gotten somewhere with a project.</summary></entry><entry><title type="html">punked</title><link href="https://technicallyshane.com/2021/01/21/punked.html" rel="alternate" type="text/html" title="punked" /><published>2021-01-21T23:09:00+00:00</published><updated>2021-01-21T23:09:00+00:00</updated><id>https://technicallyshane.com/2021/01/21/punked</id><content type="html" xml:base="https://technicallyshane.com/2021/01/21/punked.html">&lt;p&gt;I made a rather less shiny clone of a minigame I’ve been playing a lot of recently. &lt;a href=&quot;https://haikushane.itch.io/punked&quot;&gt;You can play it over here.&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/punked.png&quot; alt=&quot;punked&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;As a weird experiment, I decided “why the heck not”, it’s on itch.io. I’m not likely to go back to this project, but if someone people showed interest, I may well do. It’s certainly a smaller scope game than the game I’m supposed to be spending my time working on.&lt;/p&gt;
-
-&lt;p&gt;I started it because I wanted to fool around with Svelte, and I should make a longer review of that soon. It’s quite nice though. I’ve been told that I should try out React once more, with all the new hooks and whatnot. I’ve watched far too many &lt;a href=&quot;https://www.youtube.com/channel/UC-8QAzbLcRglXeN_MY9blyw&quot;&gt;Ben Awad&lt;/a&gt; videos recently and he managed to get me excited about the framework.&lt;/p&gt;
-
-&lt;p&gt;I’m a heart beat away from actually trying TypeScript. Stay tuned, I guess.&lt;/p&gt;</content><author><name></name></author><summary type="html">I made a rather less shiny clone of a minigame I’ve been playing a lot of recently. You can play it over here.</summary></entry></feed>
+&lt;p&gt;The &lt;a href=&quot;https://learn.adafruit.com/neopixels-on-raspberry-pi/python-usage&quot;&gt;CircuitPython page&lt;/a&gt; is really good to get going on the code.&lt;/p&gt;</content><author><name></name></author><summary type="html">I decided to do something with one of the (four or five) Raspberry Pi’s kicking around the house. I ended up excitedly buying a newer Pi and a Neopixel, so I didn’t solve my abundance of Pi problem, but I have gotten somewhere with a project.</summary></entry></feed>

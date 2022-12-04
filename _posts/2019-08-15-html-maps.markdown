@@ -1,0 +1,23 @@
+---
+layout: post
+title:  "HTML map areas but a little bit better"
+date:   2019-08-15 21:01:05 +0000
+---
+
+For this project I’m working on I’ve got these images (they’re actually D&D
+dungeon maps) and I’d like users to be able to click various parts of the image
+and have information show up. That’s basically what the HTML `<map><area /></map>`
+tags are all about.
+
+However, you can’t style them to make them visible.
+
+[Here’s a spike of a thing to make them visible.](https://jsfiddle.net/haikushane/q1oeup2j/70/)
+
+It’s truly a spike. I was having a chat about this with my boyfriend and he
+mentioned that `<canvas>` might be the better way to go, as that will be able to
+draw actual circles and arbitrary areas. (Right now, that spike will only
+handle rects.)
+
+Nonetheless, this will get me past the blocker of the project I’m working on.
+I’ll doubtlessly be improving this and pulling it into an actual package.
+Unless someone points me to something that already exists first.

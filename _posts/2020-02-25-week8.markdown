@@ -1,0 +1,24 @@
+---
+layout: post
+title:  "Week 8"
+date:   2020-02-25 21:49:05 +0000
+---
+
+Hey. I missed last week. I wouldn’t worry about it.
+
+* I need to make deliberate time for ukulele, else I’ll never progress. I always think I’ll just pick it up but this [latest recording][1] is the most I’ve picked it up in the past week. The recording isn’t even really a song – I was just fooling around with strumming. Strumming, and making the chords on my music sheet, sound like the song I’m trying to play is the most difficult thing for me. Listening back to the recording, the uke is such a pretty sound. I should find a class.
+* One of the things I’ve been trying to do is be a lot more disciplined with my time this week, and it’s going jolly well so far. It’s very easy for me to accidentally play [Graveyard Keeper][2] for 4 hours. Quick review: it’s like Stardew with less character development and more dead bodies. If you liked Stardew and wanted to spend less time making friends, this is totally for you.
+* I’ve been getting up at 7:30, starting work at 8:00, able to finish work by 16:00, fool around the house (today I was relocating my bird feeder as the cat got another of the birds – sigh), get to the Factory by 18:30 to do project work. Home by 22:00, and bed just before midnight. It’s going well – it’s been two days and my boyfriend has been away, so who knows.
+* During the past two days, I’ve gotten further with any game dev project I’ve ever gotten before. This is _From Here To Dead Locke_. ~It’s for Mac only, sorry. *Press cmd+q to quit – there’s no other way of escaping.* It comes with a massive SIX PLAYABLE BUTTONS. You’ll need a high end computer to get the most out of the sweet 90’s UI.~ It’s too early to give a genre, but I’m aiming for a rogue-like with a bunch of scenes and small stories. *Update*: I originally linked to a binary here, but it doesn't load properly. I'll figure that out eventually.
+* HelloFresh has gone downhill since I first started using it. Recently, they sent me fucking microwave rice. A perfectly good teaching moment – how to cook rice with just enough water – wasted. Back in the day, you’d make burgers from scratch and chop your own sweet potatoes. It’s entirely a meal delivery service now, and has lost all of its teaching. The food is nonetheless delicious, and I’d never taste the spices they send if it weren’t for them.
+* In my copy of Dune, which I got from a train-station-library, was printed in the early 70s. It’s yellowed and gaffataped together, but does the job.  Intermittently, on the bottom left of the right page, it’ll have a number like “D-1”. The numbers are consecutive. “D-2”, “D-3”, etc. Any ideas what they’re for? My thinking is that they align with the Book On Tape version.
+* I’ve not finished Dune yet, but I’m not totally on board with Paul’s sudden character change. There was nothing special about him before that moment, other than an old witch telling him he might be. Then bam!, sci-fi Sherlock Holmes. [Matt Colville][4] did a cool video about Dune recently.
+* I found time to work on [Rocksteady][3] – during Altmetric’s monthly hackday. Then it came time to build the image. Turns out, the Alpine images don’t promise to keep the same versions of the software always available. What I mean is that it was once possible to get NodeJS=8.17 on Alpine 3.10. [It is no longer possible.][5] So my quick UI change has turned into upgrade Node, I guess. Or figuring out how to install old-node.
+
+Okay, I’m going back to game dev.
+
+[1]: https://soundcloud.com/shane-martin-john-preece/strumming
+[2]: https://store.steampowered.com/app/599140/Graveyard_Keeper/
+[3]: https://github.com/PowerRhino/rocksteady
+[4]: https://www.youtube.com/watch?v=AvErbQv_340
+[5]: https://pkgs.alpinelinux.org/packages?name=nodejs&branch=v3.10

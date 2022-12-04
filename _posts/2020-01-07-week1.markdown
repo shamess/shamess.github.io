@@ -1,0 +1,18 @@
+---
+layout: post
+title:  "Week 1"
+date:   2020-01-07 19:30:05 +0000
+---
+
+Week 1 of the year is just about to end. A smart man is hyped about doing these, so he must be on to something. Maybe they’re a good keepsake for the past to look through later on.
+
+* __Oil heaters need help moving their heat around.__ I’ve finally reached a life goal of mine to have a private office. It’s a fantastic space in an old [lace factory][1] which is totally freezing. For insurance reasons, I can only use oil heaters. The problem is they get to a certain heat and then turn off, waiting until they dump their heat. I’ve realised that if I put a tiny USB fan next to it, it pushes the heat and heats the room probably 50% quicker.
+* __Finally did a thing with Redux.__ I’m working on a tabletop encounter creator which is more tailored than what I’ve seen so far. The inputs are the number of players and their average level, and it gives you an interesting combat encounter based on that. (Quite a lot of writing, and not so much number crunching.) It’s not terribly technically interesting but using [Redux][2] in this tiny capacity made me quickly realise why it’s useful. Who wants to be passing data way up the hierarchy and way back down another route? On the more uncomfortable side: I’m not entirely down with supporting HOC. Feels too magical to me.
+* __Recruitment progression.__ It feels like Christmas totally came at the wrong time. We’re [recruiting developers][3] and made great progress just before the holidays and then everything goes quiet for two weeks. Fortunately, it feels like no steam has been lost and the biggest problem now is finding space in three people’s calendars when all of them have full time jobs (and one of them probably doesn’t wanna tell their employer why they need an afternoon off).
+* __I’m simultaneously reading House of Leaves and Dune.__ I’d given up on House of Leaves a few months ago, but feel like I’ve invested so much I may as well trundle on. It’s too scary for me to read all the time though. Dune is filled with moments where (as a writer) I keep cursing the Frank Herbert for thinking up something so great that he’s effectively locked down the plot device for decades to come. “That’s a cool idea but it kinda sounds like the Bene Gesserit.”
+* __I’ve been listening to [IDKHBTFM][4] a bunch.__ I guess they’re alt-rock, or something. I’m very bad at finding new music. I’ve found Apple Music to be absolutely shit at recommending new artists for me to listen to. I’ve no idea why, right front and centre, they’re advertising music I’ve never shown any interest in. Spotify Radio was great at this. As soon as Spotify offer me a deal, I’m outta here.
+
+[1]: https://en.wikipedia.org/wiki/Oldknows_Factory,_Nottingham
+[2]: https://redux.js.org/basics/example/
+[3]: https://www.altmetric.com/jobs/software-developer/
+[4]: https://www.youtube.com/watch?v=2dx9nGBsl7I

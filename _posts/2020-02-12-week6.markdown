@@ -1,0 +1,13 @@
+---
+layout: post
+title:  "Week 6"
+date:   2020-02-12 17:44:09 +0000
+---
+
+* I took my mum for lunch at a club because a pianist I like would be playing. During one of the songs I asked her what she thought the story of the song was. She said, “I think it’s just a song.” People struggle a bunch with imagination to a level which really surprises me. (For what it’s worth, the song was definitely about two people who were desperate to speak at a busy party, but kept getting drawn into conversations with friends. The following song showed one of them making a break, just as they see the other leaving. Dashing now through the streets of Paris, they meet again despite the entire evening being against it. But then the next song seemed to skip to the next day, so I never got a chance to see how their night went.) This was at Peggie’s Skylight, which was wonderful as always.
+* There’s a cool puzzle called the [Snake Egg Puzzle][0] which I’ve been writing a solver for. It’s difficult because so much of it is based on “I’ll try this out and see where it takes me” which is hard to codify without brute forcing the solution.
+* I intended to pick up my ukulele again and start practicing, but I haven’t touche it in over a month again. The weeks just fly by. I’m spending my time very inefficiently. I’ll look for classes.
+* Speaking of classes, I _must_ book some driving lessons this month. This is something I’ve actively put off (not just forgotten about) for years now.
+* My basil started flowering. I didn’t even know it did that.
+
+[0]: https://www.youtube.com/watch?v=73Meh3NPno4

@@ -1,0 +1,39 @@
+---
+layout: post
+title:  "A fun but mostly useless project"
+date:   2020-10-21 20:11:05 +0000
+---
+
+For the first time in my career, writing code every day isn't my main priority. We're hiring a [CTO][0] at the moment, and will shortly be hiring for a senior developer. (No link for that role just yet, but if you're interested, feel free to send me a CV! pls no recruiters.) Between that and a few other non-codie related duties, I've not have a great deal of time to be programming.
+
+After barely a week of that, I found myself really rather energised about code once again and wanted to jump back into something. (I can't imagine this is an original idea, but I'd recommend everyone take a syntactical break.<sup>1</sup>) I've been thinking about [number stations][1] a lot, since reading Codename Villanelle and so figured I'd make one.
+
+It wasn't until I was about two thirds into the project that I realised I've actually just created a [base-four clock][2] and just continued rolling with it.
+
+![A base-four clock, for some reason](/assets/base-four-clock.png){: .center-image }
+
+Some fun quirks around it:
+
+* The animation is really slow. Likely, I just need to call my SetInterval func earlier.
+* I made 4 different shapes, just with CSS.
+* It's in UTC, as the time is sent from the server.
+* On an iPad, it looks awful.
+* There's a web audio noise every 15 minutes.
+* It's got a cool retro style LCD affect, which I can probably get cooler.
+* It's living on port 8080 because the only people forcing you to use port 80 are tyrants. Also, I've overloading this server, and haven't set up nginx or anything yet. ([This has been fixed!]({% post_url 2020-10-24-nginx-eventsource %}))
+* It is "Not Secure".
+* Modern CSS, HTML, and Javascript are quite nice. It's good to know you _can_ still make stuff without Rebabbelnextscript.
+* There's no deployment pipeline. Actually, if I accidentally leaked the .git folder, I wouldn't be surprised. It's just rsynced, baby.
+* It uses CSS animations! They appear broken (flashing sometimes, I can't rotate the parallelogram). But is pretty cool.
+* It's not minified at all. Please enjoy those full fat bytes.
+* It uses EventSource, because I couldn't figure out how to broadcast with WebSockets. Do people use a combination of both?
+* The protocol for displaying content is silly (sometimes single characters are meaningful, but sometimes you just send a big ole `**clear`). I suppose they all are if you think about it.
+* The infrastructure around the application is totally devoid from the deployment cycle of the application. Deploying code changes which also requires nginx changes leads to required downtime.
+
+I quite like having it on a spare screen somewhere. It's utterly undistracting, but quite nice to look at and do the base-four to base-ten conversion. It's like a weird brain scratch.
+
+<sup>1</sup> This is supposed to sound like "sabbatical". But with relation to code. Nevermind.
+
+[0]: https://www.altmetric.com/jobs/cto-altmetric/
+[1]: https://en.wikipedia.org/wiki/Lincolnshire_Poacher_(numbers_station)
+[2]: http://sinc.technicallyshane.com/

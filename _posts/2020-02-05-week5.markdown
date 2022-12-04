@@ -1,0 +1,14 @@
+---
+layout: post
+title:  "Week 5"
+date:   2020-02-05 18:31:05 +0000
+---
+
+* I noticed some buds on one of my trees, my garlic patch is pretty darn tall now, and sunset is verging on 5pm. I think we’re nearly at spring, you guys! My eagerness to start gardening is kicking in.
+* I spent so much time on Monday and Tuesday debugging a hanging processes that I got so far down the rabbit hole where, once at the bottom, I realised I was looking for it in totally the wrong way. Today, I started a miro/realtime board, and had a more productive morning than I had in the past two days. Ask a question you can answer quickly, and then have that lead you onto the next question. Don’t wonder into an allyway and not know what you’re expecting at the other end.
+* I discovered that not only does [Rocksteady][0] not redeploy an image that’s already running (I knew this) but it also doesn’t re-run a periodic job (which I was adamant I’d seen work before, to be told I probably didn’t!). Presumably, both stem from the thing: Rocksteady is just for deploying jobspecs, not code. This got me so angry at the state of software; often overly complex enough to not behave how one could reasonably assume it should. That was a day (in the midst of a fruitless debugging session mentioned above) that I just wanted to chuck in my webdev career and become an over-the-mail tortoise food farmer. (This was fleeting, and isn’t a typical day, but ugh, sometimes!)
+* Still in Altmetric-land, we’re in the middle of a discussion regarding Rocksteady and how we will get some development time for it (including if we even want to do that, and what should be done if we do want to). From my perspective, it’s quite awkward to go back to our product owners and ask for more time to develop an internal tool like Rocksteady. Altmetric is already very generous and trusting when a developer says some technical debt needs paying off. It’s a wonderful part of working for Altmetric; debt gets paid down if a dev wants to do it. Recently, for instance, we spent quite a lot of time moving over to Nomad with only the vaguest of business cases, but a strong technical case. If we go to our product owners and speak with them about a sprint for Rocksteady work I’m sure they’ll be on board. At some point, it may feel a little cheeky though.
+* I went to the gym for the first time in a while (years) and did a bunch of running. I was quite happy about it. There was no space for me to do any stretches or pushups (etc). It’s a rather cheap gym and flooded with students. I may have to consider a more expensive gym.
+
+[0]: https://github.com/PowerRhino/rocksteady
+

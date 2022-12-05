@@ -10,6 +10,7 @@ It's been a very strange couple of weeks.
   `ri` is a thing. I set this up in vim: `nmap ,r byw :!ri <C-R>"<CR>` which
   may be my first custom remapping. "Press `,r` in normal mode to 'select' the
   word under the cursor and open the Ruby docs for it."
+  * Next day followup: Apparently vim has this by default! It's `<S-k>`. Thanks, [mudge]!
 * I've revived [d20.social] as a personal mastodon host, after giving up
   on twitter. It's quite nice over here. I'm hoping to conversation around the
   "deadbird site" drops off soon, so it can be back to cool Ruby bits and nerdy
@@ -52,3 +53,4 @@ It's been a very strange couple of weeks.
 [wasm]: https://www.youtube.com/playlist?list=PLGinoXCc3xS24Zy-Nj-5PjdFgbOctcHjH
 [d20.social]: https://d20.social/shane
 [ruby.social]: https://ruby.social
+[mudge]: https://mudge.name/

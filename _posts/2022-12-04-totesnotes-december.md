@@ -40,6 +40,9 @@ It's been a very strange couple of weeks.
 * I moved this blog to have github build it, rather than me. Until now, I only
   had the \_site directory in git, which felt dangerous and the opposite of
   what normally happens.
+  * Next day follow up: after needing to edit a post, I usually need to get
+  my laptop out. But now I can just edit it in Github and it'll all build
+  happily!
 * Taskmaster ended this week, with maybe the least fun contestant winning.
 * Severance was a fantastic TV show. I believe it's renewed for a second
   series, but I've been thinking about if stopping the story at the end of

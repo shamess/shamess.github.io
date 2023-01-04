@@ -19,3 +19,11 @@ date: 2022-12-23 08:04 +0000
   This is a weird/fun situation where the signature actually makes the code look more complicated. The signature seems to
   demand something, which obviously isn't being received nor used in the method. But in reality, all that's really happening
   is `Cola { brand = "Pepsi"}` which is fairly normal to understand.
+
+* [Making tree lists in CSS](https://iamkate.com/code/tree-views/) is pretty cool, from Kate Rose Morley. I remember years
+  a blog post like that would have to come with a long list of browsers that the trick did and didn't work for. Now, I imagine
+  all the ones we care about will work just fine. That's progress!
+  
+  Just an off the cuff thought: we'd never be in this position of compatibility if the EU hadn't gotten so upset about IE's
+  monopoly. They'd have no pressure or interest in making Edge. (Swings and round abouts though. The EU also gave us cookie
+  banners.)

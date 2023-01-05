@@ -27,3 +27,10 @@ date: 2022-12-23 08:04 +0000
   Just an off the cuff thought: we'd never be in this position of compatibility if the EU hadn't gotten so upset about IE's
   monopoly. They'd have no pressure or interest in making Edge. (Swings and round abouts though. The EU also gave us cookie
   banners.)
+
+* `sed` was behaving weirdly for me. Something about its OSX flavor meant I couldn't get the right format. Turns out, good,
+  ole `perl` could handle it just fine though.
+  
+  `git show --pretty="format:" --name-only | xargs perl -i -pe's/Time.zone.now/Time.current/g'`
+  
+  This was after running the Rails/TimeZone Rubocop autofixer, and then we decided that Time.current is nicer.

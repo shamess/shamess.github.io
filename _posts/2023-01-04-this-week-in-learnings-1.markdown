@@ -58,3 +58,6 @@ date: 2022-12-23 08:04 +0000
   Coming from Elm, I was fairly disappointed in how unsafe you can write TypeScript code, even with strict mode on.
 
   I'm really liking it now though. Given the posibility to start again, maybe I'd go with Elm though.
+
+* I'm really excited about music again, but I may write something longer about that. In case I don't: I've ditched Apple Music
+  and started using Plex to host my own music. Going great!

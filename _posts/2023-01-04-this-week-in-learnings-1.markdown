@@ -49,3 +49,12 @@ date: 2022-12-23 08:04 +0000
   
   The model is from EE - "5G WiFi", QTAD52E. It's struggling with wifi at the moment and often has to been restarted. Oddly, restarting
   also sometimes increases the speed and qualitiy of the 5G connection too (which isn't how I assumed a 5G connection would work).
+
+* I started a TypeScript project with real mixed feelings about it. What type of object is passed into your React powered `onInput`
+  callback? Who the heck knows. The best I could do was thank the devs that TS still compiles, even with failures, so I could
+  console.log the event and figure out what it was. Now, I just avoid having to refer to `e.currentTarget.value` and just use
+  React Refs instead. You also have to guess at the type that has in it, but it's a bit easier.
+
+  Coming from Elm, I was fairly disappointed in how unsafe you can write TypeScript code, even with strict mode on.
+
+  I'm really liking it now though. Given the posibility to start again, maybe I'd go with Elm though.

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: This Week In Learnings 2023.1
-date: 2022-12-23 08:04 +0000
+date: 2023-01-06 23:04 +0000
 ---
 
 * In Elm, you don't have to pass through an argument if you're just going to pass it to another function immediately:

@@ -183,6 +183,6 @@ look into this a bit more, but blissfully, it all just works.
 I'm really over the moon with this set up.
 
 [Roon]: https://www.whathifi.com/advice/roon-everything-you-need-to-know
-[fairly cheap NAS]: https://community.roonlabs.com/t/refusing-to-play-music-skips-through-all-queued-tracks-instantly/228808
+[fairly cheap NAS]: https://www.amazon.co.uk/dp/B074DXPS6B?psc=1&ref=ppx_yo2ov_dt_b_product_details
 [8cds]: https://d20.social/@shane/109648470897717615
 [7digital]: https://uk.7digital.com/

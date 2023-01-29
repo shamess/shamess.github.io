@@ -1,0 +1,15 @@
+name: schedule_build
+on:
+  schedule:
+    - cron:  '*/10 * * * *'
+jobs:
+  go_and_build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger GitHub pages rebuild
+        run: |
+          curl --fail --request POST \
+            --url https://api.github.com/repos/${{ github.repository }}/pages/builds \
+            --header "Authorization: Bearer $USER_TOKEN"
+        env:
+          USER_TOKEN: ${{ secrets.USER_TOKEN }}

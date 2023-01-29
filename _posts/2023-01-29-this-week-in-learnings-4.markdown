@@ -30,6 +30,8 @@ date: 2023-01-29 19:29 +0000
   label == DriverFrontSideTyre || label == PassengerFrontSideTyre || label == PassengerRearSideTyre || label == DriverRearSideTyre
   ```
 * I found a copy of _Three Cheers For Sweet Revenge_ for £1, which made me not feel bad about having bought (and lost) it so many times. I also found a copy of _For Those Who Have Heart_ (A Day To Remember), which I only wanted because there's a really good cover of a [Kelly Clarkson song] on it.
+  * I also found _A Fever You Can't Sweat Out_ (Panic!) in CEX. It's like hunting for relics in charity shops, CEX-like places, and HMV.
+* Totally out of the blue, I've also decided to start backing up my DVD collection. VLC can apparently do this, but I couldn't make it work. So, I paid for  'Winx DVD Ripper Platinum', which felt like the riskiest purchase I've made online ever. But so far appears totally legit. It manages to get around all the copy protection issues that I've thrown at it so far. All the files get thrown onto Plex and it's starting to look like my own Apple Music-and-Netflix service. It's really exciting. I don't know why.
 
 [gist]: https://www.postgresql.org/docs/current/pgtrgm.html#id-1.11.7.44.8
 [Kelly Clarkson song]: https://www.youtube.com/watch?v=Gy4Uq86QbaE

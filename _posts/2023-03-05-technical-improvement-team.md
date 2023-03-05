@@ -50,4 +50,6 @@ This only works on a team with enough developers. I imagine smaller teams,
 without enough devs to spin off another team, will have to continual to juggle
 priorities in a similar way.
 
+Lemme know how you handle your tech debt over on [mastodon](https://d20.social/@shane/109970655811212512).
+
 [pecha kuchas]: https://www.academicsources.co.uk/2021/11/13/10-things-to-know-about-pecha-kucha/

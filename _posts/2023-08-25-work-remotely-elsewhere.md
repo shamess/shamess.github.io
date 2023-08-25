@@ -16,7 +16,7 @@ Alan Pope wrote about how [they were eager to return to _some kind of office_](h
 
 Even before working remotely I had excited aspirations of getting my own four walls to work from. As has become the norm the world over, the company I worked for had an open plan office space in for as long as I had worked there. I disliked this.
 
-That company eventually moved to WeWork, again in an open plan area. All the walls in WeWorks are glass (which is what stops it looking soullessly like a Regus space) and from where I sat I was looking right into a completely vacant, lovely looking single person office space. I idly dreamed of just renting this office space often that eventually the CEO took me aside and, far more politely than they needed to, said something along the lines of, "no, that's a stupid idea. Don't do that."<sup>[1]</sup>
+That company eventually moved to WeWork, again in an open plan area. All the walls in WeWorks are glass (which is what stops it looking soullessly like a Regus space) and from where I sat I was looking right into a completely vacant, lovely looking single person office space. I idly dreamed of just renting this office space often that eventually the CEO took me aside and, far more politely than they needed to, said something along the lines of, "no, that's a stupid idea. Don't do that."[^obviously]
 
 Another driving force behind wanting my own personal space was my idolising Casey Neistat whose studio space is legendary. I wanted to be that cool!
 
@@ -29,4 +29,4 @@ I started looking around my new area and found the perfect studio space; I use i
 I half suspect that this is going to be the way of the future. More and more spaces like this - not hot desking, but a room for which the tenant has a key to the door - will open up in towns outside of London. Ready for people who are tired of working from home to find another community of other working professionals and a focused space to get on with their day job.
 
 
-[1]: And they were obviously correct. Imagine the awkwardness of everyone at the company just watching a sole employee working from their own room. Which they could do because it was all glass. "Why is Shane over there, away from all of us?" "Because Shane's bad with money." And that would be apt.
+[^obviously]: And they were obviously correct. Imagine the awkwardness of everyone at the company just watching a sole employee working from their own room. Which they could do because it was all glass. "Why is Shane over there, away from all of us?" "Because Shane's bad with money." And that would be apt.

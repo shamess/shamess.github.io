@@ -21,8 +21,7 @@ Pros vs S3:
 
 Cons vs S3:
 
-* $5 per month, right from the start. You get unlimted "buckets" and a cumulative total of 250Gb included in that though. 1TB bandwidth.
-* index.html isn't loaded from the root. This is probably a show stopper for most people, but I'm alright with it right now. There's no sign of them adding support for this.
+* $5 per month, right from the start. You get unlimited "buckets" and a cumulative total of 250Gb included in that though. 1TB bandwidth.
 
 The change from S3 to Spaces is as easy as adding one line:
 

@@ -4,7 +4,7 @@ title:  "Digital Ocean Spaces for static websites"
 date:   2020-02-15 18:17:05 +0000
 ---
 
-<p><a href="https://m.do.co/c/181470abc83a"><img src="/assets/ads/digital-ocean-spaces.png" alt="Host on spaces starting with $100 credit" style="width: 200px; float: right; margin-left: 10px; background-color: grey; padding: 5px;" /></a></p>
+<p><a href="https://m.do.co/c/181470abc83a"><img src="/assets/ads/digital-ocean-spaces.png" alt="Host on spaces starting with $200 credit" style="width: 200px; float: right; margin-left: 10px; background-color: grey; padding: 5px;" /></a></p>
 
 [Digital Ocean][0]\* has a product called Spaces, which is a drop in replacement for the majority of uses of Amazon's S3. Including static website hosting.
 
@@ -21,8 +21,7 @@ Pros vs S3:
 
 Cons vs S3:
 
-* $5 per month, right from the start. You get unlimted "buckets" and a cumulative total of 250Gb included in that though. 1TB bandwidth.
-* index.html isn't loaded from the root. This is probably a show stopper for most people, but I'm alright with it right now. There's no sign of them adding support for this.
+* $5 per month, right from the start. You get unlimited "buckets" and a cumulative total of 250Gb included in that though. 1TB bandwidth.
 
 The change from S3 to Spaces is as easy as adding one line:
 
@@ -59,7 +58,7 @@ fs.readdirSync(build).forEach(file => {
 });
 ```
 
-\* This is an affiliate link that'll give you $100 credit to spend in 60 days. Two months free Spaces, plus a bunch of droplets, I guess.
+\* This is an affiliate link that'll give you $200 credit to spend in 60 days. Two months free Spaces, plus a bunch of droplets, I guess.
 
 [0]: https://m.do.co/c/181470abc83a
 [1]: https://bookmarklets.technicallyshane.com/hover/index.html

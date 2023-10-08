@@ -1,7 +1,7 @@
 name: schedule_build
 on:
   schedule:
-    - cron:  '0 9,12,15,18,21 * * *'
+    - cron:  '0 9,15,22 * * *'
 jobs:
   go_and_build:
     runs-on: ubuntu-latest

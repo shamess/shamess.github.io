@@ -104,3 +104,86 @@ asking for results until it has a page-full to send to the user.
 *I'll try implementing something like this tomorrow. Please do shout out if
 there are other, BETTER patterns. I have to run to the gym now in the terrible
 rain, so I must appolgeoise for the even-less-than-usual editing in this post.*
+
+## Tomorrow
+
+_Ha! Tomorrow! "Tomorrow!" It's the 19th of November now._
+
+I managed to get in a few hours working on this problem today and gosh, it's
+complex. Lets recap the requirements:
+
+1. We've got two sites: a database API called BookSite and a user facing one
+   called BookListSite. BookListSite has no metadata about books, but does let
+   users search through them by making calls to BookSite.
+2. There's a page on BookListSite which shows users books by authors they've
+   collected. The user can choose to order these by a number of facets: author,
+   release date, etc.
+   - Using an API, we can ask for an author's books and have them ordered for us
+     by BookSite.
+3. A new product is RecommendedBooks. Recommended book data is stored on
+   BookListSite. So, to get the metadata for those, we have to send a long list
+   of IDs. Good news is that there are usually only 16 recommended books, so
+   can usually be collected in one page.
+4. We want the RecommendedBooks to appear at the top of the results pages.
+5. These need to be ordered by a special 'recommendation ranking'.
+6. If a recommended book appears in the normal search result, only display it
+   as recommended. Never duplicated.
+
+I've made an attempt at the **smarter pagination** idea mentioned above.
+
+With the code I have, we can now tell BookSearchPaginator the two queries we
+have, and it will seemlessly pagination through them.
+
+You can see the code [in this gist](https://gist.github.com/shamess/cb4a0851687c45b9d701e2d0f5773742),
+if you're curious.
+
+```ruby
+all_recommendations = BookSiteJsonApiClient::Book.where(id: [23, 11, 88, 19])
+all_sherlock = BookSiteJsonApiClient::Book.where(author: 'Sherlock').order(:release_date)
+
+paginator = BookSearchPaginator.new([all_recommendations, all_sherlock]) { /* some auth stuff ; yield */
+
+(results, cursor) = paginator.next(page_size: 20)
+```
+
+This will return the first four recommended books, and the remaining 16 will be
+Sherlock books. The cursor might look like:
+
+```
+{
+  current_query_index: 1,
+  current_page_number: 1,
+  current_item: 16
+}
+```
+
+The cursor can be passed back into the paginator to get the
+next set of books:
+
+```ruby
+(results, new_cursor) = paginator.next(page_size: 20, cursor: cursor)
+```
+
+Thanks to the information in the cursor, the paginator knows where to continue
+from. The idea would be that this cursor can be hashed and sent to the browser,
+which would send it back when asking for the next page.
+
+There are two frustrating problems with this though:
+
+1. There's no guarentee of the order that our API will return `Book.where(id:
+   [23, 11, 88, 19])` in, so we still need to order those records. Could this
+   be solved by passing along a `post_fetch_sort` proc for each endpoint? What
+   if the collection is 21 items, rather than the expected 16 that we set our
+   page size too? That 17th item won't be 'sorted' until the second page. No
+   good!
+2. Requirement 6 is now quite hard to do. As the problematic code on production
+   works right now, it's easy to say "get the recommended books; get the other
+   books - recommended ones". However, with the two APIs merged into a single
+   Enumerator of books, it's not possible to tell "are we still looking at the
+   recommended books, or the normal ones?"
+
+**Is it time to call this feature too complex?**
+
+There are other ways to present Recommend Books - not splicing them in with
+non-recommended listings for instance. Maybe this is a problem to solve with a
+Product Owner, rather than one that needs more code.

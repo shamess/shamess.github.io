@@ -4,7 +4,7 @@ title: I made a website
 date: 2024-04-01 14:57 +0100
 ---
 
-*I've just released [shane.computer](https://shane.computer) which is and old-school Internet homepage, and email address that I'm hoping is coherent over the phone.*
+*I've just released [shane.computer](https://shane.computer) which is an old-school Internet homepage, and email address that I'm hoping is coherent over the phone.*
 
 Over the past week I've been working on putting together a new website. There are a few motivations for this.
 

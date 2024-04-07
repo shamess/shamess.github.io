@@ -261,5 +261,6 @@ aside {
     <p>I've designed this page specifically for Big Monitor people. Sorry phone readers.</p>
     <p>This was a particularly fun post to design and write! I wanted something a little more newspaper style. My original design had columns for the main article, but I realised the problem with that is scrolling unaturally back from bottom to top. The column height needs to be the same height as the viewport, which will need some Javascript work and extra UX considerations.</p>
     <p>We're also missing proper "wrap around the text" support. The `aside` block needed floating, and margin offsets to get it working.</p>
-    <p>In the end though, this page has ended up much like <a href="/assets/2024-04-design.pdf" title="178Kb PDF; this is much less than the payload of this webpage - should we go back to just passing around PDFs?">the design I put togehter</a>, so I'm very pleased.</p>
+    <p>In the end though, this page has ended up much like <a href="/assets/2024-04-design.pdf" title="178Kb PDF; this is much less than the payload of this webpage - should we go back to just passing around PDFs?">the design I put together</a>, so I'm very pleased.</p>
+    <p>Not included in the design (because I don't know how to do it) is better separation between the "articles". I don't want to use background color for this. I'd like to use a nice clean line. If `gap-border` was a thing, I'd use that.</p>
 </div>

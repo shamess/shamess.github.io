@@ -230,3 +230,42 @@ wear. You can't really take a Youtuber's advice on this: your body is
 gloriously weird.
 
 In the winter, you want wind breaking trousers and jacket though.
+
+**21. Gears**
+
+Gears have very little to do with speed.
+
+When cycling, you want to have a consistent cadence, regardless of if you're
+going up a hill or on a flat path. Cadence is how many times in a minute you
+peddle. After cycling for some time, you'll learn your "zone 1" (low heart
+rate, comfortable) cadence. Later on, you can run through the gears looking for
+the one that allows you to do that pace, whilst always feeling the "bite" (that
+your peddling is doing something, and not just spinning). When you change
+terrain or elevation, you'll tweak your gears up or down to keep your peddling
+pace the same.
+
+**22. Tyre Pressure**
+
+Buy a pump that stands up, and you step on, and then you churn the lever. Buy a
+pump with a pressure dial. Those hand ones are just for lightweight
+emergencies.
+
+The range of pressure your tyre should be at is on the side of your tyre
+(probably). If you get the pressure wrong you'll feel slow riding, like you're
+dragging the bike rather than riding it. Also, you'll get many, many more
+punctures. If you hit a bump with low pressure, it's possible to jam your inner
+tube against the rim of your wheel, puncturing it. A snakebite.
+
+Check your tyres are alright every day. Some leaks are overnight leaks.
+
+**23. Speed Bumps**
+
+If your tyre pressure is correct, speed bumps aren't a big deal. You might
+catch some air time, but your bike probably won't. The most important thing to
+be aware of when you encounter speed bumps is that they're their for a reason.
+There are kids or vulnerable people around. Maybe slow down and think about
+that patience from earlier.
+
+Cars are a whole different thing though. For some reason, they feel the need to
+drop from 30mph to 3mph. They slam on their breaks to avoid the bump. If you're
+behind a car in a speed bump area, slow right down and give the car space.

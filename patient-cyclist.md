@@ -262,7 +262,7 @@ Check your tyres are alright every day. Some leaks are overnight leaks.
 
 If your tyre pressure is correct, speed bumps aren't a big deal. You might
 catch some air time, but your bike probably won't. The most important thing to
-be aware of when you encounter speed bumps is that they're their for a reason.
+be aware of when you encounter speed bumps is that they're there for a reason.
 There are kids or vulnerable people around. Maybe slow down and think about
 that patience from earlier.
 

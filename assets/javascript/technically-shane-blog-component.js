@@ -12,7 +12,7 @@ class TechnicallyShaneBlogPost extends HTMLElement {
 
     const wrapper = document.createElement("div");
     wrapper.classList.add('wrapper');
-    wrapper.innerHTML = marked.parse(blogPost);
+    wrapper.innerHTML = this.convertFirstHeaderToLink(marked.parse(blogPost), this.getAttribute("content"));
 
     const style = document.createElement("style");
     style.textContent = `
@@ -37,6 +37,10 @@ class TechnicallyShaneBlogPost extends HTMLElement {
       h1 {
         border-radius: 10px 10px 0 0;
         background-color: #02022e;
+
+        a {
+          color: #cacbcf;
+        }
       }
 
       img {
@@ -66,6 +70,20 @@ class TechnicallyShaneBlogPost extends HTMLElement {
 
         return doc.querySelector(selector).innerHTML;
       });
+  }
+
+  convertFirstHeaderToLink(html, link) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+
+    const h1 = doc.querySelector("h1");
+    const a = document.createElement("a");
+    a.href = link;
+    a.textContent = h1.textContent;
+    h1.textContent = '';
+    h1.appendChild(a);
+
+    return doc.body.innerHTML;
   }
 }
 

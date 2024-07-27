@@ -9,6 +9,8 @@ It can be embedded anywhere!
 <template data-type="blog-post" data-format="markdown">
 # This blog post is a Web Component
 
+_By Shane._
+
 At work we're adding SwiperJS and I was reviewing the PR implementing it and
 noticed a bunch of HTML5 that I'm a bit behind on. What the heck is a shadow
 root? What's this `part` selector?

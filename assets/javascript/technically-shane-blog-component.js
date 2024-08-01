@@ -26,8 +26,8 @@ class TechnicallyShaneBlogPost extends HTMLElement {
       }
 
       .wrapper > * {
-        padding-left: 5px;
-        padding-right: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
       }
 
       .wrapper:last-child {
@@ -50,6 +50,10 @@ class TechnicallyShaneBlogPost extends HTMLElement {
 
       ul, ol {
         list-style-position: inside;
+      }
+
+      .mini {
+        width: 30%;
       }
     `;
 

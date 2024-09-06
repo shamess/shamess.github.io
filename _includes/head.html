@@ -10,4 +10,17 @@
   {%- feed_meta -%}
 
   <meta name="fediverse:creator" content="@shane@d20.social" />
+
+  <script>
+    fetch('https://viewpoint.shane.computer/page_views', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          page_url: window.location.href,
+        })
+    });
+  </script>
 </head>

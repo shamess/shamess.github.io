@@ -88,3 +88,15 @@ about that.
 </technically-shane-blog-post>
 
 <script src="/assets/javascript/technically-shane-blog-component.js" type="module" defer></script>
+
+<script>
+fetch('https://viewpoint.shane.computer/page_views', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        page_url: window.location.href,
+    })
+});
+</script>

@@ -118,3 +118,37 @@ One trick I've had to implement here is the `include_stream` variable. When outp
 ## Lets see if I remember my point
 
 The key take away is that you shouldn't be fighting against what Rails does best: CRUDy stuff with views, controllers, and models. There are some rough edges to Hotwire still, for sure. However, if you find yourself bending over backwards to do something outside that typical stuff, then it's probably you're going wrong somewhere.
+
+<hr />
+
+<style>
+    aside {
+        background-color: #f9f9f9;
+        border-left: 5px solid #ccc;
+        padding: 0.5em;
+        margin: 1em 0;
+    }
+</style>
+
+<aside>
+    <h1>Now is the time to jump the Kindle ship</h1>
+
+    <p>Amazon still stop allowing you to down your ebooks to your computer soon - towards the end of February. So, if you're like me and have been thinking about leaving the Kindle ecosystem for a while, this might be the pressure you need to do it, so you can carry your books away with you. <a href="https://d20.social/@Edent@mastodon.social/114002593604252427">edent on mastodon</a> has a good thread on switching to Kobo, including references to Kobo's price match scheme, where they'll refund the difference plus 10%.</p>
+</aside>
+
+<aside>
+    <h1>Elite Ice Hockey and the Panthers</h1>
+
+    <p>My incredibly generous neighbour finally got me to go and watch some ice hockey with them. The event started off the day before where they had me and my partner around to their house to show us a game and tell us the rules, so we were prepared for everything that was to happen. You don't really need preparing, it turns out, but it was a very warming thing to have done. The spirit of an ice hockey match is quite nice. The games in Nottingham are mostly sold out, so there are around 7500 people watching which makes for a huge sense of community. Chanting and cheering on alongside so many other people is very unifying. Especially over something that isn't incredibly serious.</p>
+    <p>If you live near a team, I'd recommend going to see a game. It's a good time.</p>
+</aside>
+
+<aside>
+    <h1>Is this therapy?</h1>
+
+    <p>I have a new engineering manager which was a nervous experience to begin with. I really feel my previous EM understood me and the way I wanted to progress and losing that relationship and empathy was worrying. Turns out, I had nothing to worry about. My manager is fantastic! I was a bit worried when they wanted to do an arts-and-crafts style activity in one of our one-to-ones though. They had eight or so pictorials that they wanted me to order, ranked by importance to me. Things like 'Salary', 'Respect', 'Impact', 'Mastery'. I thought this was quite silly to start with, but whilst doing it I discovered somethings about myself.</p>
+    <p>It also made me realise that carwow is giving me _exactly_ the kind of workplace I want with the the things that drive me best.</p>
+    <p>This was a fairly important breakthrough for me because I'd recently been wondering if I hated working for someone else. It was weighing on me a lot. But realising that carwow is essentially the perfect place for me to be (right now) I had to re-evaluate what was making me so frustrated with working. Now, I realise that I'm just really pissed off at having to spend so much of my life at work, when I have so many other objectives. Now that's a <em>complete different problem</em> that I can be tackling with a number of tactics, which I hadn't thought about at all before because I'd assumed it was just the working for someone else that was the problem.</p>
+    <p>So, I want to focus on being more careful with my time and making the most of it outside of working hours. There's plenty of unfulfilling time (waiting for a bus, playing a video game a little longer than I'm actually enjoying it for, walking into town to buy lunch, filling my week with other activities that are fun but not fulfilling) that I can be using to work on my own projects. I'm going to try and be more mindful of that.</p>
+    <p>In the future, I may also seek to renegotiate my working hours or even take some time off work.</p>
+</aside>

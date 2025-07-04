@@ -7,19 +7,38 @@ title: Index
 at the back. In a website, the index is at the front. This is one of those book
 ones.*
 
+*This started as an attempt to put together an index, but it's actually [very
+complicated](https://www.ugapress.org/indexing-guidelines/) and quite hard.
+Especially when you don't really have page numbers. So this is sort of a
+manually curated list of topics.*
+
 *This page is designed to avoid the need for a search engine. Use your 'Find'
 tool to find the topic you half-remember being on the blog.*
+
+## A
+
+* Affinity (company)
+    * [Aquistition]({% post_url 2024-04-07-the-cyclists-tiny-portable-office %})
+* Artificial Intelligence
+    * [Definition]({% post_url 2025-03-08-could-ai-write-this %})
+
+## B
+
+* Bats
+    * [Cohabiting]({% post_url 2025-06-22-sabbatical %})
 
 ## C
 
 * Cycling
     * [Patient Cyclist](/patient-cyclist)
+    * [E-bike mennace]({% post_url 2025-06-22-sabbatical %})
 
 ## D
 
 * Docker
     * [Making a Rails project]({% post_url 2023-10-08-building-something-in-rails %})
     * [Using Amazon ECR]({% post_url 2020-10-31-using-nomad-with-private-docker-repositories %}); Elastic Container Registry; private Docker repository
+    * [With Wordpress]({% post_url 2024-12-11-what-a-wordpress-deploy-might-look-like-in-2025 %})
 
 ## E
 
@@ -28,8 +47,12 @@ tool to find the topic you half-remember being on the blog.*
 
 ## H
 
+* Hackspace
+    * [Hackspace]({% post_url 2024-07-08-hackspace %}); Nottinghack; Trustee
 * Happiness
     * [The small things]({% post_url 2020-07-30-week31 %})
+* HTML
+    * [Forms]({% post_url 2024-10-28-some-things-i-learnt-about-forms %}); Javascript
 
 ## I
 
@@ -48,7 +71,10 @@ tool to find the topic you half-remember being on the blog.*
 
 ## M
 
+* Murder Mystery
+    * [murder.co.uk]({% post_url 2024-12-05-murder %})
 * Music
+    * [Music security]({% post_url 2024-04-07-the-cyclists-tiny-portable-office %}); Plex
     * [Owning music]({% post_url 2023-01-21-owning-music %}); Plex; Roon
 
 ## P
@@ -68,6 +94,7 @@ tool to find the topic you half-remember being on the blog.*
     * [ActiveRecord Migrations without Rails]({% post_url 2021-01-15-activerecord-migrations-without-rails-nice %})
     * [CurrentAttributes]({% post_url 2022-12-22-access-object-throughout-request-lifecycle-with-currentattributes %})
     * [Dockerisation]({% post_url 2023-10-08-building-something-in-rails %})
+    * [Turbo Streams]({% post_url 2025-02-16-turbo-streams-and-design %}); Hotwired
 * React
     * [Shared State Model]({% post_url 2022-03-16-shared-state-model %}); Redux
 * Redis
@@ -82,8 +109,12 @@ tool to find the topic you half-remember being on the blog.*
 
 ## S
 
+* Sabbatical
+    * [Sabbatical]({% post_url 2025-06-22-sabbatical %}); work
 * Society
     * [twitter brain]({% post_url 2020-08-18-twitter-brain %}); communication
+* Space
+    * [Europa]({% post_url 2024-12-29-there-are-aliens-in-the-solar-system-but-probably-not-on-earth %}); Europa Clipper; Jupiter
 * SQL
     * [Query design]({% post_url 2023-08-16-getting-comfortable-with-datawarehousing %}); Snowflake; JOINs
 * Static hosting
@@ -113,5 +144,9 @@ tool to find the topic you half-remember being on the blog.*
 
 ## W
 
+* Web Components
+    * [This blog post is a Web Component]({% post_url 2024-07-27-this-blog-post-is-a-web-component %})
+* Wordpress
+    * [Deploying with Docker]({% post_url 2024-12-11-what-a-wordpress-deploy-might-look-like-in-2025 %})
 * On writing
     * [Key components of The Anthropocene Reviewed]({% post_url 2020-05-03-the-anthropocene-reviewed %}); John Green

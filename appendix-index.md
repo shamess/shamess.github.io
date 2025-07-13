@@ -45,6 +45,11 @@ tool to find the topic you half-remember being on the blog.*
 * EventSource
     * [Configuring nginx]({% post_url 2020-10-24-nginx-eventsource %})
 
+## F
+
+* Fighting the Framework
+    * [AR Relationships and POROs]({% post_url 2025-07-13-activerecord-relationships-and-poros %})
+
 ## H
 
 * Hackspace
@@ -64,7 +69,7 @@ tool to find the topic you half-remember being on the blog.*
 ## N
 
 * Neopixel
-    * [Raspberry Pi and Neopixel]({% post_url 2021-02-06-raspberry-pi-and-neopixel %}); electronics project
+    * [Raspberry Pi and Neopixel]({% post_url 2021-02-04-raspberry-pi-and-neopixel %}); electronics project
     * [Printed Circuit Board]({% post_url 2021-02-21-printed-circuit-board %}); electronics project; PCB design
 * Nomad
     * [Configuring nginx to secure Web UI]({% post_url 2020-10-30-nomad-ui-left-wide-open %})
@@ -92,7 +97,8 @@ tool to find the topic you half-remember being on the blog.*
 
 * Rails
     * [ActiveRecord Migrations without Rails]({% post_url 2021-01-15-activerecord-migrations-without-rails-nice %})
-    * [CurrentAttributes]({% post_url 2022-12-22-access-object-throughout-request-lifecycle-with-currentattributes %})
+    * [ActiveRecord Relationships and POROs]({% post_url 2025-07-13-activerecord-relationships-and-poros %})
+    * [CurrentAttributes]({% post_url 2022-12-18-access-object-throughout-request-lifecycle-with-currentattributes %})
     * [Dockerisation]({% post_url 2023-10-08-building-something-in-rails %})
     * [Turbo Streams]({% post_url 2025-02-16-turbo-streams-and-design %}); Hotwired
 * React

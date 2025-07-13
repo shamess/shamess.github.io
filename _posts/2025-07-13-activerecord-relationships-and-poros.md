@@ -4,9 +4,33 @@ title: ActiveRecord Relationships and POROs
 date: 2025-07-13 09:15 +0100
 ---
 
-In short
-*Problem:* I have an ActiveRecord polymorphic `belongs_to` relationship between an Inventory and various inventory owners. The owners are all also ActiveRecord models. The problem arises when one of the 'owners' is not an ActiveRecord model. Is it possible to have a `belongs_to :some_plain_old_ruby_object`?
-*Current state of problem:* This is too much *fighting the framework*. Just give the PORO a table and be done with it.
+<style>
+.in-short {
+    background-color: #9182ff;
+    margin: 5px;
+    padding: 10px;
+
+    border: 1px solid black;
+    border-radius: 10px;
+
+    .title {
+        font-weight: bolder;
+
+        border-bottom: 1px solid black;
+    }
+
+    div {
+        padding: 5px;
+    }
+}
+</style>
+
+<div class="in-short">
+    <div class="title">In short</div>
+
+    <div><strong>Problem:</strong> I have an ActiveRecord polymorphic `belongs_to` relationship between an Inventory and various inventory owners. The owners are all also ActiveRecord models. The problem arises when one of the 'owners' is not an ActiveRecord model. Is it possible to have a `belongs_to :some_plain_old_ruby_object`?</div>
+    <div><strong>Current state of problem:</strong> This is too much *fighting the framework*. Just give the PORO a table and be done with it.</div>
+</div>
 
 Here's some code to lay the land for this idea.
 

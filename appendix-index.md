@@ -26,6 +26,8 @@ tool to find the topic you half-remember being on the blog.*
 
 * Bats
     * [Cohabiting]({% post_url 2025-06-22-sabbatical %})
+* Brokepoint
+    * [Writing the gem I]({% post_url 2025-07-28-unresolved-or-ambiguous-specs-during-gem-specification-reset %})
 
 ## C
 
@@ -49,6 +51,11 @@ tool to find the topic you half-remember being on the blog.*
 
 * Fighting the Framework
     * [AR Relationships and POROs]({% post_url 2025-07-13-activerecord-relationships-and-poros %})
+
+## G
+
+* Gems
+    * [Unresolved or ambiguous specs during Gem::Specification.reset]({% post_url 2025-07-28-unresolved-or-ambiguous-specs-during-gem-specification-reset %})
 
 ## H
 

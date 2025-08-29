@@ -39,6 +39,7 @@ tool to find the topic you half-remember being on the blog.*
 
 * Docker
     * [Making a Rails project]({% post_url 2023-10-08-building-something-in-rails %})
+    * [Private registries]({% post_url 2025-08-29-the-non-facy-way-of-deploying-a-rails-app-and-a-step-toward-the-future %}); distribution/distribution; self-hosted
     * [Using Amazon ECR]({% post_url 2020-10-31-using-nomad-with-private-docker-repositories %}); Elastic Container Registry; private Docker repository
     * [With Wordpress]({% post_url 2024-12-11-what-a-wordpress-deploy-might-look-like-in-2025 %})
 
@@ -106,6 +107,7 @@ tool to find the topic you half-remember being on the blog.*
     * [ActiveRecord Migrations without Rails]({% post_url 2021-01-15-activerecord-migrations-without-rails-nice %})
     * [ActiveRecord Relationships and POROs]({% post_url 2025-07-13-activerecord-relationships-and-poros %})
     * [CurrentAttributes]({% post_url 2022-12-18-access-object-throughout-request-lifecycle-with-currentattributes %})
+    * [Deployment to self-managed server]({% post_url 2025-08-29-the-non-facy-way-of-deploying-a-rails-app-and-a-step-toward-the-future %})
     * [Dockerisation]({% post_url 2023-10-08-building-something-in-rails %})
     * [Turbo Streams]({% post_url 2025-02-16-turbo-streams-and-design %}); Hotwired
 * React

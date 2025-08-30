@@ -37,6 +37,8 @@ tool to find the topic you half-remember being on the blog.*
 
 ## D
 
+* Deploying
+    * [Blue-Green deployments with nginx]({% post_url 2025-08-30-blue-green-deployment-of-a-docker-compose-setup %})
 * Docker
     * [Making a Rails project]({% post_url 2023-10-08-building-something-in-rails %})
     * [Private registries]({% post_url 2025-08-29-the-non-facy-way-of-deploying-a-rails-app-and-a-step-toward-the-future %}); distribution/distribution; self-hosted
@@ -76,6 +78,9 @@ tool to find the topic you half-remember being on the blog.*
 
 ## N
 
+* Nginx
+    * [Blue-Green deployments]({% post_url 2025-08-30-blue-green-deployment-of-a-docker-compose-setup %})
+    * [Configuring secure Web UI for nomad]({% post_url 2020-10-30-nomad-ui-left-wide-open %})
 * Neopixel
     * [Raspberry Pi and Neopixel]({% post_url 2021-02-04-raspberry-pi-and-neopixel %}); electronics project
     * [Printed Circuit Board]({% post_url 2021-02-21-printed-circuit-board %}); electronics project; PCB design

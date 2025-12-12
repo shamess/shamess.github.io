@@ -37,6 +37,8 @@ tool to find the topic you half-remember being on the blog.*
 
 ## D
 
+* Debugging
+    * [What went wrong with my SolidQueue installation?]({% post_url 2025-12-12-what-went-wrong-with-my-solidqueue-installation %}); SolidQueue; Rails
 * Deploying
     * [Blue-Green deployments with nginx]({% post_url 2025-08-30-blue-green-deployment-of-a-docker-compose-setup %})
 * Docker
